@@ -1,13 +1,13 @@
 $(function () {
   'use strict'
 
-  // Load demo images from flickr:
+  // Load images from flickr:
   $.ajax({
     url: 'https://www.flickr.com/photos/npksm',
     data: {
       format: 'json',
-      method: 'flickr.galleries.getList',
-      api_key: 'b8d48b0baa7975b719341d7932ca80b1' // jshint ignore:line
+      method: 'flickr.galleries.getPhotos',
+      api_key: 'b8d48b0baa7975b719341d7932ca80b1'
     },
     dataType: 'jsonp',
     jsonp: 'jsoncallback'
