@@ -3,10 +3,10 @@ $(function () {
 
   // Load images from flickr:
   $.ajax({
-    url: 'https://www.flickr.com/photos/npksm',
+    url: 'https://api.flickr.com/services/rest/',
     data: {
       format: 'json',
-      method: 'flickr.galleries.getPhotos',
+      method: 'flickr.interestingness.getList',
       api_key: 'b8d48b0baa7975b719341d7932ca80b1'
     },
     dataType: 'jsonp',
