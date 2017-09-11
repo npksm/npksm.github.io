@@ -6,7 +6,7 @@ $(function () {
     url: 'https://api.flickr.com/services/rest/',
     data: {
       format: 'json',
-      method: 'flickr.photosets.getList',
+      method: 'flickr.people.getPublicPhotos',
       user_id: '132594008@N04',
       api_key: 'b8d48b0baa7975b719341d7932ca80b1'
     },
