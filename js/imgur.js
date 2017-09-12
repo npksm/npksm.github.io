@@ -3,7 +3,7 @@ $(function () {
 
   // Load images
   $.ajax({
-  	url: 'https://api.imgur.com/3/album/3diZT/images'
+  	url: 'https://api.imgur.com/3/account/npksm/images'
   	data:{
   		format: 'json',
   		method: 'GET',
@@ -17,8 +17,17 @@ $(function () {
   	var linksContainer = $('#links')
   	var baseUrl
   	//add images as links with thumbnails
-  	$.each(result.photos.photo, function(index, photo){
-  		baseUrl = 'imgur.com/a'
+  	$.each(result, function(index, photo){
+  		$('<a/>')
+                .append($('<img').prop('src', result.link))
+                .prop('href', result.link)
+                .prop('title', result.title)
+                .attr('data-gallery', '')
+                .appendTo(linksContainer)
+              CarouselLinks.push({
+                href: result.link + '_c.jpg',
+                title: result.title
+              })
   	})
   	
   })
