@@ -1,0 +1,173 @@
+body{
+	color: #fff;
+	padding:0;
+	margin:0;
+	width:100%;
+}
+h1{
+	color:#fff;
+}
+header{
+	background:#fff;
+	width:100%;
+	height:80px;
+	position: fixed;
+	top:0;
+	left:0;
+	border-bottom: 4px solid #4c9cf1;
+	z-index: 100;
+}
+.content{
+	width: 100%;
+	margin: 0 auto;
+}
+.cover-heading{
+	color:#fff;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    text-align: center;
+}
+.img-link{
+	padding: 10px;
+}
+.inner{
+	padding: 30px;
+	margin: 0 auto;
+}
+.inner-cover{
+	text-align: center;
+}
+.gallery{
+	padding:10px;
+	margin: 0 auto;
+	width:50%;
+}
+.lead{
+	color:#fff;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.mastfoot{
+	bottom:0;
+	color: rgba(255, 255, 255, 0.5);
+	height: 60px;
+  	background-color: #f5f5f5;
+}
+.navbar{
+	color:#FF0000;
+}
+@media screen and (max-width: 480px){
+	.picture-img{
+	height:40%;
+	}
+}
+.picture-img{
+	height:auto;
+	background-image: url(https://farm8.staticflickr.com/7716/17666405109_c4c84c599a_o.jpg);
+	background-size: cover;
+	padding: 100px 0;
+}
+.social-footer{
+	margin: 0 auto;
+}
+.snippet{
+    float;
+}
+.third{
+	width:50%;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+#banner{
+	height:100%;
+	width:100%;
+}
+#content{
+	margin: 0 auto;
+	padding: 10px;
+}
+#info{
+	background: url(https://farm6.staticflickr.com/5609/18882342515_ce2b4ec5d5_o.jpg) 50% 0 fixed; 
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding: 200px 0;
+}
+#intro { 
+    background: url(https://farm6.staticflickr.com/5455/18694672040_2f225f42d6_b.jpg) 50% 0 fixed; 
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    padding: 100px 0;
+}
+#home { 
+    background: url(https://farm6.staticflickr.com/5609/18882342515_ce2b4ec5d5_o.jpg) 50% 0 fixed; 
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding: 200px 0;
+}
+#headshot{
+	float:left;
+	padding: 5px;
+}
+#artwork{
+	background-color:#7A3D5C;
+	color:#FFF;
+}
+#about { 
+    background-color: #5C7A99;
+    color: #fff;
+}
+#more{
+	background-color: #134913;
+	color:#fff;
+}
+#photos{
+	background: url(https://farm6.staticflickr.com/5455/18694672040_d3d461e47a_o.jpg) 50% 0 fixed; 
+    height: auto;  
+    position: relative; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    padding: 100px 0;
+    background-size: cover;
+}
+#snippet{
+	float;
+	
+}
+#social{
+	background: url(https://farm6.staticflickr.com/5443/17949801322_ddceccaf75_o.jpg) 50% 0 fixed; 
+    height: auto;  
+    position: relative; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    padding: 100px 0;
+    background-size: cover;
+}
+#stick{
+	opacity: 0.75;
+}
+#text-image{
+	width:50%;
+	margin: 5px;
+	padding: 5px;
+	float: left;
+}
+#wrap{
+	min-height: 100%;
+  	height: auto !important;
+  	height: 100%;
+  /* Negative indent footer by its height */
+  	margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  	padding: 0 0 60px;
+}
