@@ -11,7 +11,7 @@ $.ajax({
 	data: { id, media_url, caption },
 	success: function (data) {
 		console.log(data);
-		$('.posts').append("success I suppose");
+		$('.posts').append("<p>success I suppose</p>");
 		//for (x in data.data) {
 			//$(".posts").append('<img src="' + data.data[x].media_url + '>'); // data.data[x].images.low_resolution.url - URL of image, 306х306
 			// data.data[x].images.thumbnail.url - URL of image 150х150
@@ -20,7 +20,7 @@ $.ajax({
 		//}
 	},
 	error: function (data) {
-		$('.posts').append("failure");
+		$('.posts').append("<p>failure</p>");
 		console.log(data); // send the error notifications to console
 	}
 });
