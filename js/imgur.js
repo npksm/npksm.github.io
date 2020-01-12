@@ -9,7 +9,8 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
 				for( x in response.data){
-					$('#imgurphotos').html('<a href="' +response.data[x].link'"></a>');
+					$('#imgurphotos').html('<a><img src="'+response.data[x].link+'"></a>');
+
 				}
 
 });
