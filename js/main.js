@@ -7,6 +7,6 @@
 $.get(
 	'https://graph.instagram.com/me/media?fields=id,media_url, caption&access_token=' + token,
 	function(data, status){
-		alert("Status: " + status "Data: " + data);
+		alert("Data: " + data + "\nStatus: " + status);
 		//$("posts").append("<p> "Data: "+ data </p>");
 	});
