@@ -8,12 +8,12 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {
-	var x = 0;
+	$.each(response.data,
 				for (x in response.data){			
 					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
 					//$('#words').html('<p> '+response.data[x].name+'></p>');		
 					console.log(response.data);
-				}
+				});
 
 });
