@@ -8,5 +8,8 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {
-  console.log(response);
+				for( x in response.data){
+					$('#imgurphotos').html('<a href="' +response.data[x].link'"></a>');
+				}
+
 });
