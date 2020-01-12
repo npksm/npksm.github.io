@@ -9,7 +9,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
 	$.each(response.data.data, function(x){
-				for (x in response.data){			
+				for (i=0;i<response.data.data;i++){			
 					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
 					//$('#words').html('<p> '+response.data[x].name+'></p>');		
