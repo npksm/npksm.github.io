@@ -18,15 +18,3 @@ $.ajax(settings).done(function (response) {
 
 });
 
-var settings = {
-  "url": "https://api.imgur.com/3/account/npksm/albums/",
-  "method": "GET",
-  "timeout": 0,
-  "headers": {
-    "Authorization": ["Client-ID 3bb96a2eb726cfe", "Client-ID 3bb96a2eb726cfe"]
-  },
-};
-
-$.ajax(settings).done(function (response) {
-  		console.log(response);
-});
