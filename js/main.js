@@ -1,7 +1,7 @@
 ﻿var token = 'IGQVJVdHNqSmdtMnpkSzZAvZAGpfZAWhPSktkQW1zS016b1V2TEJKRlJ2b2FBdVF4NEYzLWR1QjZAaRlhfcHU1QTZABM0xiR3FfTnJsSHBVU2JfSmNTYnVLUjdaeENOM0FtNmtTeFMxOHNrYzVKLWdaNVFFdTM0cEh0QTJsUUlJ',
 	userid = 17306901306,  
 
-$.ajax({
+$ajax({
 	url: 'https://graph.instagram.com/me/media?fields=id,media_url, caption&access_token=' + token, // or /users/self/media/recent for Sandbox
 	dataType: 'jsonp',
 	type: 'GET',
