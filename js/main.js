@@ -10,7 +10,7 @@ $.ajax({
 	success: function (data) {
 		console.log(data);
 		for (x in data.data) {
-			$('ul').append('<li><img src="' + data.data[x].media_url + '"></li>'); // data.data[x].images.low_resolution.url - URL of image, 306х306
+			$('ul').append('<li><img src=' + data.data[x].media_url + '></li>'); // data.data[x].images.low_resolution.url - URL of image, 306х306
 			// data.data[x].images.thumbnail.url - URL of image 150х150
 			// data.data[x].images.standard_resolution.url - URL of image 612х612
 			// data.data[x].link - Instagram post URL 
