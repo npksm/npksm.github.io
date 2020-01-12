@@ -29,7 +29,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
   		for (x in response.data){			
-					$('#albums').html('<a class="post" src="'response.data[x].link'""><img class="thumb" src="i.imgur.com/'+response.data[x].cover+'"></a>');
+					$('#albums').html('<a class="post" src="'response.data[x].link'"><img class="thumb" src="i.imgur.com/'+response.data[x].cover+'"></a>');
 
   			}
 });
