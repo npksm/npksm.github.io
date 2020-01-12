@@ -8,13 +8,14 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {
-				for( x in response.data){
+		var parsedJSON = JSON.parse(response);
+				for(var i=0;i<parsedJSON.length;i++ ){
 					
-					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
+					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[i].link+'"></a>');
 					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
 					//$('#words').html('<p> '+response.data[x].name+'></p>');
 					
-					console.log(response.data[x]);
+					console.log(response.data[i]);
 				}
 
 });
