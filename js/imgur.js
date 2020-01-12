@@ -13,7 +13,8 @@ $.ajax(settings).done(function (response) {
 					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
 					//$('#words').html('<p> '+response.data[x].name+'></p>');
 					console.log(response.data);
-					i+
+					console.log(response.length);
+					
 				}
 
 });
