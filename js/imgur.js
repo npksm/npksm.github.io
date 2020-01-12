@@ -12,8 +12,9 @@ $.ajax(settings).done(function (response) {
 					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
 					//$('#words').html('<p> '+response.data[x].name+'></p>');
-					console.log(response.data);
+					
 					console.log(response.length);
+
 					
 				}
 
