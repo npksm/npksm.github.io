@@ -1,3 +1,4 @@
+function callPage(){
 $.ajax({
 		url:"imagepost.html",
 		type: "GET",
@@ -13,4 +14,4 @@ $.ajax({
 					console.log("The request is complete!");
 			}			
 	});
-			
+}	
