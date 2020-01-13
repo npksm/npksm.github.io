@@ -11,7 +11,7 @@ $.ajax(settings).done(function (response) {
 	for (x=0;x<10;x++){
 		$.each(response, function(index, value){
 			console.log("index: " +index+"\n value: " + value + "\n response.data[x].name "+ response.data[x].name) 
-			//$('#albums').html('<p>'response.data[x].name'</p>');
+			$('#albums').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 			});
 	}
 });
