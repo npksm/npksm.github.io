@@ -4,7 +4,7 @@
 		dataType: "text",
 			success: function (response){
 					console.log('the page was loaded', response);
-					$('.content').append(response);
+					$('#content').append(response);
 			},
 			error: function(error){
 					console.log('the page was NOT loaded', error);
