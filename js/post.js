@@ -9,7 +9,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {		
 	$.each(response, function(index, value){
-		console.log("index: " +index+" value: " + value+ " value.name " +value.name) 
+		console.log("index: " +index+"\n value: " + value+ "\n data.name " +data.name) 
 		//$('#albums').html('<p>'response.data[x].name'</p>');
 		});
 });
