@@ -7,9 +7,10 @@ var settings = {
   },
 };
 
-$.ajax(settings).done(function (response) {		
+$.ajax(settings).done(function (response) {	
+
 	$.each(response, function(index, value){
-		console.log("index: " +index+"\n value: " + value+ "\n index.value.name " +index.value.name) 
+		console.log("index: " +index+"\n value: " + value "\n response.data[x].name "+ response.data[x].name) 
 		//$('#albums').html('<p>'response.data[x].name'</p>');
 		});
 });
