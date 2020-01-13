@@ -8,6 +8,7 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {
+	var x =0;
 				for (x in response.data[x]){			
 					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 					x++;
