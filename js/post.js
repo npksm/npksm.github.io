@@ -8,10 +8,10 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {	
-var x = 1;
-
-	$.each(response, function(index, value){
-		console.log("index: " +index+"\n value: " + value + "\n response.data[x].name "+ response.data[x].name) 
-		//$('#albums').html('<p>'response.data[x].name'</p>');
-		});
+	for (x=0;x<response.index;x++){
+		$.each(response, function(index, value){
+			console.log("index: " +index+"\n value: " + value + "\n response.data[x].name "+ response.data[x].name) 
+			//$('#albums').html('<p>'response.data[x].name'</p>');
+			});
+	}
 });
