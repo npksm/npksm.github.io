@@ -11,7 +11,7 @@ $.ajax(settings).done(function (response) {
 var x = 0;
 	for (i=0;i<10;i++){
 
-				for (x in response.data){			
+				for (x in response.data[x]){			
 					$('#posts').html('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 					x++;
 					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
