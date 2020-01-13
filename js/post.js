@@ -1,6 +1,6 @@
 function callPage(){
 	$.ajax({
-		url:"imagepost.html",
+		url:"https://npksm.github.io/imagepost.html",
 		type: "GET",
 		dataType: "text",
 			success: function (response){
