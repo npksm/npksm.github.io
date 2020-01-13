@@ -1,9 +1,9 @@
-//function getPage
+//function postImage
 
-function postImage(){
+function getPage(){
 	$.ajax({
 		url:"imagepost.html",
-		type: "POST",
+		type: "GET",
 		dataType: "text",
 			success: function (response){
 					console.log('the page was loaded', response);
