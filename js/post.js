@@ -26,5 +26,4 @@ $.ajax(settings).done(function (response) {
 			});
 			//$('#albums').append('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 			});
-	}
-});
+	});
