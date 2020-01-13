@@ -1,4 +1,3 @@
-function callPage(){
 	$.ajax({
 		url:"https://npksm.github.io/imagepost.html",
 		type: "GET",
@@ -13,7 +12,6 @@ function callPage(){
 			complete: function(xhr, status){
 					console.log("The get request is complete!");
 			}			
-	})
-};
+	});
 
 	
