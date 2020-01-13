@@ -13,15 +13,15 @@ $.ajax(settings).done(function (response) {
 			$.ajax({
 				url:"imagepost.html",
 				type: "GET",
-				dataType: "text/html",
+				dataType: "text",
 				success: function (response){
-					consoler.log('the page was loaded', response);
-				};
+					console.log('the page was loaded', response);
+				},
 				error: function(error){
 					console.log('the page was NOT loaded', error);
 				},
 				complete: function(xhr, status){
-					console.log("The reques is complete!");
+					console.log("The request is complete!");
 				}			
 			});
 			//$('#albums').append('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
