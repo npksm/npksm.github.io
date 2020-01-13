@@ -1,0 +1,22 @@
+{
+  "name": "npksm.github.io",
+  "version": "1.0.0",
+  "description": "my site",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello sm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npksm/npksm.github.io.git"
+  },
+  "author": "nick moller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npksm/npksm.github.io/issues"
+  },
+  "homepage": "https://github.com/npksm/npksm.github.io#readme",
+  "dependencies": {
+    "react-image-gallery": "^1.0.5"
+  }
+}
