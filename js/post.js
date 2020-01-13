@@ -1,14 +1,7 @@
-$(document).ready(function(){
- $('a').on('click', function(e){  
-    e.preventDefault( );
-    var pageRef = $(this).attr('href');
-  
-    callPage(pageRef)
 
-});
 
 function callPage(){
-$.ajax({
+	$.ajax({
 		url:"imagepost.html",
 		type: "GET",
 		dataType: "text",
@@ -22,5 +15,7 @@ $.ajax({
 			complete: function(xhr, status){
 					console.log("The request is complete!");
 			}			
-	});
-}	
+	})
+};
+
+	
