@@ -8,10 +8,23 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {	
-	for (x=0;x<10;x++){
 		$.each(response, function(index, value){
 			console.log("index: " +index+"\n value: " + value + "\n response.data[x].name "+ response.data[x].name) 
-			$('#albums').append('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
+			$.ajax({
+				url:"imagepost.html",
+				type: "GET",
+				dataType: "text/html",
+				success: function (response){
+					consoler.log('the page was loaded', response);
+				};
+				error: function(error){
+					console.log('the page was NOT loaded', error);
+				},
+				complete: function(xhr, status){
+					console.log("The reques is complete!");
+				}			
+			});
+			//$('#albums').append('<a class="post"><img class="thumb" src="'+response.data[x].link+'"></a>');
 			});
 	}
 });

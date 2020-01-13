@@ -11,9 +11,6 @@ $.ajax(settings).done(function (response) {
 	console.log(response)	
 				for (x in response.data){			
 					$('#posts').append('<a class="post"><img class="thumb" src="'response.data[x].link+'m"></a>');
-					$('#postimg').append('<p>response.data[x].name</p>');
-					//$('#imagepost').html('<img id="ii" src="'+response.data[x].link+'"></img>');
-					//$('#words').html('<p> '+response.data[x].name+'></p>');			
 	}
 });
 
