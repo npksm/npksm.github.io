@@ -8,6 +8,7 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {	
+var x = 1;
 
 	$.each(response, function(index, value){
 		console.log("index: " +index+"\n value: " + value + "\n response.data[x].name "+ response.data[x].name) 
