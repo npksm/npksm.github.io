@@ -1,4 +1,20 @@
 #albums{
 	column-width: 200px;
 	column-gap: 0;
+	column-count: 10;
+	column-fill: balance;
 }
+
+#nav{
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin: auto;
+	padding: 5px;
+}
+
+	#nav a{
+		margin-left: 10px;
+	}
+
