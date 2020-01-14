@@ -4,7 +4,12 @@
 	column-count: 10;
 	column-fill: balance;
 }
-
+	#albums .posts img{
+		filter: grayscale(100%) contrast(0.7) brightness(1.1);
+	}
+	#albums .post:hover img {
+	filter: none;
+}
 #nav{
 	text-transform: uppercase;
 	display: flex;
@@ -18,3 +23,11 @@
 		margin-left: 10px;
 	}
 
+
+.post{
+	break-inside: avoid;
+	position: relative;
+	width: 100%;
+	display: inline-block;
+
+}
