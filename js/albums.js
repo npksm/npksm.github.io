@@ -10,7 +10,7 @@ var settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response)	
 				for (x in response.data){			
-					$('#albums').append('<a class="post" href="'+response.data[x].link+'"><img class="thumb" src="https://i.imgur.com/'+response.data[x].id+'m.jpg"></a>');
+					$('#albums').append('<a class="post" href="'+response.data[x].link+'"><img class="thumb" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"></a>');
 				}
 		
 });
