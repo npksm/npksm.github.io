@@ -13,10 +13,3 @@ $.ajax({
 				console.log("The get request is complete!");
 		}			
 	});
-
-	
-function closeIFrame(){
-	$('#iframe').click(function(){
-		$('#iframe').remove();
-	});
-}
