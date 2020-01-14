@@ -14,7 +14,7 @@ $.ajax(settings).done(function (response) {
 				}
     $(".thumb").click(function(){
 		var thisSRC = this.src; 
-		$("#content").html('<iframe width ="560" height="315"><img id="iframe" src="'+thisSRC+'"></img></iframe>');
+		$("#content").html('<iframe id="iframe" src="'+thisSRC+'" width ="560" height="315"></iframe>');
 		});
 });
 
