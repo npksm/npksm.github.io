@@ -10,6 +10,7 @@
 	#albums .post:hover img{
 	filter: none;
 }
+
 #nav{
 	text-transform: uppercase;
 	display: flex;
