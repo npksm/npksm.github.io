@@ -16,9 +16,5 @@ $.ajax(settings).done(function (response) {
 		var thisSRC = this.src; 
 		$("#content").html('<iframe id="iframe" class="fill" src="'+thisSRC+'" width ="560" height="315"></iframe>');
 		});
-
-
-
-}
 });
 
