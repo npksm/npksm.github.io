@@ -4,10 +4,10 @@
 	column-count: 10;
 	column-fill: balance;
 }
-	#albums .posts{
+	#albums .post img{
 		filter: grayscale(100%) contrast(0.7) brightness(1.1);
 	}
-	#albums .post:hover{
+	#albums .post:hover img{
 	filter: none;
 }
 #nav{
