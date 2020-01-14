@@ -18,13 +18,14 @@
 	justify-content: flex-end;
 	margin: auto;
 	padding: 5px;
+	position: -webkit-sticky; /* Safari */
+		position: sticky;
+		top: 0;
 }
 
 	#nav a{
 		margin-left: 10px;
-		position: -webkit-sticky; /* Safari */
-		position: sticky;
-		top: 0;
+		
 	}
 
 .post{
