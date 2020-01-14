@@ -13,7 +13,7 @@ $.ajax(settings).done(function (response) {
 					$('#posts').append('<a class="post"><img class="thumb" src="https://i.imgur.com/'+response.data[x].id+'m.jpg"></a>');
 				}
     $(".thumb").click(function(){
-		$("#content").html('<iframe id="iframe" src:"'+response.data[x].link+'" width ="560" height="315"></iframe>');
+		$("#content").html('<iframe id="iframe" src:"https://i.imgur.com/'+response.data[x].id+'m.jpg" width ="560" height="315"></iframe>');
 	});
 		
 });
