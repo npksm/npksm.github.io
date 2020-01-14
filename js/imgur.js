@@ -9,12 +9,8 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log(response)
-	var imgSRC = [];
 				for (x in response.data){			
 					$('#posts').append('<a class="post"><img class="thumb" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" ></a>');
-						array.push(response.data[x].link);
-						console.log(imgSRC)
-
 				}
     $(".thumb").click(function(){
 		var thisSRC = this.src;
