@@ -17,9 +17,7 @@ $.ajax(settings).done(function (response) {
 		$("#content").html('<iframe id="iframe" class="fill" src="'+thisSRC+'" width ="560" height="315"></iframe>');
 		});
 
-	$('#iframe').click(function(){
-		$('#iframe').remove();
-	});
+
 
 }
 });
