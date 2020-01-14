@@ -15,3 +15,8 @@ $.ajax({
 	});
 
 	
+function closeIFrame(){
+	$('#iframe').click(function(){
+		$('#iframe').remove();
+	});
+}
