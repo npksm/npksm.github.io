@@ -12,5 +12,10 @@ $.ajax(settings).done(function (response) {
 				for (x in response.data){			
 					$('#albums').append('<a class="post" href="'+response.data[x].link+'"><img class="thumb" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"></a>');
 				}
+					$(".thumb").click(function(){
+						var thisSRC = this.src;
+						$("#content").html('<iframe id="iframe" class="fill" src="'+thisSRC+'" width ="560" height="315"></iframe>');
+					})
+
 		
 });
