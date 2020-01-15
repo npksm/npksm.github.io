@@ -10,7 +10,7 @@ var settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response)	
 				for (x in response.data){			
-					$('#albums').append('<a class="post" id="'+response.data[x].id+'"><img class="thumb" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"></a>');
+					$('#albums').append('<a class="post" "><img class="thumb" id="'+response.data[x].id+' src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"></a>');
 				}
 					$(".thumb").click(function(){
 						var thisSRC = this.id;
