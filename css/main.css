@@ -89,8 +89,12 @@ section {
 	position: relative;
 	width: 100%;
 	display: grid;
-
 }
+
+.postid{
+	display:none;
+}
+
 .thumb{
 	z-index:0;
 	width:100%;
