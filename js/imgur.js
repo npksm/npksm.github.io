@@ -7,6 +7,8 @@ var settings = {
   },
 };
 
+var modal = document.getElementById("myModal");
+
 $.ajax(settings).done(function (response) {
 	console.log(response)
 				for (x in response.data){			
@@ -14,7 +16,6 @@ $.ajax(settings).done(function (response) {
 				}
              
     $(".thumb").click(function(){
-                var modal = this;
 		        modal.style.display = "block";
                 modalImg.src = this.src;
                 captionText.innerHTML = this.alt;
