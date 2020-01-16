@@ -20,7 +20,7 @@ $.ajax(settings).done(function (response) {
              
     $(".thumb").click(function(){
 		        modal.style.display = "block";
-                modalImg.src=this.src;
+                modalImg.'https://i.imgur.com/'+response.data[x].id+'jpg'
                 captionText.innerHTML = this.alt;
 		});
         
