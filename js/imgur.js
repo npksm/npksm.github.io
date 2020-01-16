@@ -20,8 +20,8 @@ $.ajax(settings).done(function (response) {
              
     $(".thumb").click(function(){
 		        modal.style.display = "block";
-                modalImg.src= this.href;
-                captionText.innerHTML = this.data-src;
+                modalImg.src= this.data-src;
+                captionText.innerHTML = this.alt;
 		});
         
         $(".close").click(function(){
