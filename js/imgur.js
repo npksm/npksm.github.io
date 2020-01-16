@@ -17,7 +17,6 @@ $.ajax(settings).done(function (response) {
              
     $(".thumb").click(function(){
 		        modal.style.display = "block";
-                modalImg.src = this.src;
                 captionText.innerHTML = this.alt;
 		});
         
