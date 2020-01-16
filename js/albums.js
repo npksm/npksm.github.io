@@ -10,9 +10,10 @@ var settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response)	
 				for (x in response.data){			
-					$('#albums').append('<a class="post"><img class="thumb" id="'+response.data[x].id+'" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"></a>');
+					$('#albums').append('<a class="post"><!-- <div class="postid">'+response.data[x].link+'</div>--><img class="thumb" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"></a>');
 				}
 					$(".thumb").click(function(){
+						var thisSRC = $('.postid');
 						$("#content").html('<iframe id="iframe" class="fill" src="https://i.imgur.com/a/'+thisSRC+'" width ="560" height="315"></iframe>');
 							
 					})
