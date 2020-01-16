@@ -13,7 +13,7 @@ $.ajax(settings).done(function (response) {
 					$('#posts').append('<a class="post"><!-- <div class="postid">'+response.data[x].id+'</div>--><span class="close">&times;</span><img class="thumb" alt="'+response.data[x].name+'" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" ></a>');
 				}
     $(".thumb").click(function(){
-		        .modal.style.display = "block";
+		        modal.style.display = "block";
                 modalImg.src = this.src;
                 captionText.innerHTML = this.alt;
 		});
