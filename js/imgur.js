@@ -20,7 +20,7 @@ $.ajax(settings).done(function (response) {
              
     $(".thumb").click(function(){
 		        modal.style.display = "block";
-                modalImg.src= this.data-source;
+                modalImg.src= this.getAttribute('data-source');
                 captionText.innerHTML = this.alt;
 		});
         
