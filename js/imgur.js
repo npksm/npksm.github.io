@@ -19,8 +19,9 @@ $.ajax(settings).done(function (response) {
 				}
              
     $(".thumb").click(function(){
+        var idHTML = $("postid").html();
 		        modal.style.display = "block";
-                modalImg.src= this.postid;
+                modalImg.src= idHTML;
                 captionText.innerHTML = this.alt;
 		});
         
