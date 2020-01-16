@@ -10,11 +10,18 @@ var settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response)
 				for (x in response.data){			
-					$('#posts').append('<a class="post"><!-- <div class="postid">'+response.data[x].id+'</div>--><img class="thumb" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" ></a>');
+					$('#posts').append('<a class="post"><!-- <div class="postid">'+response.data[x].id+'</div>--><span class="close">&times;</span><img class="thumb" alt="'+response.data[x].name+'" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" ></a>');
 				}
     $(".thumb").click(function(){
-		var thisSRC = this.src;
-		$("#content").html('<iframe id="iframe" class="fill" src="'+thisSRC+'" width ="560" height="315"></iframe>');
+		        .modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
 		});
+
 });
+
+var span = document.getElementsByClassName("close")[0];
+    span.onclick = function(){
+     modal.style.display="none";
+	}
 
