@@ -16,7 +16,7 @@ $.ajax(settings).done(function (response) {
 				}
 
 					$(".thumb").click(function(){
-                        Response.Redirect("WebForm2.aspx?Name="+this.title+"&ID="+this.getAttribute('data-source'));
+                        window.location.replace("WebForm2.aspx?Name="+this.title+"&ID="+this.getAttribute('data-source'));
                     })
 
 });
