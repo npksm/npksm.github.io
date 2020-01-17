@@ -15,7 +15,6 @@ $(document).ready(function(){
 
             $('#title').html("<p>"+albumTitle+"</p>");
             console.log(albumTitle)
-            console.log(albumid);
 
     var settings = {
         "url":  "https://api.imgur.com/3/album/"+albumid+"/images",
