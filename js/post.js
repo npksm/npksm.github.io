@@ -13,7 +13,7 @@ $(document).ready(function(){
 
             var albumid= queryString["ID"];
            
-})
+});
 
 console.log(albumid)
 
