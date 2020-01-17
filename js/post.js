@@ -14,9 +14,10 @@ $(document).ready(function(){
 });
 
 var albumURL = "https://api.imgur.com/3/album/'+albumid+'/images";
+console.log(albumURL);
 
 var settings = {
-  "url": albumURL,
+  "url": "albumURL",
   "method": "GET",
   "timeout": 0,
   "headers": {
