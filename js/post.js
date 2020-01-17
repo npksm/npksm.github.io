@@ -16,9 +16,9 @@ $(document).ready(function(){
 	})
 })
 
-
+var albumURL = "https://api.imgur.com/3/album/'+albumid+'/images"
 var settings = {
-  "url": "https://api.imgur.com/3/album/'+albumid +'/images",
+  "url": albumURL,
   "method": "GET",
   "timeout": 0,
   "headers": {
