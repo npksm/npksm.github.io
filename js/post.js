@@ -12,9 +12,10 @@ $(document).ready(function(){
         }
 
             var albumid= queryString["ID"];
-            console.log(albumid)
-        
+           
 })
+
+console.log(albumid)
 
 var albumURL = "https://api.imgur.com/3/album/'+albumid+'/images"
 
