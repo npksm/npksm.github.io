@@ -10,10 +10,10 @@ $(document).ready(function(){
                     queryString[key] = value;
 		    }
         }
-        if (queryString["Name"] != null && queryString["ID"] != null) {
+
             var albumid= queryString["ID"];
             console.log(albumid)
-        }
+        
 	})
 })
 
