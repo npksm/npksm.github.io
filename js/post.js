@@ -9,15 +9,14 @@ $(document).ready(function(){
             queryString[key] = value;
 	}                                 
             var albumid= queryString["ID"];
-            console.log(albumid)
+            
     })
 });
 
-var albumURL = "https://api.imgur.com/3/album/"+albumid+"/images";
-console.log(albumURL);
+console.log(albumid);
 
 var settings = {
-  "url": "albumURL",
+  "url":  "https://api.imgur.com/3/album/"+albumid+"/images",
   "method": "GET",
   "timeout": 0,
   "headers": {
