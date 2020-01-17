@@ -9,7 +9,7 @@ $(document).ready(function(){
             queryString[key] = value;
 	}                                 
             var albumid= queryString["ID"];
-            console.log(albumid)
+            console.log(albumid);
     }
 });
 
