@@ -2,13 +2,19 @@ $(document).ready(function(){
     var queryString = new Array();
     var params = window.location.search.split('?')[1].split('&');
 
+    
+
     $(function(){              
         for (var i = 0; i < params.length; i++) {
             var key = params[i].split('=')[0];
             var value = decodeURIComponent(params[i].split('=')[1]);
             queryString[key] = value;
 	}                                 
+            var albumTitle= queryString["Name"];
             var albumid= queryString["ID"];
+
+            $('#title').html("<p>"+albumTitle+"</p>");
+            console.log(albumTitle)
             console.log(albumid);
 
     var settings = {

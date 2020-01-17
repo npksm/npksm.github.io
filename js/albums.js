@@ -16,7 +16,7 @@ $.ajax(settings).done(function (response) {
 				}
 
 					$(".thumb").click(function(){
-                        window.location.replace("album.html?Name="+this.getAttribute('data-source')+"&ID="+this.getAttribute('data-source'));
+                        window.location.replace("album.html?Name="+this.title+"&ID="+this.getAttribute('data-source'));
                     })
 
 });
