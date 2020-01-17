@@ -12,11 +12,13 @@ $(document).ready(function(){
         }
         if (queryString["Name"] != null && queryString["ID"] != null) {
             var albumid= queryString["ID"];
+            console.log(albumid)
         }
 	})
 })
 
 var albumURL = "https://api.imgur.com/3/album/'+albumid+'/images"
+
 var settings = {
   "url": albumURL,
   "method": "GET",
