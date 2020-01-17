@@ -1,15 +1,15 @@
-$.ajax({
-	url:"https://npksm.github.io/imagepost.html",
-	type: "GET",
-	//dataType: "text",
-		success: function (response){
-				console.log('the page was loaded', response);
-				$('#content').html(response);
-		},
-		error: function(error){
-				console.log('the page was NOT loaded', error);
-		},
-		complete: function(xhr, status){
-				console.log("The get request is complete!");
-		}			
-	});
+
+  $(document).ready(function () {  
+        var name = GetParameterValues('Name');  
+        var id = GetParameterValues('ID');  
+        alert("Hello " + name + " your ID is " + id);  
+        function GetParameterValues(param) {  
+            var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+            for (var i = 0; i < url.length; i++) {  
+                var urlparam = url[i].split('=');  
+                if (urlparam[0] == param) {  
+                    return urlparam[1];  
+                }  
+            }  
+        }  
+    }); 

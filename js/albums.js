@@ -12,10 +12,11 @@ $.ajax(settings).done(function (response) {
    
 
 				for (x in response.data){			
-					$('#albums').append('<a class="post"><!-- <div class="postid">'+response.data[x].link+'</div>--><img class="thumb" title="'+response.data[x].title+'" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg"><div id="title"></div></a>');         
-                    
+					$('#albums').append('<a class="post"><!-- <div class="postid">'+response.data[x].link+'</div>--><img class="thumb" title="'+response.data[x].title+'" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg" data-source="'+response.data[x].link+'"><div id="title"></div></a>');                            
 				}
 
-					//$(".thumb").click(function(){})
+					$(".thumb").click(function(){
+                        Response.Redirect("WebForm2.aspx?Name="+this.title+"&ID="+this.getAttribute('data-source'));
+                    })
 
 });
