@@ -1,15 +1,50 @@
+$(document).ready(function(){
+    var queryString = new Array();
+    $(function(){
+        if(queryString.length=0){
+            if (window.location.search.split('?').length > 1) {
+                var params = window.location.search.split('?')[1].split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var key = params[i].split('=')[0];
+                    var value = decodeURIComponent(params[i].split('=')[1]);
+                    queryString[key] = value;
+		    }
+        }
+        if (queryString["Name"] != null && queryString["ID"] != null) {
+            var albumid= queryString["ID"];
+        }
+	});
+})
 
-  $(document).ready(function () {  
-        var name = GetParameterValues('Name');  
-        var id = GetParameterValues('ID');  
-        alert("Hello " + name + " your ID is " + id);  
-        function GetParameterValues(param) {  
-            var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
-            for (var i = 0; i < url.length; i++) {  
-                var urlparam = url[i].split('=');  
-                if (urlparam[0] == param) {  
-                    return urlparam[1];  
-                }  
-            }  
-        }  
-    }); 
+
+var settings = {
+  "url": "https://api.imgur.com/3/album/'+albumid +'/images",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Authorization": "Bearer 27d067e9b81601874a49408b277dbd4641ae825c"
+  },
+};
+
+var modal = document.getElementById("myModal");
+
+$.ajax(settings).done(function (response) {
+	console.log(response)
+    var modal = document.getElementById("myModal");
+    var captionText = document.getElementById("caption");
+    var modalImg = document.getElementById("modalImg");
+				for (x in response.data){			
+					$('#posts').append('<a class="post"><div class="postid">'+response.data[x].id+'</div><img class="thumb" alt="'+response.data[x].name+'" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" data-source="https://i.imgur.com/'+response.data[x].id+'.jpg"></a>');
+				}
+             
+    $(".thumb").click(function(){
+		        modal.style.display = "block";
+                modalImg.src= this.getAttribute('data-source');
+                captionText.innerHTML = this.alt;
+		});
+        
+        $(".close").click(function(){
+            modal.style.display="none";
+		})
+
+});
