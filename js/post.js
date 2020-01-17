@@ -13,7 +13,7 @@ $(document).ready(function(){
         if (queryString["Name"] != null && queryString["ID"] != null) {
             var albumid= queryString["ID"];
         }
-	});
+	})
 })
 
 
