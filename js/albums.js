@@ -23,6 +23,6 @@ $.ajax(settings).done(function (response) {
 
 });
 
- $("thumb").each(function(){
+ $(".thumb").each(function(){
                         $('#albumtitle').append("hello");
 					});
