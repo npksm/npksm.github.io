@@ -16,7 +16,7 @@ $.ajax(settings).done(function (response) {
                 }
 
 
-                for(".post" in "albums"){
+                for( i=0;i<response.data.length; i++ ){
                     $('#albumtitle').append(""+this.title);
 				}
              
