@@ -16,10 +16,10 @@ $.ajax(settings).done(function (response) {
                 }
 
 
-                for( i=0;i<response.data.length; i++ ){
-                    $('#albumtitle').append(""+this.title);
-				}
-             
+                $(".post").each(function(){
+                            $('#albumtitle').append(""+this.title);
+					    })
+            
 
 					$(".thumb").click(function(){
                         window.location.replace("album.html?&Name="+this.title+"&ID="+this.getAttribute('data-source'));
