@@ -15,10 +15,11 @@ $.ajax(settings).done(function (response) {
 					$('#albums').append('<a class="post"><img class="thumb" title = "'+response.data[x].title+'"src="https://i.imgur.com/'+response.data[x].cover+'m.jpg" data-source="'+response.data[x].id+'"><span id="albumtitle"></span></a>');                       				        
                 }
 
-                $(".post").each(function(){
-                            $('#albumtitle').append("hello");
-					    })
-            
+
+                for(".post" in "albums"){
+                    $('#albumtitle').append(""+this.title);
+				}
+             
 
 					$(".thumb").click(function(){
                         window.location.replace("album.html?&Name="+this.title+"&ID="+this.getAttribute('data-source'));
