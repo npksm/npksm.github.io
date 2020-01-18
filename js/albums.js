@@ -12,8 +12,8 @@ $.ajax(settings).done(function (response) {
    
 
 				for (x in response.data){			
-					$('#albums').append('<a class="post"><img class="thumb" title="'+response.data[x].title+'" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg" data-source="'+response.data[x].id+'"></a>');
-                        
+					$('#albums').append('<a class="post"><div id="albumtitle"><img class="thumb" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg" data-source="'+response.data[x].id+'"></div></a>');
+                        $('#albumtitle').append("<p>"+response.data[x].title+"</p>")
 				}
 
 					$(".thumb").click(function(){
