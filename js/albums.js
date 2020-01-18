@@ -17,7 +17,7 @@ $.ajax(settings).done(function (response) {
 
 
                 $(".post").each(function(){
-                            $('#albumtitle').append(""+this.title);
+                            $('#albumtitle').append(""+this.title"");
 					    })
             
 
