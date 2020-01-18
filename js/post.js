@@ -32,7 +32,19 @@ $(document).ready(function(){
     var captionText = document.getElementById("caption");
     var modalImg = document.getElementById("modalImg");
 				for (x in response.data){			
-					$('#posts').append('<a class="post"><div class="postid">'+response.data[x].id+'</div><img class="thumb" alt="'+response.data[x].name+'" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" data-source="https://i.imgur.com/'+response.data[x].id+'.jpg"></a>');
+					$('#posts').append(
+                    '<a class="post">
+                        <div id="imgnav">
+                            <a id="imgolder">
+                                <div>></div>
+                            </a>
+                            <a id="imgnewer">
+                                <div><</div>
+                            </a>                           
+                            <div class="postid">'+response.data[x].id+'</div>
+                            <img class="thumb" alt="'+response.data[x].name+'" src="https://i.imgur.com/'+response.data[x].id+'m.jpg" data-source="https://i.imgur.com/'+response.data[x].id+'.jpg">
+                     </a>');
+                        </div>
 				}
              
     $(".thumb").click(function(){
