@@ -8,22 +8,13 @@ var settings = {
 };
 
 $.ajax(settings).done(function (response) {
-	console.log(response)	
-    console.log(response.data.length)   
+	console.log(response)	   
 
 				for (x in response.data){			
-					$('#albums').append('<a class="post"><img class="thumb" title = "'+response.data[x].title+'"src="https://i.imgur.com/'+response.data[x].cover+'m.jpg" data-source="'+response.data[x].id+'"><span id="albumtitle"></span></a>');                       				        
-                }
-                
-
-                $(".post").each(function(){
-                            $('#albumtitle').append(""+this.title+"");
-					    })
-            
-
+					$('#albums').append('<a class="post"><img class="thumb" src="https://i.imgur.com/'+response.data[x].cover+'m.jpg" data-source="'+response.data[x].id+'"><span id="albumtitle">'+response.data[x].title+'</span></a>');                       				                               
+                }                                        
 					$(".thumb").click(function(){
                         window.location.replace("album.html?&Name="+this.title+"&ID="+this.getAttribute('data-source'));
      })
-
 });
 
