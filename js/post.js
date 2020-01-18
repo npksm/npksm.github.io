@@ -33,7 +33,7 @@ $(document).ready(function(){
     var modalImg = document.getElementById("modalImg");
 				for (x in response.data){			
 					$('#posts').append(
-                    '<a class="post">
+                    <a class="post">
                         <div id="imgnav">
                             <a id="imgolder">
                                 <div>></div>
