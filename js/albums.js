@@ -16,7 +16,7 @@ $.ajax(settings).done(function (response) {
 				}
 
                     $("thumb").each(function(){
-                        $('#albumtitle').append(this.title);
+                        $('#albumtitle').append(hello);
 					})
 
 					$(".thumb").click(function(){
