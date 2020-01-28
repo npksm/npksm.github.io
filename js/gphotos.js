@@ -3,7 +3,7 @@ var settings = {
   "method": "GET",
   "timeout": 0,
   "headers": {
-    "Authorization": "82019015804-1pmmkaagakpnqb10qls0s7elk4063p0s.apps.googleusercontent.com"
+    "Authorization": "AIzaSyCGVzXHPuGPmfZrhf_SA2LU3Zs7fpXkSN8"
   },
 };
 
