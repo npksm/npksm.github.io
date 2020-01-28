@@ -3,7 +3,7 @@ var settings = {
   "method": "GET",
   "timeout": 0,
   "headers": {
-    "Authorization": "AIzaSyCGVzXHPuGPmfZrhf_SA2LU3Zs7fpXkSN8"
+    "Authorization": "idk"
   },
 };
 
