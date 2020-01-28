@@ -10,7 +10,7 @@ var settings = {
 var modal = document.getElementById("myModal");
 
 $.ajax(settings).done(function (response) {
-	console.log(response)
+	
     var modal = document.getElementById("myModal");
     var captionText = document.getElementById("caption");
     var modalImg = document.getElementById("modalImg");
