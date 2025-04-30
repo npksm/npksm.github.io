@@ -5,26 +5,94 @@
 :root {
   --white: #fcfcfc;
   --black: #040404;
+
+  --main: #7400b8;
 }
 
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.2em;
+  margin: 0;
 }
 
-.img {
-  display: block;
-  border-radius: 50%;
+.card {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.card figure {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.card figure img {
+  border: 0.1em solid;
+}
+
+.contact-form {
+  display: flex;
+  background-color: var(--main);
+}
+
+.contact-form p {
+  color: var(--white);
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+.header {
+  margin: 0;
+  padding: 0;
+}
+.image-row {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: var(--main);
+}
+
+.information {
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .intro {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.intro h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.intro .img {
+  display: block;
+  border-radius: 50%;
 }
 
 .nav {
-  position: fixed;
-  top: 0;
-  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  position: static;
   width: 100%;
+  height: 2rem;
+  background-color: var(--main);
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul a {
+  color: var(--white);
+  text-decoration: none;
 }
