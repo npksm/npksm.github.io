@@ -7,74 +7,120 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>NPKSM</title>
-    <link rel="stylesheet" href="_styles/styles.css" />
+    <!--<link rel="stylesheet" href="_styles/styles.css" />-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <header class="header">
-      <nav class="nav">
-        <ul>
-          <li><a href="#">Home</a></li>
-        </ul>
+    <header class="pb-3 mb-4 border-bottom">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">NPKSM</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link-active"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
     </header>
-    <main class="main">
-      <section class="intro">
-        <h1>Hello, my name is Nick</h1>
-        <figure>
-          <img
-            class="img"
-            src="images/nick.jpg"
-            width="200"
-            height="200"
-            alt="Headshot of Nick"
-          />
-        </figure>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipiscing
-          elit. Quisque faucibus ex sapien vitae
-          pellentesque sem placerat. In id cursus mi pretium
-          tellus duis convallis. Tempus leo eu aenean sed
-          diam urna tempor. Pulvinar vivamus fringilla lacus
-          nec metus bibendum egestas. Iaculis massa nisl
-          malesuada lacinia integer nunc posuere. Ut
-          hendrerit semper vel class aptent taciti sociosqu.
-          Ad litora torquent per conubia nostra inceptos
-          himenaeos. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Sed et nibh arcu. Aenean interdum
-          lorem mauris, egestas congue magna vestibulum et.
-          Etiam venenatis eleifend dolor non semper. Morbi
-          velit diam, consectetur id ante eget, facilisis
-          tincidunt leo. Nam dignissim placerat tortor, id
-          gravida augue feugiat quis. Duis vitae euismod
-          dui, ut ullamcorper massa. Quisque mollis augue eu
-          ante condimentum, id feugiat magna auctor.
-          Vestibulum ante ipsum primis in faucibus orci
-          luctus et ultrices posuere cubilia curae; Duis
-          tellus dolor, laoreet ac lacinia at, faucibus quis
-          lacus. Aliquam erat volutpat. Nullam consequat
-          elit mollis elit congue ultricies. Etiam id
-          suscipit velit, euismod gravida neque. Vestibulum
-          nec rhoncus massa. Fusce maximus, dui at fringilla
-          efficitur, orci mauris fermentum metus, vel
-          hendrerit libero massa et dui. Proin turpis dolor,
-          cursus nec mattis sit amet, ornare non quam. Ut
-          venenatis mi nec justo convallis, quis iaculis
-          nisi tempor. Duis mattis pharetra faucibus. Sed
-          convallis ornare congue. Suspendisse malesuada
-          ante ullamcorper purus finibus, non cursus magna
-          congue. Curabitur vitae euismod purus. Aenean ut
-          sollicitudin orci. In sagittis ipsum rutrum
-          vehicula imperdiet. Aliquam erat volutpat. Vivamus
-          congue sapien sed tellus tempor iaculis. Nam et
-          odio id metus pharetra venenatis. Duis ut tempor
-          nulla. Pellentesque sit amet congue nulla, at
-          mattis diam. Integer auctor, ex convallis eleifend
-          luctus, ante lorem pharetra massa, feugiat ornare
-          velit nisi eget ex. Quisque sem lectus, cursus non
-          vehicula sollicitudin, pretium sed mauris. Aliquam
-          ullamcorper eleifend orci, ut laoreet urna sodales
-          nec.
-        </p>
+    <main>
+      <section class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">
+            Hello, my name is Nick
+          </h1>
+          <figure>
+            <img
+              class="img"
+              src="images/nick.jpg"
+              width="200"
+              height="200"
+              alt="Headshot of Nick"
+            />
+          </figure>
+          <p class="'col-md-8 fs-4">
+            Lorem ipsum dolor sit amet consectetur
+            adipiscing elit. Quisque faucibus ex sapien
+            vitae pellentesque sem placerat. In id cursus mi
+            pretium tellus duis convallis. Tempus leo eu
+            aenean sed diam urna tempor. Pulvinar vivamus
+            fringilla lacus nec metus bibendum egestas.
+            Iaculis massa nisl malesuada lacinia integer
+            nunc posuere. Ut hendrerit semper vel class
+            aptent taciti sociosqu. Ad litora torquent per
+            conubia nostra inceptos himenaeos. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Sed
+            et nibh arcu. Aenean interdum lorem mauris,
+            egestas congue magna vestibulum et. Etiam
+            venenatis eleifend dolor non semper. Morbi velit
+            diam, consectetur id ante eget, facilisis
+            tincidunt leo. Nam dignissim placerat tortor, id
+            gravida augue feugiat quis. Duis vitae euismod
+            dui, ut ullamcorper massa. Quisque mollis augue
+            eu ante condimentum, id feugiat magna auctor.
+            Vestibulum ante ipsum primis in faucibus orci
+            luctus et ultrices posuere cubilia curae; Duis
+            tellus dolor, laoreet ac lacinia at, faucibus
+            quis lacus. Aliquam erat volutpat. Nullam
+            consequat elit mollis elit congue ultricies.
+            Etiam id suscipit velit, euismod gravida neque.
+            Vestibulum nec rhoncus massa. Fusce maximus, dui
+            at fringilla efficitur, orci mauris fermentum
+            metus, vel hendrerit libero massa et dui. Proin
+            turpis dolor, cursus nec mattis sit amet, ornare
+            non quam. Ut venenatis mi nec justo convallis,
+            quis iaculis nisi tempor. Duis mattis pharetra
+            faucibus. Sed convallis ornare congue.
+            Suspendisse malesuada ante ullamcorper purus
+            finibus, non cursus magna congue. Curabitur
+            vitae euismod purus. Aenean ut sollicitudin
+            orci. In sagittis ipsum rutrum vehicula
+            imperdiet. Aliquam erat volutpat. Vivamus congue
+            sapien sed tellus tempor iaculis. Nam et odio id
+            metus pharetra venenatis. Duis ut tempor nulla.
+            Pellentesque sit amet congue nulla, at mattis
+            diam. Integer auctor, ex convallis eleifend
+            luctus, ante lorem pharetra massa, feugiat
+            ornare velit nisi eget ex. Quisque sem lectus,
+            cursus non vehicula sollicitudin, pretium sed
+            mauris. Aliquam ullamcorper eleifend orci, ut
+            laoreet urna sodales nec.
+          </p>
+        </div>
       </section>
       <section class="image-row">
         <section class="card">
