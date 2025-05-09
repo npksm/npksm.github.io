@@ -58,8 +58,10 @@
       </nav>
     </header>
     <main>
-      <section class="p-5 mb-4 bg-body-tertiary rounded-3">
-        <div class="container-fluid py-5">
+      <section>
+        <div
+          class="container-fluid py-5 bg-body-secondary rounded-3 p-5 mb-4"
+        >
           <div class="text-center">
             <h1 class="display-5 fw-bold">
               Hello, my name is Nick
@@ -87,7 +89,9 @@
         </div>
       </section>
       <section class="container-fluid">
-        <div class="row row-cols-auto">
+        <div
+          class="row row-cols-auto justify-content-center"
+        >
           <section class="card col-sm-12 col-md-6 col-lg-4">
             <img
               class="card-img"
@@ -124,85 +128,196 @@
             </figure>
           </section>
           <section class="card col-sm-12 col-md-6 col-lg-4">
-            <figure>
+            <figure class="m-2">
               <img
                 class="card-img"
                 src="https://lh3.googleusercontent.com/pw/AP1GczPlHuY5SY7gk5zq_RmSgrNifG4fJmdZClh-mDeclnfYW0JfsG2XJbv-pvxmlUECDEGT-AmPA8lMcchaTZvnyHe2z4D5bZQM7rkxZ-R1BGA1ZkeF4tkhDEV-qe2W1zANcA2-CDbiO0JkpHvzZ-nwEqxX=w575-h767-s-no-gm?authuser=0"
                 alt="Crumb the black cat on the carpet"
               />
             </figure>
+            <button
+              type="button"
+              class="btn btn-primary mb-2"
+              data-bs-toggle="modal"
+              data-bs-target="#beepoModal"
+            >
+              See more
+            </button>
           </section>
         </div>
+        <div
+          class="modal fade"
+          id="beepoModal"
+          tabindex="-1"
+          araia-labelledby="beepoModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1
+                  class="modal-title fs-5"
+                  id="beepoModalLabel"
+                >
+                  Beepo
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div
+                  id="beepoCarousel"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="https://lh3.googleusercontent.com/pw/AP1GczPbFk_lBGc63mViAOJBtECfjRN-g0U5OdwenxaJu7zX2k4ddANj6TQpV6QT8H9Y5BVg52TuoI6_EWsxg6UcGbtRwfny4H1McfseL8Vf27VuSrREtzZnwM33T00o7TRN8U9oLOQdeZ1tgPCRdoKD84p5=w1231-h923-s-no-gm?authuser=0"
+                        class="d-block w-100"
+                        alt="Beepo the black kitten with a feather toy"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="https://lh3.googleusercontent.com/pw/AP1GczPe3N4Ck2E7UuAWyCTcVu-yvZaZvlarZUVa-T5PjMo8Kzb_0KqFkgXLKgmFWBmLJJU5oRE2mTJ67yHqnKPhFGH36PnalO8t1rKYw2YZI3AVaE-8yaD-6TG4CrL6QyqWsdMe_mRE2UhYM8O2LEG60Id6=w1231-h923-s-no-gm?authuser=0"
+                        class="d-block w-100"
+                        alt="Beepo the black kitten sleeping"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="https://lh3.googleusercontent.com/pw/AP1GczOCeJ4LMHUXe8IusFex7UVi_EoIXwwCfkfVGqYqlypWf7s8AjeFJ2ityPE0e-NU76OIC3HioPppfe6mNi-z-lKkGP1VUbCMHIGkAjzpNVzHSjrSd3GNgVABtGcipfGLYXOhpruZxFwzwqqZ5ZQ06j18=w692-h923-s-no-gm?authuser=0"
+                        class="d-block w-100"
+                        alt="Beepo the black kitten look up"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#beepoCarousel"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden"
+                      >Previous</span
+                    >
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#beepoCarousel"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden"
+                      >Next</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="information">
-        <p>
-          Nullam nulla dolor, gravida at nulla ut, lacinia
-          vehicula velit. Donec dictum tincidunt nisl, at
-          malesuada nunc dapibus sit amet. Donec convallis
-          imperdiet lorem, eget imperdiet risus facilisis
-          sit amet. Suspendisse finibus nisi purus. Maecenas
-          quis mi sed lectus scelerisque tristique. Integer
-          nulla nisl, lobortis vulputate aliquet accumsan,
-          ultricies non ipsum. Quisque sodales aliquet leo
-          id maximus. Donec fringilla facilisis nunc, non
-          vulputate tortor vestibulum sit amet. Donec
-          malesuada orci in tellus tristique, ac efficitur
-          ex sollicitudin. Nulla imperdiet est quis augue
-          venenatis, eget scelerisque lorem vulputate. Ut
-          auctor commodo venenatis. Quisque a porta nibh,
-          iaculis congue enim. Aenean vitae lacinia felis,
-          efficitur auctor sem. Phasellus ut aliquam risus.
-          Sed consequat malesuada magna, eu finibus ex
-          auctor vitae. Duis pharetra blandit laoreet. Nunc
-          at felis ipsum. Proin vel lorem gravida libero
-          dictum commodo. Curabitur auctor vulputate
-          facilisis. Sed ut tortor quam. Sed suscipit ante
-          magna, sed blandit ipsum tincidunt eu. Duis
-          consequat iaculis felis sed sodales. Nulla vitae
-          turpis leo. Suspendisse potenti. Cras id nibh eu
-          erat aliquam malesuada aliquam id velit. Aliquam
-          ultrices pharetra commodo. Aliquam sit amet libero
-          non sem aliquam ultricies non in orci. Quisque
-          efficitur ex arcu, ut lacinia urna fermentum
-          viverra. Pellentesque luctus tellus at elementum
-          blandit. Nam in justo feugiat, scelerisque sapien
-          et, molestie lacus. Orci varius natoque penatibus
-          et magnis dis parturient montes, nascetur
-          ridiculus mus. Praesent sed justo sit amet risus
-          aliquet ultricies vel at ex. Nulla iaculis enim
-          diam, at eleifend dui pulvinar vel. Sed a lectus
-          eget mi semper vulputate vitae non velit. Nunc
-          pulvinar velit eu egestas viverra. Pellentesque
-          vel sem ipsum.
-        </p>
+      <section class="bg-body-secondary">
+        <div class="m-2 p-2 container-fluid">
+          <p>
+            Nullam nulla dolor, gravida at nulla ut, lacinia
+            vehicula velit. Donec dictum tincidunt nisl, at
+            malesuada nunc dapibus sit amet. Donec convallis
+            imperdiet lorem, eget imperdiet risus facilisis
+            sit amet. Suspendisse finibus nisi purus.
+            Maecenas quis mi sed lectus scelerisque
+            tristique. Integer nulla nisl, lobortis
+            vulputate aliquet accumsan, ultricies non ipsum.
+            Quisque sodales aliquet leo id maximus. Donec
+            fringilla facilisis nunc, non vulputate tortor
+            vestibulum sit amet. Donec malesuada orci in
+            tellus tristique, ac efficitur ex sollicitudin.
+            Nulla imperdiet est quis augue venenatis, eget
+            scelerisque lorem vulputate. Ut auctor commodo
+            venenatis. Quisque a porta nibh, iaculis congue
+            enim. Aenean vitae lacinia felis, efficitur
+            auctor sem. Phasellus ut aliquam risus. Sed
+            consequat malesuada magna, eu finibus ex auctor
+            vitae. Duis pharetra blandit laoreet. Nunc at
+            felis ipsum. Proin vel lorem gravida libero
+            dictum commodo. Curabitur auctor vulputate
+            facilisis. Sed ut tortor quam. Sed suscipit ante
+            magna, sed blandit ipsum tincidunt eu. Duis
+            consequat iaculis felis sed sodales. Nulla vitae
+            turpis leo. Suspendisse potenti. Cras id nibh eu
+            erat aliquam malesuada aliquam id velit. Aliquam
+            ultrices pharetra commodo. Aliquam sit amet
+            libero non sem aliquam ultricies non in orci.
+            Quisque efficitur ex arcu, ut lacinia urna
+            fermentum viverra. Pellentesque luctus tellus at
+            elementum blandit. Nam in justo feugiat,
+            scelerisque sapien et, molestie lacus. Orci
+            varius natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus.
+            Praesent sed justo sit amet risus aliquet
+            ultricies vel at ex. Nulla iaculis enim diam, at
+            eleifend dui pulvinar vel. Sed a lectus eget mi
+            semper vulputate vitae non velit. Nunc pulvinar
+            velit eu egestas viverra. Pellentesque vel sem
+            ipsum.
+          </p>
+        </div>
       </section>
       <section class="contact-form">
-        <p>
-          Aenean accumsan sit amet lacus tempus
-          sollicitudin. Curabitur dignissim odio sed
-          facilisis laoreet. Phasellus vel leo quis ipsum
-          sollicitudin tristique non in odio. Vestibulum
-          sagittis velit arcu, ut placerat est blandit in.
-          Pellentesque laoreet mollis nulla et ornare.
-          Phasellus ut bibendum mi. Etiam ac sem quis sapien
-          ultrices auctor et id diam. Nulla a purus sed quam
-          eleifend bibendum a at lorem. Nulla facilisi.
-          Etiam ligula neque, varius sit amet leo in,
-          fermentum efficitur tellus. Donec elementum
-          maximus eleifend. Vestibulum in risus id nunc
-          interdum malesuada. Sed id risus nisi.
-          Pellentesque tempus condimentum orci, eget
-          fringilla diam mattis at. Ut id ex eget nisi
-          pretium tincidunt a sit amet neque. Sed fringilla
-          id dui nec ultricies. Fusce rutrum, ante nec
-          hendrerit viverra, libero magna maximus odio, in
-          eleifend sem velit et orci. Integer interdum at
-          ipsum a mattis. Nulla ac elementum enim. Nunc
-          bibendum odio a metus pretium posuere.
-        </p>
+        <div class="container m-2 p-2">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label"
+                >Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputName"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label"
+                >Email</label
+              >
+              <input type="email" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+            <button type="reset" class="btn btn-secondary">
+              Reset
+            </button>
+          </form>
+        </div>
       </section>
-      <footer>
-        <p>Information</p>
+      <footer class="bg-body-secondary">
+        <section class="m-2 p-2 container">
+          <p>Information</p>
+        </section>
       </footer>
     </main>
   </body>
