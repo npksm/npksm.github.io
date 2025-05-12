@@ -24,7 +24,7 @@
   <body>
     <header class="pb-3 mb-4 border-bottom">
       <nav
-        class="navbar navbar-expand-lg bg-body-secondary"
+        class="navbar navbar-expand-md bg-body-secondary"
       >
         <div class="container-fluid">
           <a class="navbar-brand" href="#">NPKSM</a>
@@ -67,12 +67,10 @@
     <main>
       <section>
         <div
-          class="container-fluid py-5 bg-body-secondary rounded-3 p-5 mb-4"
+          class="container py-5 bg-body-secondary rounded-3 p-5 mb-4"
         >
           <div class="text-center">
-            <h1 class="display-5 fw-bold">
-              Hello, my name is Nick
-            </h1>
+            <h1 class="display-5 fw-bold">Hello</h1>
           </div>
           <figure>
             <img
@@ -83,7 +81,8 @@
               alt="Headshot of Nick"
             />
           </figure>
-          <p class="'col-md-8 fs-4">
+          <p class="lead">My name is Nick!</p>
+          <p class>
             Lorem ipsum dolor sit amet consectetur
             adipiscing elit. Quisque faucibus ex sapien
             vitae pellentesque sem placerat. In id cursus mi
@@ -295,10 +294,14 @@
       </section>
       <section id="contact">
         <div
-          class="form container-sm border justify-content-center p-2"
+          class="form container border bg-body-secondary p-2"
         >
-          <form class="row">
-            <div class="mb-3 col-sm-12 col-md-6">
+          <form class="mx-auto">
+            <h3 class="h3 text-center fw-bold">Contact</h3>
+            <p class="text-center">
+              Fill out the items and a brief message
+            </p>
+            <div class="mb-3">
               <label for="inputName" class="form-label"
                 >Name</label
               >
@@ -310,7 +313,7 @@
                 required
               />
             </div>
-            <div class="mb-3 col-sm-12 col-md-6">
+            <div class="mb-3">
               <label for="inputEmail" class="form-label"
                 >Email</label
               >
@@ -334,7 +337,7 @@
                 required
               ></textarea>
             </div>
-            <div class="col-auto">
+            <div>
               <button type="submit" class="btn btn-primary">
                 Submit
               </button>
@@ -382,4 +385,5 @@
       </footer>
     </main>
   </body>
+  <script src="_js/mainpage.js"></script>
 </html>
