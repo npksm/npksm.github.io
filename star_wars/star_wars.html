@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Star Wars</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="../_js/star_wars.js"></script>
+  </head>
+  <body>
+    <header class="pb-3 mb-4 border-bottom">
+      <nav
+        class="navbar navbar-expand-md bg-body-secondary"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../index.html"
+            >NPKSM</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!--
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html"
+                  >Images</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#information"
+                  >Information</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact"
+                  >Contact</a
+                >
+              </li>
+            --></ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h1 class="h1 text-center">Star Wars Data</h1>
+      <section>
+        <div
+          class="container py-5 bg-body-secondary rounded-3 p-5 mb-4 text-center"
+        >
+          <p>
+            Working with the Star Wars API from
+            https://swapi.py4e.com/
+          </p>
+        </div>
+      </section>
+      <section>
+        <div
+          class="row justify-content-center d-md-none m-2"
+        >
+          <select class="form-select m-2 col-10">
+            <option value="films">Films</option>
+            <option value="planets">Planets</option>
+            <option value="spaceships">Spaceships</option>
+            <option value="vehicles">Vehicles</option>
+            <option value="people">People</option>
+            <option value="species">Species</option>
+          </select>
+        </div>
+
+        <div
+          class="row justify-content-evenly justify-content-lg-center d-none d-md-flex"
+        >
+          <button class="btn btn-primary m-2 col-md-3">
+            <span>Films</span>
+          </button>
+          <button class="btn btn-primary m-2 col-md-3">
+            <span>Planets</span>
+          </button>
+          <button class="btn btn-primary m-2 col-md-3">
+            <span>Spaceships</span>
+          </button>
+          <button class="btn btn-primary m-2 col-md-3">
+            <span>Vehicles</span>
+          </button>
+          <button class="btn btn-primary m-2 col-md-3">
+            <span>People</span>
+          </button>
+          <button class="btn btn-primary m-2 col-md-3">
+            <span>Species</span>
+          </button>
+        </div>
+      </section>
+      <section>
+        <div
+          class="container-fluid bg-body-secondary p-2 justify-content-center"
+        >
+          <div class="search">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search..."
+            />
+            <button
+              id="searchButton"
+              class="btn btn-secondary m-2"
+            >
+              <span>Search</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div
+          id="data-container"
+          class="container-fluid bg-body-tertiary p-2"
+        ></div>
+      </section>
+    </main>
+  </body>
+</html>
