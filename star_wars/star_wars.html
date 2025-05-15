@@ -82,7 +82,10 @@
         <div
           class="row justify-content-center d-md-none m-2"
         >
-          <select class="form-select m-2 col-10">
+          <select
+            id="optionSelect"
+            class="form-select m-2 col-10"
+          >
             <option value="films">Films</option>
             <option value="planets">Planets</option>
             <option value="spaceships">Spaceships</option>
@@ -95,22 +98,40 @@
         <div
           class="row justify-content-evenly justify-content-lg-center d-none d-md-flex"
         >
-          <button class="btn btn-primary m-2 col-md-3">
+          <button
+            id="buttonFilms"
+            class="btn btn-primary m-2 col-md-3"
+          >
             <span>Films</span>
           </button>
-          <button class="btn btn-primary m-2 col-md-3">
+          <button
+            id="buttonPlanets"
+            class="btn btn-primary m-2 col-md-3"
+          >
             <span>Planets</span>
           </button>
-          <button class="btn btn-primary m-2 col-md-3">
+          <button
+            id="buttonShips"
+            class="btn btn-primary m-2 col-md-3"
+          >
             <span>Spaceships</span>
           </button>
-          <button class="btn btn-primary m-2 col-md-3">
+          <button
+            id="buttonVehicles"
+            class="btn btn-primary m-2 col-md-3"
+          >
             <span>Vehicles</span>
           </button>
-          <button class="btn btn-primary m-2 col-md-3">
+          <button
+            id="buttonPeople"
+            class="btn btn-primary m-2 col-md-3"
+          >
             <span>People</span>
           </button>
-          <button class="btn btn-primary m-2 col-md-3">
+          <button
+            id="buttonSpecies"
+            class="btn btn-primary m-2 col-md-3"
+          >
             <span>Species</span>
           </button>
         </div>
@@ -129,7 +150,14 @@
               id="searchButton"
               class="btn btn-secondary m-2"
             >
-              <span>Search</span>
+              <span class="search-load">Search</span>
+              <div class="loader d-none">
+                <span
+                  class="spinner spinner-border spinner-border-sm"
+                  aria-hidden="true"
+                ></span>
+                <span role="status">Loading...</span>
+              </div>
             </button>
           </div>
         </div>
