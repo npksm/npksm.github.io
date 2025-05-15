@@ -2,7 +2,7 @@
 {
   const urlFilms = "https://swapi.py4e.com/api/films";
   const urlPlanets = "https://swapi.py4e.com/api/planets";
-  const urlShips = "https://swapi.py4e.com/api/spaceships";
+  const urlShips = "https://swapi.py4e.com/api/starships";
   const urlVehicles = "https://swapi.py4e.com/api/vehicles";
   const urlPeople = "https://swapi.py4e.com/api/people";
   const urlSpecies = "https://swapi.py4e.com/api/species";
@@ -11,13 +11,18 @@
     "#data-container"
   );
   const dataRow = document.createElement("div");
-  dataRow.setAttribute("class", "movie row");
+  dataRow.setAttribute("class", "data row");
   const searchInput =
     document.querySelector("#searchInput");
   const searchButton =
     document.querySelector("#searchButton");
   const searchDiv = document.querySelector(".search");
-  const globalCache = {};
+  const globalCache = {
+    filmByUrl: {},
+    planetByUrl: {},
+    shipsByUrl: {},
+    vehiclesByUrl: {},
+  };
 
   const selectOption =
     document.querySelector("#optionSelect");
@@ -28,7 +33,7 @@
       showFilms();
     } else if (selectedValue === "planets") {
       showPlanets();
-    } else if (selectedValue === "spaceships") {
+    } else if (selectedValue === "starships") {
       showShips();
     } else if (selectedValue === "vehicles") {
       showVehicles();
@@ -63,15 +68,46 @@
   buttonSpecies.addEventListener("click", showSpecies);
 
   async function fetchMovieData(films) {
-    if (globalCache[films]) {
-      return globalCache[films];
+    if (globalCache.filmsList) {
+      return globalCache.filmsList;
     }
 
     try {
       const response = await fetch(urlFilms);
       const data = await response.json();
-      globalCache[films] = data.results;
+      globalCache.filmsList = data.results;
+
+      data.results.forEach((film) => {
+        globalCache.filmByUrl[film.url] = film;
+      });
+
       return data.results;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchSingleMovieData(filmUrl) {
+    if (globalCache.filmByUrl[filmUrl]) {
+      return globalCache.filmByUrl[filmUrl];
+    }
+
+    try {
+      const response = await fetch(filmUrl);
+      const data = await response.json();
+      globalCache.filmByUrl[filmUrl] = data;
+
+      if (globalCache.filmsList) {
+        const exists = globalCache.filmsList.some(
+          (film) => film.url === filmUrl
+        );
+        if (!exists) {
+          globalCache.filmsList.push(data);
+        }
+      }
+
+      return data;
     } catch (error) {
       console.error("Error fetching data: ", error);
       return null;
@@ -79,26 +115,151 @@
   }
 
   async function fetchPlanetData(planets) {
-    if (globalCache[planets]) {
-      return globalCache[planets];
+    if (globalCache.planetList) {
+      return globalCache.planetList;
     }
 
+    let nextUrl = urlPlanets;
+    let allResults = [];
+
     try {
-      const response = await fetch(urlPlanets);
-      const data = await response.json();
-      globalCache[planets] = data.results;
-      return data.results;
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((planet) => {
+          globalCache.planetByUrl[planet.url] = planet;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.planetList = allResults;
+      return allResults;
     } catch (error) {
       console.error("Error fetching data: ", error);
       return null;
     }
   }
 
+  async function fetchSinglePlanetData(planetUrl) {
+    if (globalCache.planetByUrl[planetUrl]) {
+      return globalCache.planetByUrl[planetUrl];
+    }
+
+    try {
+      const response = await fetch(planetUrl);
+      const data = await response.json();
+      globalCache.planetByUrl[planetUrl] = data;
+
+      if (globalCache.planetList) {
+        const exists = globalCache.planetList.some(
+          (planet) => planet.url === planetUrl
+        );
+        if (!exists) {
+          globalCache.planetList.push(data);
+        }
+      }
+      return data;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchShipsData(ships) {
+    if (globalCache.shipList) {
+      return globalCache.shipList;
+    }
+
+    let nextUrl = urlShips;
+    let allResults = [];
+
+    try {
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((ship) => {
+          globalCache.shipsByUrl[ship.url] = ship;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.shipList = allResults;
+      return allResults;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchSingleShipData(shipUrl) {
+    if (globalCache.shipsByUrl[shipUrl]) {
+      return globalCache.shipsByUrl[shipUrl];
+    }
+
+    try {
+      const response = await fetch(shipUrl);
+      const data = await response.json();
+      globalCache.shipsByUrl[shipUrl] = data;
+
+      if (globalCache.shipList) {
+        const exists = globalCache.shipsList.some(
+          (ship) => ship.url === shipUrl
+        );
+        if (!exists) {
+          globalCache.shipsList.push(data);
+        }
+      }
+      return data;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchVehicleData(vehicles) {
+    if (globalCache.vehicleList) {
+      return globalCache.vehicleList;
+    }
+
+    let nextUrl = urlVehicles;
+    let allResults = [];
+
+    try {
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((vehicle) => {
+          globalCache.vehiclesByUrl[vehicle.url] = vehicle;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.vehicleList = allResults;
+      return allResults;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  //ToDO async function fetchSingleVehicleData(vehicleUrl){}
+
   async function showFilms() {
     dataRow.innerHTML = "";
 
     const response = await fetchMovieData("films");
-    //const callData = response.results();
 
     response.forEach((item) => {
       createMovieComponent(item);
@@ -117,9 +278,27 @@
     dataContainer.append(dataRow);
   }
 
-  async function showShips() {}
+  async function showShips() {
+    dataRow.innerHTML = "";
 
-  async function showVehicles() {}
+    const response = await fetchShipsData("ships");
+
+    response.forEach((item) => {
+      createShipComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
+
+  async function showVehicles() {
+    dataRow.innerHTML = "";
+
+    const response = await fetchVehicleData("vehicles");
+
+    response.forEach((item) => {
+      createVehicleComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
 
   async function showPeople() {}
 
@@ -191,6 +370,21 @@
     let cardGrid = document.createElement("div");
     let name = document.createElement("h5");
     let pop = document.createElement("p");
+    let leftDiv = document.createElement("div");
+    let terrain = document.createElement("p");
+    let climate = document.createElement("p");
+    let rightDiv = document.createElement("div");
+    let rotation = document.createElement("p");
+    let orbital = document.createElement("p");
+    let water = document.createElement("p");
+    let gravity = document.createElement("p");
+    let diameter = document.createElement("p");
+
+    let res = document.createElement("button");
+    let residents = document.createElement("div");
+    let planetFilmButton = document.createElement("button");
+    let filmDiv = document.createElement("div");
+    let filmList = document.createElement("ul");
 
     cardCol.setAttribute(
       "class",
@@ -200,6 +394,70 @@
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     pop.setAttribute("class", "p col-6");
+    leftDiv.setAttribute("class", "col-6");
+    terrain.setAttribute("class", "p");
+    climate.setAttribute("class", "p");
+    water.setAttribute("class", "p");
+    rightDiv.setAttribute("class", "col-6");
+    rotation.setAttribute("class", "p");
+    orbital.setAttribute("class", "p");
+    gravity.setAttribute("class", "p");
+    diameter.setAttribute("class", "p");
+
+    res.setAttribute(
+      "class",
+      "btn btn-primary col-sm-12 col-md-6"
+    );
+    res.setAttribute("type", "button");
+    res.setAttribute("data-bs-toggle", "collapse");
+    res.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Residents`
+    );
+    residents.setAttribute("class", "collapse");
+    residents.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Residents`
+    );
+
+    planetFilmButton.setAttribute(
+      "class",
+      "btn btn-secondary col-sm-12 col-md-6"
+    );
+    planetFilmButton.setAttribute("type", "button");
+    planetFilmButton.setAttribute(
+      "data-bs-toggle",
+      "collapse"
+    );
+    planetFilmButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmDiv.setAttribute("class", "collapse");
+    filmDiv.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmList.setAttribute("class", "list-group");
+
+    planetFilmButton.addEventListener("click", async () => {
+      filmList.innerHTML = "";
+
+      const filmArray = await Promise.all(
+        item.films.map((filmUrl) =>
+          fetchSingleMovieData(filmUrl)
+        )
+      );
+
+      filmArray.forEach((film) => {
+        if (film) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = film.title;
+          filmList.appendChild(li);
+        }
+      });
+    });
 
     name.textContent = item.name;
     const popCheck = item.population;
@@ -207,16 +465,184 @@
       !isNaN(popCheck) && popCheck !== "unknown"
         ? `Population ${Number(popCheck).toLocaleString()}`
         : "Population unknown";
+    terrain.textContent = `Terrain: ${item.terrain}`;
+    climate.textContent = `Climate: ${item.climate}`;
+    rotation.textContent = `Rotation Period: ${Number(
+      item.rotation_period
+    ).toLocaleString()}`;
+    orbital.textContent = `Orbital period: ${Number(
+      item.orbital_period
+    ).toLocaleString()}`;
+    water.textContent = `Suface Water: ${item.surface_water}`;
+    gravity.textContent = `Gravity: ${item.gravity}`;
+    diameter.textContent = `Diameter: ${Number(
+      item.diameter
+    ).toLocaleString()}`;
+
+    res.textContent = "Residents";
+    residents.textContent = `${item.name} Placeholder`;
+    planetFilmButton.textContent = "Films";
 
     cardGrid.append(name);
     cardGrid.append(pop);
+    leftDiv.append(climate);
+    leftDiv.append(terrain);
+    leftDiv.append(water);
+    cardGrid.append(leftDiv);
+    rightDiv.append(rotation);
+    rightDiv.append(orbital);
+    rightDiv.append(gravity);
+    rightDiv.append(diameter);
+    cardGrid.append(rightDiv);
+
+    cardGrid.append(res);
+    cardGrid.append(residents);
+    cardGrid.append(planetFilmButton);
+    cardGrid.append(filmDiv);
+    filmDiv.append(filmList);
 
     newPlanetEntry.append(cardGrid);
     cardCol.append(newPlanetEntry);
     dataRow.append(cardCol);
   };
 
-  //fetchMovieData(url);
+  const createShipComponent = (item) => {
+    let cardCol = document.createElement("div");
+    let newShipEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+    let cost = document.createElement("p");
+    let manufacturer = document.createElement("p");
+    let maxAtmospheringSpeed = document.createElement("p");
+    let speedTitle = document.createElement("p");
+    let speedStack = document.createElement("div");
+    let cargoStack = document.createElement("div");
+    let cargoCapacity = document.createElement("p");
+    let cargoTitle = document.createElement("p");
+
+    cardCol.setAttribute(
+      "class",
+      "col-sm-12 col-md-6 col-xl-4"
+    );
+    newShipEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+    cost.setAttribute("class", "fw-bold col-6");
+    manufacturer.setAttribute("class", "col-12");
+    maxAtmospheringSpeed.setAttribute("class", "fw-bold");
+    speedStack.setAttribute(
+      "class",
+      "vstack col-5 text-center border-end"
+    );
+    cargoStack.setAttribute(
+      "class",
+      "vstack col-5 text-center"
+    );
+    cargoCapacity.setAttribute("class", "fw-bold");
+
+    name.textContent = item.name;
+
+    const costCheck = item.cost_in_credits;
+    cost.textContent =
+      !isNaN(costCheck) && costCheck !== "unknown"
+        ? `${Number(costCheck).toLocaleString()} credits`
+        : "Cost unknown";
+    manufacturer.textContent = `Manufactured by ${item.manufacturer}`;
+    const rawSpeed = item.max_atmosphering_speed;
+    const speedCheck = rawSpeed && rawSpeed.match(/\d+/);
+    maxAtmospheringSpeed.textContent =
+      speedCheck && rawSpeed !== "n/a"
+        ? `${Number(speedCheck[0]).toLocaleString()}`
+        : "N/A";
+    cargoCapacity.textContent = `${Number(
+      item.cargo_capacity
+    ).toLocaleString()}`;
+    speedTitle.textContent = "Max atmosphering speed";
+    cargoTitle.textContent = "Cargo capacity";
+
+    cardGrid.append(name);
+    cardGrid.append(cost);
+    cardGrid.append(manufacturer);
+    cardGrid.append(speedStack);
+    speedStack.append(maxAtmospheringSpeed);
+    speedStack.append(speedTitle);
+    cardGrid.append(cargoStack);
+    cargoStack.append(cargoCapacity);
+    cargoStack.append(cargoTitle);
+
+    newShipEntry.append(cardGrid);
+    cardCol.append(newShipEntry);
+    dataRow.append(cardCol);
+  };
+
+  const createVehicleComponent = (item) => {
+    let cardCol = document.createElement("div");
+    let newVehicleEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+    let cost = document.createElement("p");
+    let manufacturer = document.createElement("p");
+    let maxAtmospheringSpeed = document.createElement("p");
+    let speedTitle = document.createElement("p");
+    let speedStack = document.createElement("div");
+    let cargoStack = document.createElement("div");
+    let cargoCapacity = document.createElement("p");
+    let cargoTitle = document.createElement("p");
+
+    cardCol.setAttribute(
+      "class",
+      "col-sm-12 col-md-6 col-xl-4"
+    );
+    newVehicleEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+    cost.setAttribute("class", "fw-bold col-6");
+    manufacturer.setAttribute("class", "col-12");
+    maxAtmospheringSpeed.setAttribute("class", "fw-bold");
+    speedStack.setAttribute(
+      "class",
+      "vstack col-5 text-center border-end"
+    );
+    cargoStack.setAttribute(
+      "class",
+      "vstack col-5 text-center"
+    );
+    cargoCapacity.setAttribute("class", "fw-bold");
+
+    name.textContent = item.name;
+
+    const costCheck = item.cost_in_credits;
+    cost.textContent =
+      !isNaN(costCheck) && costCheck !== "unknown"
+        ? `${Number(costCheck).toLocaleString()} credits`
+        : "Cost unknown";
+    manufacturer.textContent = `Manufactured by ${item.manufacturer}`;
+    const rawSpeed = item.max_atmosphering_speed;
+    const speedCheck = rawSpeed && rawSpeed.match(/\d+/);
+    maxAtmospheringSpeed.textContent =
+      speedCheck && rawSpeed !== "n/a"
+        ? `${Number(speedCheck[0]).toLocaleString()}`
+        : "N/A";
+    cargoCapacity.textContent = `${Number(
+      item.cargo_capacity
+    ).toLocaleString()}`;
+    speedTitle.textContent = "Max atmosphering speed";
+    cargoTitle.textContent = "Cargo capacity";
+
+    cardGrid.append(name);
+    cardGrid.append(cost);
+    cardGrid.append(manufacturer);
+    cardGrid.append(speedStack);
+    speedStack.append(maxAtmospheringSpeed);
+    speedStack.append(speedTitle);
+    cardGrid.append(cargoStack);
+    cargoStack.append(cargoCapacity);
+    cargoStack.append(cargoTitle);
+
+    newVehicleEntry.append(cardGrid);
+    cardCol.append(newVehicleEntry);
+    dataRow.append(cardCol);
+  };
 
   searchButton.addEventListener("click", async () => {
     //const loader = document.querySelector(".loader");
