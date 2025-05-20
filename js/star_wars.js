@@ -22,6 +22,8 @@
     planetByUrl: {},
     shipsByUrl: {},
     vehiclesByUrl: {},
+    peopleByUrl: {},
+    speciesByUrl: {},
   };
 
   const selectOption =
@@ -66,6 +68,12 @@
   buttonVehicles.addEventListener("click", showVehicles);
   buttonPeople.addEventListener("click", showPeople);
   buttonSpecies.addEventListener("click", showSpecies);
+
+  /**
+   * Fetch Data
+   * @param {*} films
+   * @returns
+   */
 
   async function fetchMovieData(films) {
     if (globalCache.filmsList) {
@@ -256,6 +264,74 @@
 
   //ToDO async function fetchSingleVehicleData(vehicleUrl){}
 
+  async function fetchPeopleData(people) {
+    if (globalCache.peopleList) {
+      return globalCache.peopleList;
+    }
+
+    let nextUrl = urlPeople;
+    let allResults = [];
+
+    try {
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((vehicle) => {
+          globalCache.peopleByUrl[people.url] = people;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.peopleList = allResults;
+      return allResults;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  //ToDo async function fetchSinglePeopleData(peopleUrl){}
+
+  async function fetchSpeciesData(species) {
+    if (globalCache.speciesList) {
+      return globalCache.speciesList;
+    }
+
+    let nextUrl = urlSpecies;
+    let allResults = [];
+
+    try {
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((species) => {
+          globalCache.speciesByUrl[species.url] = species;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.speciesList = allResults;
+      return allResults;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  //ToDo async function fetchSingleSpeciesData(speciesUrl){}
+
+  /**
+   * Call for data and insert
+   */
+
   async function showFilms() {
     dataRow.innerHTML = "";
 
@@ -300,27 +376,32 @@
     dataContainer.append(dataRow);
   }
 
-  async function showPeople() {}
+  async function showPeople() {
+    dataRow.innerHTML = "";
 
-  async function showSpecies() {}
-  /*const fetchMovieData = (url) => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        //console.log("Data", data);
-        data.results.forEach((item) => {
-          createMovieComponent(item);
-        });
-        dataContainer.append(movieRow);
-      })
-      .catch((error) => {
-        console.error(error);
-        let div = document.createElement("div");
-        div.textContent =
-          "An error occured. Please try again.";
-        dataContainer.append(div);
-      });
-  };*/
+    const response = await fetchPeopleData("people");
+
+    response.forEach((item) => {
+      createPeopleComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
+
+  async function showSpecies() {
+    dataRow.innerHTML = "";
+
+    const response = await fetchSpeciesData("species");
+
+    response.forEach((item) => {
+      createSpeciesComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
+
+  /**
+   *
+   * Create components
+   */
 
   const createMovieComponent = (item) => {
     let cardCol = document.createElement("div");
@@ -483,6 +564,8 @@
     residents.textContent = `${item.name} Placeholder`;
     planetFilmButton.textContent = "Films";
 
+    //ToDo Handle empty films list
+
     cardGrid.append(name);
     cardGrid.append(pop);
     leftDiv.append(climate);
@@ -644,6 +727,66 @@
     dataRow.append(cardCol);
   };
 
+  const createPeopleComponent = (item) => {
+    let cardCol = document.createElement("div");
+    let newPersonEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+    let cost = document.createElement("p");
+    let manufacturer = document.createElement("p");
+    let maxAtmospheringSpeed = document.createElement("p");
+    let speedTitle = document.createElement("p");
+    let speedStack = document.createElement("div");
+    let cargoStack = document.createElement("div");
+    let cargoCapacity = document.createElement("p");
+    let cargoTitle = document.createElement("p");
+
+    cardCol.setAttribute(
+      "class",
+      "col-sm-12 col-md-6 col-xl-4"
+    );
+    newPersonEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+
+    name.textContent = item.name;
+
+    cardGrid.append(name);
+
+    newPersonEntry.append(cardGrid);
+    cardCol.append(newPersonEntry);
+    dataRow.append(cardCol);
+  };
+
+  const createSpeciesComponent = (item) => {
+    let cardCol = document.createElement("div");
+    let newPersonEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+
+    cardCol.setAttribute(
+      "class",
+      "col-sm-12 col-md-6 col-xl-4"
+    );
+    newPersonEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+
+    name.textContent = item.name;
+
+    cardGrid.append(name);
+
+    newPersonEntry.append(cardGrid);
+    cardCol.append(newPersonEntry);
+    dataRow.append(cardCol);
+  };
+
+  /***
+   *
+   * Searching
+   *
+   *
+   * */
   searchButton.addEventListener("click", async () => {
     //const loader = document.querySelector(".loader");
     //const searchLoad =
