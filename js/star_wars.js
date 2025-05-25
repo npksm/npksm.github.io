@@ -159,6 +159,16 @@
 
     try {
       const response = await fetch(planetUrl);
+
+      if (!response.ok) {
+        console.error(
+          `Fetch failed with status: ${response.status}`
+        );
+        const text = await response.text();
+        console.error(`Response text: ${text}`);
+        return null;
+      }
+
       const data = await response.json();
       globalCache.planetByUrl[planetUrl] = data;
 
@@ -382,70 +392,6 @@
     }
   }
 
-  async function fetchPeopleData(people) {
-    if (globalCache.peopleList) {
-      return globalCache.peopleList;
-    }
-
-    let nextUrl = urlPeople;
-    let allResults = [];
-
-    try {
-      while (nextUrl) {
-        const response = await fetch(nextUrl);
-        const data = await response.json();
-
-        allResults = allResults.concat(data.results);
-
-        data.results.forEach((vehicle) => {
-          globalCache.peopleByUrl[people.url] = people;
-        });
-
-        nextUrl = data.next;
-      }
-
-      globalCache.peopleList = allResults;
-      return allResults;
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-      return null;
-    }
-  }
-
-  //ToDo async function fetchSinglePeopleData(peopleUrl){}
-
-  async function fetchSpeciesData(species) {
-    if (globalCache.speciesList) {
-      return globalCache.speciesList;
-    }
-
-    let nextUrl = urlSpecies;
-    let allResults = [];
-
-    try {
-      while (nextUrl) {
-        const response = await fetch(nextUrl);
-        const data = await response.json();
-
-        allResults = allResults.concat(data.results);
-
-        data.results.forEach((species) => {
-          globalCache.speciesByUrl[species.url] = species;
-        });
-
-        nextUrl = data.next;
-      }
-
-      globalCache.speciesList = allResults;
-      return allResults;
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-      return null;
-    }
-  }
-
-  //ToDo async function fetchSingleSpeciesData(speciesUrl){}
-
   /**
    * Call for data and insert
    */
@@ -508,33 +454,6 @@
   async function showSpecies() {
     dataRow.innerHTML = "";
 
-<<<<<<< HEAD
-    const response = await fetchMovieData("films");
-
-    response.forEach((item) => {
-      createMovieComponent(item);
-    });
-    dataContainer.append(dataRow);
-  }
-  /*const fetchMovieData = (url) => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        //console.log("Data", data);
-        data.results.forEach((item) => {
-          createMovieComponent(item);
-        });
-        dataContainer.append(movieRow);
-      })
-      .catch((error) => {
-        console.error(error);
-        let div = document.createElement("div");
-        div.textContent =
-          "An error occured. Please try again.";
-        dataContainer.append(div);
-      });
-  };*/
-=======
     const response = await fetchSpeciesData("species");
 
     response.forEach((item) => {
@@ -542,12 +461,6 @@
     });
     dataContainer.append(dataRow);
   }
-
-  /**
-   *
-   * Create components
-   */
->>>>>>> 89970665e92dcca47a8cefc1fb6f7723ece6c743
 
   const createMovieComponent = (item) => {
     let cardCol = document.createElement("div");
@@ -609,6 +522,7 @@
 
     let res = document.createElement("button");
     let residents = document.createElement("div");
+    let residentList = document.createElement("ul");
     let planetFilmButton = document.createElement("button");
     let filmDiv = document.createElement("div");
     let filmList = document.createElement("ul");
@@ -646,6 +560,7 @@
       "id",
       `${item.name.replace(/\s+/g, "")}Residents`
     );
+    residentList.setAttribute("class", "list-group");
 
     planetFilmButton.setAttribute(
       "class",
@@ -667,8 +582,47 @@
     );
     filmList.setAttribute("class", "list-group");
 
+    res.addEventListener("click", async () => {
+      if (residentList.children.length > 0) return;
+
+      residentList.innerHTML = "";
+
+      if (!item.residents.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No residents";
+        residentList.appendChild(li);
+        return;
+      }
+
+      const resArray = await Promise.all(
+        item.residents.map((resUrl) =>
+          fetchSinglePeopleData(resUrl)
+        )
+      );
+
+      resArray.forEach((person) => {
+        if (person) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = person.name;
+          residentList.appendChild(li);
+        }
+      });
+    });
+
     planetFilmButton.addEventListener("click", async () => {
+      if (filmList.children.length > 0) return;
+
       filmList.innerHTML = "";
+
+      if (!item.films.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No film appearances";
+        filmList.appendChild(li);
+        return;
+      }
 
       const filmArray = await Promise.all(
         item.films.map((filmUrl) =>
@@ -692,22 +646,49 @@
       !isNaN(popCheck) && popCheck !== "unknown"
         ? `Population ${Number(popCheck).toLocaleString()}`
         : "Population unknown";
-    terrain.textContent = `Terrain: ${item.terrain}`;
-    climate.textContent = `Climate: ${item.climate}`;
-    rotation.textContent = `Rotation Period: ${Number(
-      item.rotation_period
-    ).toLocaleString()}`;
-    orbital.textContent = `Orbital period: ${Number(
-      item.orbital_period
-    ).toLocaleString()}`;
-    water.textContent = `Suface Water: ${item.surface_water}`;
+    terrain.textContent = `Terrain: ${
+      item.terrain.charAt(0).toUpperCase() +
+      item.terrain.slice(1)
+    }`;
+    climate.textContent = `Climate: ${
+      item.climate.charAt(0).toUpperCase() +
+      item.climate.slice(1)
+    }`;
+    let rotationCheck = item.rotation_period;
+    if (isNumeric(rotationCheck)) {
+      rotationCheck =
+        Number(rotationCheck).toLocaleString();
+      rotation.textContent = `Rotation Period: ${rotationCheck}`;
+    } else {
+      rotation.textContent = `Rotation Period: ${
+        rotationCheck.charAt(0).toUpperCase() +
+        rotationCheck.slice(1)
+      }`;
+    }
+    let orbitalCheck = item.orbital_period;
+    if (isNumeric(orbitalCheck)) {
+      orbitalCheck = Number(orbitalCheck).toLocaleString();
+      orbital.textContent = `Orbital period: ${orbitalCheck}`;
+    } else {
+      orbital.textContent = `Orbital period: ${
+        orbitalCheck.charAt(0).toUpperCase() +
+        orbitalCheck.slice(1)
+      }`;
+    }
+    let waterCheck = item.surface_water;
+    if (typeof waterCheck === "string") {
+      waterCheck =
+        waterCheck.charAt(0).toUpperCase() +
+        waterCheck.slice(1);
+    }
+    water.textContent = `Suface Water: ${waterCheck}`;
     gravity.textContent = `Gravity: ${item.gravity}`;
     diameter.textContent = `Diameter: ${Number(
       item.diameter
     ).toLocaleString()}`;
 
     res.textContent = "Residents";
-    residents.textContent = `${item.name} Placeholder`;
+    //residents.textContent = `${item.name} Placeholder`;
     planetFilmButton.textContent = "Films";
 
     //ToDo Handle empty films list
@@ -726,6 +707,7 @@
 
     cardGrid.append(res);
     cardGrid.append(residents);
+    residents.append(residentList);
     cardGrid.append(planetFilmButton);
     cardGrid.append(filmDiv);
     filmDiv.append(filmList);
@@ -894,7 +876,6 @@
 
   const createPeopleComponent = (item) => {
     let cardCol = document.createElement("div");
-<<<<<<< HEAD
     let newPeopleEntry = document.createElement("div");
     let cardGrid = document.createElement("div");
     let name = document.createElement("h5");
@@ -909,25 +890,11 @@
     let species = document.createElement("p");
     let leftDiv = document.createElement("div");
     let rightDiv = document.createElement("div");
-=======
-    let newPersonEntry = document.createElement("div");
-    let cardGrid = document.createElement("div");
-    let name = document.createElement("h5");
-    let cost = document.createElement("p");
-    let manufacturer = document.createElement("p");
-    let maxAtmospheringSpeed = document.createElement("p");
-    let speedTitle = document.createElement("p");
-    let speedStack = document.createElement("div");
-    let cargoStack = document.createElement("div");
-    let cargoCapacity = document.createElement("p");
-    let cargoTitle = document.createElement("p");
->>>>>>> 89970665e92dcca47a8cefc1fb6f7723ece6c743
 
     cardCol.setAttribute(
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-<<<<<<< HEAD
     newPeopleEntry.setAttribute("class", "card m-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
@@ -965,50 +932,93 @@
     dataRow.append(cardCol);
   };
 
-=======
-    newPersonEntry.setAttribute("class", "card m-2");
-    cardGrid.setAttribute("class", "row p-2");
-    name.setAttribute("class", "h5 fw-bold col-6");
-
-    name.textContent = item.name;
-
-    cardGrid.append(name);
-
-    newPersonEntry.append(cardGrid);
-    cardCol.append(newPersonEntry);
-    dataRow.append(cardCol);
-  };
-
-  const createSpeciesComponent = (item) => {
+  const createSpeciesComponent = async (item) => {
     let cardCol = document.createElement("div");
-    let newPersonEntry = document.createElement("div");
+    let newSpeciesEntry = document.createElement("div");
     let cardGrid = document.createElement("div");
-    let name = document.createElement("h5");
+    let name = document.createElement("p");
+    let classification = document.createElement("p");
+    let designation = document.createElement("p");
+    let avgHeight = document.createElement("p");
+    let skinColors = document.createElement("p");
+    let hairColors = document.createElement("p");
+    let eyeColors = document.createElement("p");
+    let avgLifespan = document.createElement("p");
+    let homeworld = document.createElement("p");
+    let language = document.createElement("p");
+    let leftDiv = document.createElement("div");
+    let rightDiv = document.createElement("div");
 
     cardCol.setAttribute(
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-    newPersonEntry.setAttribute("class", "card m-2");
+    leftDiv.setAttribute("class", "col-6");
+    rightDiv.setAttribute("class", "col-6");
+    newSpeciesEntry.setAttribute("class", "card m-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
+    classification.setAttribute("class", "p col-6");
+
+    skinColors.setAttribute("class", "p");
+    hairColors.setAttribute("class", "p");
+    eyeColors.setAttribute("class", "p");
+
+    designation.setAttribute("class", "p");
+    avgLifespan.setAttribute("class", "p");
+    avgHeight.setAttribute("class", "p");
+    homeworld.setAttribute("class", "p");
+    language.setAttribute("class", "p");
 
     name.textContent = item.name;
+    classification.textContent =
+      item.classification.charAt(0).toUpperCase() +
+      item.classification.slice(1);
+    skinColors.textContent = `Skin colors: ${item.skin_colors}`;
+    hairColors.textContent = `Hair colors: ${item.hair_colors}`;
+    eyeColors.textContent = `Eye colors: ${item.eye_colors}`;
+    designation.textContent = `Designation: ${
+      item.designation.charAt(0).toUpperCase() +
+      item.designation.slice(1)
+    }`;
+    let lifespan = item.average_lifespan;
+    if (typeof lifespan === "string") {
+      lifespan =
+        lifespan.charAt(0).toUpperCase() +
+        lifespan.slice(1);
+    }
+    avgLifespan.textContent = `Average Lifespan: ${lifespan}`;
+
+    avgHeight.textContent = `Average Height: ${item.average_height}`;
+    if (item.homeworld) {
+      const worldLink = await fetchSinglePlanetData(
+        item.homeworld
+      );
+      homeworld.textContent = `Homeworld: ${worldLink.name}`;
+    } else {
+      homeworld.textContent = `Homeworld: n/a`;
+    }
+    language.textContent = `Language: ${item.language}`;
 
     cardGrid.append(name);
+    cardGrid.append(classification);
+    cardGrid.append(skinColors);
+    cardGrid.append(hairColors);
+    cardGrid.append(eyeColors);
 
-    newPersonEntry.append(cardGrid);
-    cardCol.append(newPersonEntry);
+    leftDiv.append(designation);
+    leftDiv.append(avgLifespan);
+    leftDiv.append(avgHeight);
+    cardGrid.append(leftDiv);
+    rightDiv.append(homeworld);
+    rightDiv.append(language);
+    cardGrid.append(rightDiv);
+
+    newSpeciesEntry.append(cardGrid);
+    cardCol.append(newSpeciesEntry);
     dataRow.append(cardCol);
   };
 
-  /***
-   *
-   * Searching
-   *
-   *
-   * */
->>>>>>> 89970665e92dcca47a8cefc1fb6f7723ece6c743
   searchButton.addEventListener("click", async () => {
     //const loader = document.querySelector(".loader");
     //const searchLoad =
@@ -1069,4 +1079,9 @@
 
     //console.log(matches);
   });
+
+  function isNumeric(str) {
+    if (typeof str != "string") return false;
+    return !isNaN(str) && !isNaN(parseFloat(str));
+  }
 }
