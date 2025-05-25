@@ -22,6 +22,8 @@
     planetByUrl: {},
     shipsByUrl: {},
     vehiclesByUrl: {},
+    peopleByUrl: {},
+    speciesByUrl: {},
   };
 
   const selectOption =
@@ -254,7 +256,125 @@
     }
   }
 
-  //ToDO async function fetchSingleVehicleData(vehicleUrl){}
+  async function fetchSingleVehicleData(vehicleUrl) {
+    if (globalCache.vehiclesByUrl[vehicleUrl]) {
+      return globalCache.vehiclesByUrl[vehicleUrl];
+    }
+
+    try {
+      const response = await fetch(vehicleUrl);
+      const data = await response.json();
+      globalCache.vehiclesByUrl[vehicleUrl] = data;
+
+      if (globalCache.vehicleList) {
+        const exists = globalCache.vehicleList.some(
+          (vehicle) => vehicle.url === vehicleUrl
+        );
+        if (!exists) {
+          globalCache.vehicleList.push(data);
+        }
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchPeopleData(people) {
+    if (globalCache.peopleList) {
+      return globalCache.peopleList;
+    }
+
+    try {
+      const response = await fetch(urlPeople);
+      const data = await response.json();
+      globalCache.peopleList = data.results;
+
+      data.results.forEach((person) => {
+        globalCache.peopleByUrl[person.url] = person;
+      });
+
+      return data.results;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchSinglePeopleData(personUrl) {
+    if (globalCache.peopleByUrl[personUrl]) {
+      return globalCache.peopleByUrl[personUrl];
+    }
+
+    try {
+      const response = await fetch(personUrl);
+      const data = await response.json();
+      globalCache.peopleByUrl[personUrl] = data;
+
+      if (globalCache.peopleList) {
+        const exists = globalCache.peopleList.some(
+          (person) => person.url === personUrl
+        );
+        if (!exists) {
+          globalCache.peopleList.push(data);
+        }
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchSpeciesData(species) {
+    if (globalCache.speciesList) {
+      return globalCache.speciesList;
+    }
+
+    try {
+      const response = await fetch(urlSpecies);
+      const data = await response.json();
+      globalCache.speciesList = data.results;
+
+      data.results.forEach((specie) => {
+        globalCache.speciesByUrl[specie.url] = specie;
+      });
+
+      return data.results;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  async function fetchSingleSpeciesData(speciesUrl) {
+    if (globalCache.speciesByUrl[speciesUrl]) {
+      return globalCache.speciesByUrl[speciesUrl];
+    }
+
+    try {
+      const response = await fetch(speciesUrl);
+      const data = await response.json();
+      globalCache.speciesByUrl[speciesUrl] = data;
+
+      if (globalCache.speciesList) {
+        const exists = globalCache.speciesList.some(
+          (specie) => specie.url === speciesUrl
+        );
+        if (!exists) {
+          globalCache.speciesList.push(data);
+        }
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
 
   async function showFilms() {
     dataRow.innerHTML = "";
@@ -300,9 +420,27 @@
     dataContainer.append(dataRow);
   }
 
-  async function showPeople() {}
+  async function showPeople() {
+    dataRow.innerHTML = "";
 
-  async function showSpecies() {}
+    const response = await fetchPeopleData("people");
+
+    response.forEach((item) => {
+      createPeopleComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
+
+  async function showSpecies() {
+    dataRow.innerHTML = "";
+
+    const response = await fetchMovieData("films");
+
+    response.forEach((item) => {
+      createMovieComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
   /*const fetchMovieData = (url) => {
     fetch(url)
       .then((response) => response.json())
@@ -583,11 +721,15 @@
     let cost = document.createElement("p");
     let manufacturer = document.createElement("p");
     let maxAtmospheringSpeed = document.createElement("p");
-    let speedTitle = document.createElement("p");
-    let speedStack = document.createElement("div");
-    let cargoStack = document.createElement("div");
+    let model = document.createElement("p");
+    let length = document.createElement("p");
+    let crew = document.createElement("p");
+    let passengers = document.createElement("p");
+    let consumbales = document.createElement("p");
+    let vehicleClass = document.createElement("p");
+    let leftDiv = document.createElement("div");
+    let rightDiv = document.createElement("div");
     let cargoCapacity = document.createElement("p");
-    let cargoTitle = document.createElement("p");
 
     cardCol.setAttribute(
       "class",
@@ -597,17 +739,17 @@
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     cost.setAttribute("class", "fw-bold col-6");
-    manufacturer.setAttribute("class", "col-12");
-    maxAtmospheringSpeed.setAttribute("class", "fw-bold");
-    speedStack.setAttribute(
-      "class",
-      "vstack col-5 text-center border-end"
-    );
-    cargoStack.setAttribute(
-      "class",
-      "vstack col-5 text-center"
-    );
-    cargoCapacity.setAttribute("class", "fw-bold");
+    manufacturer.setAttribute("class", "fw-bold col-12");
+    leftDiv.setAttribute("class", "col-6");
+    model.setAttribute("class", "p");
+    maxAtmospheringSpeed.setAttribute("class", "p");
+    length.setAttribute("class", "p");
+    vehicleClass.setAttribute("class", "p");
+    rightDiv.setAttribute("class", "col-6");
+    crew.setAttribute("class", "p");
+    passengers.setAttribute("class", "p");
+    consumbales.setAttribute("class", "p");
+    cargoCapacity.setAttribute("class", "p");
 
     name.textContent = item.name;
 
@@ -621,26 +763,99 @@
     const speedCheck = rawSpeed && rawSpeed.match(/\d+/);
     maxAtmospheringSpeed.textContent =
       speedCheck && rawSpeed !== "n/a"
-        ? `${Number(speedCheck[0]).toLocaleString()}`
-        : "N/A";
-    cargoCapacity.textContent = `${Number(
-      item.cargo_capacity
-    ).toLocaleString()}`;
-    speedTitle.textContent = "Max atmosphering speed";
-    cargoTitle.textContent = "Cargo capacity";
+        ? `Max atmosphering speed: ${Number(
+            speedCheck[0]
+          ).toLocaleString()}`
+        : "Max atmosphering speed: N/A";
+
+    const cargoCheck = item.cargo_capacity;
+    cargoCapacity.textContent =
+      !isNaN(cargoCheck) && cargoCheck !== "unknown"
+        ? `Cargo capacity: ${Number(
+            cargoCheck
+          ).toLocaleString()}`
+        : "Unknown capacity";
+    model.textContent = item.model;
+    length.textContent = `Length: ${item.length}`;
+    vehicleClass.textContent = `Vehicle class: ${item.vehicle_class}`;
+    crew.textContent = `Crew: ${item.crew}`;
+    passengers.textContent = `Passengers: ${item.passengers}`;
+    consumbales.textContent = `Consumables: ${item.consumables}`;
 
     cardGrid.append(name);
     cardGrid.append(cost);
     cardGrid.append(manufacturer);
-    cardGrid.append(speedStack);
-    speedStack.append(maxAtmospheringSpeed);
-    speedStack.append(speedTitle);
-    cardGrid.append(cargoStack);
-    cargoStack.append(cargoCapacity);
-    cargoStack.append(cargoTitle);
+    leftDiv.append(model);
+    leftDiv.append(length);
+    leftDiv.append(maxAtmospheringSpeed);
+    leftDiv.append(vehicleClass);
+    cardGrid.append(leftDiv);
+    rightDiv.append(crew);
+    rightDiv.append(passengers);
+    rightDiv.append(consumbales);
+    rightDiv.append(cargoCapacity);
+    cardGrid.append(rightDiv);
 
     newVehicleEntry.append(cardGrid);
     cardCol.append(newVehicleEntry);
+    dataRow.append(cardCol);
+  };
+
+  const createPeopleComponent = (item) => {
+    let cardCol = document.createElement("div");
+    let newPeopleEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+    let height = document.createElement("p");
+    let mass = document.createElement("p");
+    let hairColor = document.createElement("p");
+    let skinColor = document.createElement("p");
+    let eyeColor = document.createElement("p");
+    let birthYear = document.createElement("p");
+    let gender = document.createElement("p");
+    let homeworld = document.createElement("p");
+    let species = document.createElement("p");
+    let leftDiv = document.createElement("div");
+    let rightDiv = document.createElement("div");
+
+    cardCol.setAttribute(
+      "class",
+      "col-sm-12 col-md-6 col-xl-4"
+    );
+    newPeopleEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+    leftDiv.setAttribute("class", "div col-6");
+    rightDiv.setAttribute("class", "div col-6");
+    height.setAttribute("class", "p");
+    mass.setAttribute("class", "p");
+    hairColor.setAttribute("class", "p");
+    skinColor.setAttribute("class", "p");
+    eyeColor.setAttribute("class", "p");
+    birthYear.setAttribute("class", "p");
+    gender.setAttribute("class", "p");
+    homeworld.setAttribute("class", "p");
+    species.setAttribute("class", "p");
+
+    title.textContent = `Episode ${item.episode_id} : ${item.title}`;
+    director.textContent = `directed by ${item.director}`;
+    producer.textContent = `produced by: ${item.producer}`;
+    const dateFormat = new Date(
+      item.release_date
+    ).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+    release.textContent = `released on ${dateFormat}`;
+
+    cardGrid.append(title);
+    cardGrid.append(director);
+    cardGrid.append(producer);
+    cardGrid.append(release);
+
+    newPeopleEntry.append(cardGrid);
+    cardCol.append(newPeopleEntry);
     dataRow.append(cardCol);
   };
 
