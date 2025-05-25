@@ -69,6 +69,12 @@
   buttonPeople.addEventListener("click", showPeople);
   buttonSpecies.addEventListener("click", showSpecies);
 
+  /**
+   * Fetch Data
+   * @param {*} films
+   * @returns
+   */
+
   async function fetchMovieData(films) {
     if (globalCache.filmsList) {
       return globalCache.filmsList;
@@ -376,6 +382,74 @@
     }
   }
 
+  async function fetchPeopleData(people) {
+    if (globalCache.peopleList) {
+      return globalCache.peopleList;
+    }
+
+    let nextUrl = urlPeople;
+    let allResults = [];
+
+    try {
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((vehicle) => {
+          globalCache.peopleByUrl[people.url] = people;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.peopleList = allResults;
+      return allResults;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  //ToDo async function fetchSinglePeopleData(peopleUrl){}
+
+  async function fetchSpeciesData(species) {
+    if (globalCache.speciesList) {
+      return globalCache.speciesList;
+    }
+
+    let nextUrl = urlSpecies;
+    let allResults = [];
+
+    try {
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
+
+        allResults = allResults.concat(data.results);
+
+        data.results.forEach((species) => {
+          globalCache.speciesByUrl[species.url] = species;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.speciesList = allResults;
+      return allResults;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return null;
+    }
+  }
+
+  //ToDo async function fetchSingleSpeciesData(speciesUrl){}
+
+  /**
+   * Call for data and insert
+   */
+
   async function showFilms() {
     dataRow.innerHTML = "";
 
@@ -434,6 +508,7 @@
   async function showSpecies() {
     dataRow.innerHTML = "";
 
+<<<<<<< HEAD
     const response = await fetchMovieData("films");
 
     response.forEach((item) => {
@@ -459,6 +534,20 @@
         dataContainer.append(div);
       });
   };*/
+=======
+    const response = await fetchSpeciesData("species");
+
+    response.forEach((item) => {
+      createSpeciesComponent(item);
+    });
+    dataContainer.append(dataRow);
+  }
+
+  /**
+   *
+   * Create components
+   */
+>>>>>>> 89970665e92dcca47a8cefc1fb6f7723ece6c743
 
   const createMovieComponent = (item) => {
     let cardCol = document.createElement("div");
@@ -620,6 +709,8 @@
     res.textContent = "Residents";
     residents.textContent = `${item.name} Placeholder`;
     planetFilmButton.textContent = "Films";
+
+    //ToDo Handle empty films list
 
     cardGrid.append(name);
     cardGrid.append(pop);
@@ -803,6 +894,7 @@
 
   const createPeopleComponent = (item) => {
     let cardCol = document.createElement("div");
+<<<<<<< HEAD
     let newPeopleEntry = document.createElement("div");
     let cardGrid = document.createElement("div");
     let name = document.createElement("h5");
@@ -817,11 +909,25 @@
     let species = document.createElement("p");
     let leftDiv = document.createElement("div");
     let rightDiv = document.createElement("div");
+=======
+    let newPersonEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+    let cost = document.createElement("p");
+    let manufacturer = document.createElement("p");
+    let maxAtmospheringSpeed = document.createElement("p");
+    let speedTitle = document.createElement("p");
+    let speedStack = document.createElement("div");
+    let cargoStack = document.createElement("div");
+    let cargoCapacity = document.createElement("p");
+    let cargoTitle = document.createElement("p");
+>>>>>>> 89970665e92dcca47a8cefc1fb6f7723ece6c743
 
     cardCol.setAttribute(
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
+<<<<<<< HEAD
     newPeopleEntry.setAttribute("class", "card m-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
@@ -859,6 +965,50 @@
     dataRow.append(cardCol);
   };
 
+=======
+    newPersonEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+
+    name.textContent = item.name;
+
+    cardGrid.append(name);
+
+    newPersonEntry.append(cardGrid);
+    cardCol.append(newPersonEntry);
+    dataRow.append(cardCol);
+  };
+
+  const createSpeciesComponent = (item) => {
+    let cardCol = document.createElement("div");
+    let newPersonEntry = document.createElement("div");
+    let cardGrid = document.createElement("div");
+    let name = document.createElement("h5");
+
+    cardCol.setAttribute(
+      "class",
+      "col-sm-12 col-md-6 col-xl-4"
+    );
+    newPersonEntry.setAttribute("class", "card m-2");
+    cardGrid.setAttribute("class", "row p-2");
+    name.setAttribute("class", "h5 fw-bold col-6");
+
+    name.textContent = item.name;
+
+    cardGrid.append(name);
+
+    newPersonEntry.append(cardGrid);
+    cardCol.append(newPersonEntry);
+    dataRow.append(cardCol);
+  };
+
+  /***
+   *
+   * Searching
+   *
+   *
+   * */
+>>>>>>> 89970665e92dcca47a8cefc1fb6f7723ece6c743
   searchButton.addEventListener("click", async () => {
     //const loader = document.querySelector(".loader");
     //const searchLoad =
