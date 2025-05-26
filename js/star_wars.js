@@ -303,16 +303,24 @@
       return globalCache.peopleList;
     }
 
+    let nextUrl = urlPeople;
+    let allResults = [];
+
     try {
-      const response = await fetch(urlPeople);
-      const data = await response.json();
-      globalCache.peopleList = data.results;
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
 
-      data.results.forEach((person) => {
-        globalCache.peopleByUrl[person.url] = person;
-      });
+        allResults = allResults.concat(data.results);
+        data.results.forEach((person) => {
+          globalCache.peopleByUrl[person.url] = person;
+        });
 
-      return data.results;
+        nextUrl = data.next;
+      }
+
+      globalCache.peopleList = allResults;
+      return allResults;
     } catch (error) {
       console.error("Error fetching data: ", error);
       return null;
@@ -350,16 +358,25 @@
       return globalCache.speciesList;
     }
 
+    let nextUrl = urlSpecies;
+    let allResults = [];
+
     try {
-      const response = await fetch(urlSpecies);
-      const data = await response.json();
-      globalCache.speciesList = data.results;
+      while (nextUrl) {
+        const response = await fetch(nextUrl);
+        const data = await response.json();
 
-      data.results.forEach((specie) => {
-        globalCache.speciesByUrl[specie.url] = specie;
-      });
+        allResults = allResults.concat(data.results);
 
-      return data.results;
+        data.results.forEach((specie) => {
+          globalCache.speciesByUrl[specie.url] = specie;
+        });
+
+        nextUrl = data.next;
+      }
+
+      globalCache.speciesList = allResults;
+      return allResults;
     } catch (error) {
       console.error("Error fetching data: ", error);
       return null;
@@ -399,67 +416,116 @@
   async function showFilms() {
     dataRow.innerHTML = "";
 
-    const response = await fetchMovieData("films");
+    showLoading("Loading films...");
 
-    response.forEach((item) => {
-      createMovieComponent(item);
-    });
-    dataContainer.append(dataRow);
+    try {
+      const response = await fetchMovieData("films");
+
+      if (response) {
+        response.forEach((item) => {
+          createMovieComponent(item);
+        });
+        dataContainer.append(dataRow);
+      }
+    } catch (error) {
+      console.error("Error fetching films: ", error);
+    } finally {
+      hideLoading();
+    }
   }
 
   async function showPlanets() {
     dataRow.innerHTML = "";
 
-    const response = await fetchPlanetData("planets");
-
-    response.forEach((item) => {
-      createPlanetComponent(item);
-    });
-    dataContainer.append(dataRow);
+    showLoading("Loading planets...");
+    try {
+      const response = await fetchPlanetData("planets");
+      if (response) {
+        response.forEach((item) => {
+          createPlanetComponent(item);
+        });
+        dataContainer.append(dataRow);
+      }
+    } catch (error) {
+      console.error("Error fetching planets: ", error);
+    } finally {
+      hideLoading();
+    }
   }
 
   async function showShips() {
     dataRow.innerHTML = "";
 
-    const response = await fetchShipsData("ships");
-
-    response.forEach((item) => {
-      createShipComponent(item);
-    });
-    dataContainer.append(dataRow);
+    showLoading("Loading films...");
+    try {
+      const response = await fetchShipsData("ships");
+      if (response) {
+        response.forEach((item) => {
+          createShipComponent(item);
+        });
+        dataContainer.append(dataRow);
+      }
+    } catch (error) {
+      console.error("Error fetching ships: ", error);
+    } finally {
+      hideLoading();
+    }
   }
 
   async function showVehicles() {
     dataRow.innerHTML = "";
+    showLoading("Loading vehicles...");
 
-    const response = await fetchVehicleData("vehicles");
-
-    response.forEach((item) => {
-      createVehicleComponent(item);
-    });
-    dataContainer.append(dataRow);
+    try {
+      const response = await fetchVehicleData("vehicles");
+      if (response) {
+        response.forEach((item) => {
+          createVehicleComponent(item);
+        });
+        dataContainer.append(dataRow);
+      }
+    } catch (error) {
+      console.error("Error fetching ships: ", error);
+    } finally {
+      hideLoading();
+    }
   }
 
   async function showPeople() {
     dataRow.innerHTML = "";
-
-    const response = await fetchPeopleData("people");
-
-    response.forEach((item) => {
-      createPeopleComponent(item);
-    });
-    dataContainer.append(dataRow);
+    showLoading("Loading people...");
+    try {
+      const response = await fetchPeopleData("people");
+      if (response) {
+        response.forEach((item) => {
+          createPeopleComponent(item);
+        });
+        dataContainer.append(dataRow);
+      }
+    } catch (error) {
+      console.error("Error fetching people: ", error);
+    } finally {
+      hideLoading();
+    }
   }
 
   async function showSpecies() {
     dataRow.innerHTML = "";
+    showLoading("Loading films...");
 
-    const response = await fetchSpeciesData("species");
-
-    response.forEach((item) => {
-      createSpeciesComponent(item);
-    });
-    dataContainer.append(dataRow);
+    try {
+      const response = await fetchSpeciesData("species");
+      if (response) {
+        response.forEach((item) => {
+          createSpeciesComponent(item);
+        });
+        dataContainer.append(dataRow);
+      }
+    } catch (error) {
+      console.error("Error fetching species: ", error);
+    } finally {
+      hideLoading();
+    }
   }
 
   const createMovieComponent = (item) => {
@@ -1343,11 +1409,15 @@
     } else {
       homeworld.textContent = `Homeworld: Unknown`;
     }
-    if (item.species) {
+    if (item.species && item.species.length > 0) {
       const speciesLink = await fetchSingleSpeciesData(
         item.species
       );
-      species.textContent = `Species: ${speciesLink.name}`;
+      if (speciesLink) {
+        species.textContent = `Species: ${speciesLink.name}`;
+      } else {
+        species.textContent = `Species: Unknown`;
+      }
     } else {
       species.textContent = `Species: Unknown`;
     }
@@ -1361,6 +1431,7 @@
     leftDiv.append(height);
     leftDiv.append(mass);
     leftDiv.append(gender);
+    leftDiv.append(species);
     cardGrid.append(leftDiv);
     rightDiv.append(skinColor);
     rightDiv.append(hairColor);
@@ -1533,5 +1604,30 @@
   function isNumeric(str) {
     if (typeof str != "string") return false;
     return !isNaN(str) && !isNaN(parseFloat(str));
+  }
+
+  function showLoading(message = "Loading...") {
+    const loading = document.createElement("div");
+    loading.setAttribute("id", "loading");
+    loading.setAttribute(
+      "class",
+      "spinner-border text-primary my-3"
+    );
+    loading.setAttribute("role", "status");
+
+    const span = document.createElement("span");
+    span.className = "visually-hidden";
+    span.textContent = message;
+
+    loading.appendChild(span);
+
+    dataRow.append(loading);
+  }
+
+  function hideLoading() {
+    const loading = document.getElementById("loading");
+    if (loading) {
+      loading.remove();
+    }
   }
 }
