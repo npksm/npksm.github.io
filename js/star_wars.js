@@ -535,7 +535,7 @@
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     pop.setAttribute("class", "p col-6");
-    leftDiv.setAttribute("class", "col-6");
+    leftDiv.setAttribute("class", "col-6 border-end");
     terrain.setAttribute("class", "p");
     climate.setAttribute("class", "p");
     water.setAttribute("class", "p");
@@ -688,10 +688,7 @@
     ).toLocaleString()}`;
 
     res.textContent = "Residents";
-    //residents.textContent = `${item.name} Placeholder`;
     planetFilmButton.textContent = "Films";
-
-    //ToDo Handle empty films list
 
     cardGrid.append(name);
     cardGrid.append(pop);
@@ -723,13 +720,26 @@
     let cardGrid = document.createElement("div");
     let name = document.createElement("h5");
     let cost = document.createElement("p");
+    let length = document.createElement("p");
     let manufacturer = document.createElement("p");
     let maxAtmospheringSpeed = document.createElement("p");
-    let speedTitle = document.createElement("p");
-    let speedStack = document.createElement("div");
-    let cargoStack = document.createElement("div");
+    let model = document.createElement("p");
+    let crew = document.createElement("p");
+    let passengers = document.createElement("p");
+    let consumables = document.createElement("p");
+    let hyperdrive = document.createElement("p");
+    let mglt = document.createElement("p");
+    let shipClass = document.createElement("p");
     let cargoCapacity = document.createElement("p");
-    let cargoTitle = document.createElement("p");
+    let rightDiv = document.createElement("div");
+    let leftDiv = document.createElement("div");
+
+    let pilotButton = document.createElement("button");
+    let pilots = document.createElement("div");
+    let pilotList = document.createElement("ul");
+    let filmButton = document.createElement("button");
+    let filmDiv = document.createElement("div");
+    let filmList = document.createElement("ul");
 
     cardCol.setAttribute(
       "class",
@@ -740,19 +750,112 @@
     name.setAttribute("class", "h5 fw-bold col-6");
     cost.setAttribute("class", "fw-bold col-6");
     manufacturer.setAttribute("class", "col-12");
-    maxAtmospheringSpeed.setAttribute("class", "fw-bold");
-    speedStack.setAttribute(
+    maxAtmospheringSpeed.setAttribute("class", "p");
+    length.setAttribute("class", "p");
+    model.setAttribute("class", "p");
+    crew.setAttribute("class", "p");
+    passengers.setAttribute("class", "p");
+    consumables.setAttribute("class", "p");
+    hyperdrive.setAttribute("class", "p");
+    mglt.setAttribute("class", "p");
+    shipClass.setAttribute("class", "p");
+
+    rightDiv.setAttribute("class", "col-6");
+    leftDiv.setAttribute("class", "col-6 border-end");
+    cargoCapacity.setAttribute("class", "p");
+
+    pilotButton.setAttribute(
       "class",
-      "vstack col-5 text-center border-end"
+      "btn btn-primary col-sm-12 col-md-6"
     );
-    cargoStack.setAttribute(
+    pilotButton.setAttribute("type", "button");
+    pilotButton.setAttribute("data-bs-toggle", "collapse");
+    pilotButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Pilots`
+    );
+    pilots.setAttribute("class", "collapse");
+    pilots.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Pilots`
+    );
+    pilotList.setAttribute("class", "list-group");
+    filmButton.setAttribute(
       "class",
-      "vstack col-5 text-center"
+      "btn btn-secondary col-sm-12 col-md-6"
     );
-    cargoCapacity.setAttribute("class", "fw-bold");
+    filmButton.setAttribute("type", "button");
+    filmButton.setAttribute("data-bs-toggle", "collapse");
+    filmButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmDiv.setAttribute("class", "collapse");
+    filmDiv.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmList.setAttribute("class", "list-group");
+
+    pilotButton.addEventListener("click", async () => {
+      if (pilotList.children.length > 0) return;
+
+      pilotList.innerHTML = "";
+
+      if (!item.pilots.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No pilots";
+        pilotList.appendChild(li);
+        return;
+      }
+
+      const pilotArray = await Promise.all(
+        item.pilots.map((pilUrl) =>
+          fetchSinglePeopleData(pilUrl)
+        )
+      );
+
+      pilotArray.forEach((pilot) => {
+        if (pilot) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = pilot.name;
+          pilotList.appendChild(li);
+        }
+      });
+    });
+
+    filmButton.addEventListener("click", async () => {
+      if (filmList.children.length > 0) return;
+
+      filmList.innerHTML = "";
+
+      if (!item.films.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No film appearances";
+        filmList.appendChild(li);
+        return;
+      }
+
+      const filmArray = await Promise.all(
+        item.films.map((filmUrl) =>
+          fetchSingleMovieData(filmUrl)
+        )
+      );
+
+      filmArray.forEach((film) => {
+        if (film) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = film.title;
+          filmList.appendChild(li);
+        }
+      });
+    });
 
     name.textContent = item.name;
-
     const costCheck = item.cost_in_credits;
     cost.textContent =
       !isNaN(costCheck) && costCheck !== "unknown"
@@ -763,23 +866,55 @@
     const speedCheck = rawSpeed && rawSpeed.match(/\d+/);
     maxAtmospheringSpeed.textContent =
       speedCheck && rawSpeed !== "n/a"
-        ? `${Number(speedCheck[0]).toLocaleString()}`
-        : "N/A";
-    cargoCapacity.textContent = `${Number(
-      item.cargo_capacity
-    ).toLocaleString()}`;
-    speedTitle.textContent = "Max atmosphering speed";
-    cargoTitle.textContent = "Cargo capacity";
+        ? `Max atmosphering speed: ${Number(
+            speedCheck[0]
+          ).toLocaleString()}`
+        : "Max atmosphering speed: N/A";
+    const cargoCheck = item.cargo_capacity;
+    cargoCapacity.textContent =
+      !isNaN(cargoCheck) && cargoCheck !== "unknown"
+        ? `Cargo capacity: ${Number(
+            cargoCheck
+          ).toLocaleString()}`
+        : "Cargo capacity: Unknown";
+    model.textContent = item.model;
+    model.textContent = item.model;
+    length.textContent = `Length: ${item.length}`;
+    shipClass.textContent = `Ship class: ${
+      item.starship_class.charAt(0).toUpperCase() +
+      item.starship_class.slice(1)
+    }`;
+    crew.textContent = `Crew: ${item.crew}`;
+    passengers.textContent = `Passengers: ${item.passengers}`;
+    consumables.textContent = `Consumables: ${item.consumables}`;
+    hyperdrive.textContent = `Hyperdrive rating: ${item.hyperdrive_rating}`;
+    mglt.textContent = `Megalight per hour: ${item.MGLT}`;
+
+    pilotButton.textContent = "Pilots";
+    filmButton.textContent = "Films";
 
     cardGrid.append(name);
     cardGrid.append(cost);
     cardGrid.append(manufacturer);
-    cardGrid.append(speedStack);
-    speedStack.append(maxAtmospheringSpeed);
-    speedStack.append(speedTitle);
-    cardGrid.append(cargoStack);
-    cargoStack.append(cargoCapacity);
-    cargoStack.append(cargoTitle);
+    leftDiv.append(shipClass);
+    leftDiv.append(model);
+    leftDiv.append(maxAtmospheringSpeed);
+    leftDiv.append(hyperdrive);
+    leftDiv.append(mglt);
+    cardGrid.append(leftDiv);
+    rightDiv.append(crew);
+    rightDiv.append(passengers);
+    rightDiv.append(consumables);
+    rightDiv.append(cargoCapacity);
+    rightDiv.append(length);
+    cardGrid.append(rightDiv);
+
+    cardGrid.append(pilotButton);
+    cardGrid.append(pilots);
+    pilots.append(pilotList);
+    cardGrid.append(filmButton);
+    cardGrid.append(filmDiv);
+    filmDiv.append(filmList);
 
     newShipEntry.append(cardGrid);
     cardCol.append(newShipEntry);
@@ -798,11 +933,18 @@
     let length = document.createElement("p");
     let crew = document.createElement("p");
     let passengers = document.createElement("p");
-    let consumbales = document.createElement("p");
+    let consumables = document.createElement("p");
     let vehicleClass = document.createElement("p");
     let leftDiv = document.createElement("div");
     let rightDiv = document.createElement("div");
     let cargoCapacity = document.createElement("p");
+
+    let pilotButton = document.createElement("button");
+    let pilots = document.createElement("div");
+    let pilotList = document.createElement("ul");
+    let filmButton = document.createElement("button");
+    let filmDiv = document.createElement("div");
+    let filmList = document.createElement("ul");
 
     cardCol.setAttribute(
       "class",
@@ -813,7 +955,7 @@
     name.setAttribute("class", "h5 fw-bold col-6");
     cost.setAttribute("class", "fw-bold col-6");
     manufacturer.setAttribute("class", "fw-bold col-12");
-    leftDiv.setAttribute("class", "col-6");
+    leftDiv.setAttribute("class", "col-6 border-end");
     model.setAttribute("class", "p");
     maxAtmospheringSpeed.setAttribute("class", "p");
     length.setAttribute("class", "p");
@@ -821,11 +963,101 @@
     rightDiv.setAttribute("class", "col-6");
     crew.setAttribute("class", "p");
     passengers.setAttribute("class", "p");
-    consumbales.setAttribute("class", "p");
+    consumables.setAttribute("class", "p");
     cargoCapacity.setAttribute("class", "p");
 
-    name.textContent = item.name;
+    pilotButton.setAttribute(
+      "class",
+      "btn btn-primary col-sm-12 col-md-6"
+    );
+    pilotButton.setAttribute("type", "button");
+    pilotButton.setAttribute("data-bs-toggle", "collapse");
+    pilotButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Pilots`
+    );
+    pilots.setAttribute("class", "collapse");
+    pilots.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Pilots`
+    );
+    pilotList.setAttribute("class", "list-group");
+    filmButton.setAttribute(
+      "class",
+      "btn btn-secondary col-sm-12 col-md-6"
+    );
+    filmButton.setAttribute("type", "button");
+    filmButton.setAttribute("data-bs-toggle", "collapse");
+    filmButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmDiv.setAttribute("class", "collapse");
+    filmDiv.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmList.setAttribute("class", "list-group");
 
+    pilotButton.addEventListener("click", async () => {
+      if (pilotList.children.length > 0) return;
+
+      pilotList.innerHTML = "";
+
+      if (!item.pilots.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No pilots";
+        pilotList.appendChild(li);
+        return;
+      }
+
+      const pilotArray = await Promise.all(
+        item.pilots.map((pilUrl) =>
+          fetchSinglePeopleData(pilUrl)
+        )
+      );
+
+      pilotArray.forEach((pilot) => {
+        if (pilot) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = pilot.name;
+          pilotList.appendChild(li);
+        }
+      });
+    });
+
+    filmButton.addEventListener("click", async () => {
+      if (filmList.children.length > 0) return;
+
+      filmList.innerHTML = "";
+
+      if (!item.films.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No film appearances";
+        filmList.appendChild(li);
+        return;
+      }
+
+      const filmArray = await Promise.all(
+        item.films.map((filmUrl) =>
+          fetchSingleMovieData(filmUrl)
+        )
+      );
+
+      filmArray.forEach((film) => {
+        if (film) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = film.title;
+          filmList.appendChild(li);
+        }
+      });
+    });
+
+    name.textContent = item.name;
     const costCheck = item.cost_in_credits;
     cost.textContent =
       !isNaN(costCheck) && costCheck !== "unknown"
@@ -840,7 +1072,6 @@
             speedCheck[0]
           ).toLocaleString()}`
         : "Max atmosphering speed: N/A";
-
     const cargoCheck = item.cargo_capacity;
     cargoCapacity.textContent =
       !isNaN(cargoCheck) && cargoCheck !== "unknown"
@@ -850,10 +1081,16 @@
         : "Unknown capacity";
     model.textContent = item.model;
     length.textContent = `Length: ${item.length}`;
-    vehicleClass.textContent = `Vehicle class: ${item.vehicle_class}`;
+    vehicleClass.textContent = `Vehicle class: ${
+      item.vehicle_class.charAt(0).toUpperCase() +
+      item.vehicle_class.slice(1)
+    }`;
     crew.textContent = `Crew: ${item.crew}`;
     passengers.textContent = `Passengers: ${item.passengers}`;
-    consumbales.textContent = `Consumables: ${item.consumables}`;
+    consumables.textContent = `Consumables: ${item.consumables}`;
+
+    pilotButton.textContent = "Pilots";
+    filmButton.textContent = "Films";
 
     cardGrid.append(name);
     cardGrid.append(cost);
@@ -865,16 +1102,23 @@
     cardGrid.append(leftDiv);
     rightDiv.append(crew);
     rightDiv.append(passengers);
-    rightDiv.append(consumbales);
+    rightDiv.append(consumables);
     rightDiv.append(cargoCapacity);
     cardGrid.append(rightDiv);
+
+    cardGrid.append(pilotButton);
+    cardGrid.append(pilots);
+    pilots.append(pilotList);
+    cardGrid.append(filmButton);
+    cardGrid.append(filmDiv);
+    filmDiv.append(filmList);
 
     newVehicleEntry.append(cardGrid);
     cardCol.append(newVehicleEntry);
     dataRow.append(cardCol);
   };
 
-  const createPeopleComponent = (item) => {
+  const createPeopleComponent = async (item) => {
     let cardCol = document.createElement("div");
     let newPeopleEntry = document.createElement("div");
     let cardGrid = document.createElement("div");
@@ -891,6 +1135,16 @@
     let leftDiv = document.createElement("div");
     let rightDiv = document.createElement("div");
 
+    let filmButton = document.createElement("button");
+    let filmDiv = document.createElement("div");
+    let filmList = document.createElement("ul");
+    let vehicleButton = document.createElement("button");
+    let vehicles = document.createElement("div");
+    let vehicleList = document.createElement("ul");
+    let shipButton = document.createElement("button");
+    let ships = document.createElement("div");
+    let shipList = document.createElement("ul");
+
     cardCol.setAttribute(
       "class",
       "col-sm-12 col-md-6 col-xl-4"
@@ -898,6 +1152,7 @@
     newPeopleEntry.setAttribute("class", "card m-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
+    birthYear.setAttribute("class", "p col-6");
     leftDiv.setAttribute("class", "div col-6");
     rightDiv.setAttribute("class", "div col-6");
     height.setAttribute("class", "p");
@@ -905,27 +1160,222 @@
     hairColor.setAttribute("class", "p");
     skinColor.setAttribute("class", "p");
     eyeColor.setAttribute("class", "p");
-    birthYear.setAttribute("class", "p");
     gender.setAttribute("class", "p");
     homeworld.setAttribute("class", "p");
     species.setAttribute("class", "p");
 
-    title.textContent = `Episode ${item.episode_id} : ${item.title}`;
-    director.textContent = `directed by ${item.director}`;
-    producer.textContent = `produced by: ${item.producer}`;
-    const dateFormat = new Date(
-      item.release_date
-    ).toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-    release.textContent = `released on ${dateFormat}`;
+    filmButton.setAttribute(
+      "class",
+      "btn btn-secondary col-sm-12 col-md-6"
+    );
+    filmButton.setAttribute("type", "button");
+    filmButton.setAttribute("data-bs-toggle", "collapse");
+    filmButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmDiv.setAttribute("class", "collapse");
+    filmDiv.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Films`
+    );
+    filmList.setAttribute("class", "list-group");
+    vehicleButton.setAttribute(
+      "class",
+      "btn btn-primary col-sm-12 col-md-6"
+    );
+    vehicleButton.setAttribute("type", "button");
+    vehicleButton.setAttribute(
+      "data-bs-toggle",
+      "collapse"
+    );
+    vehicleButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Vehicles`
+    );
+    vehicles.setAttribute("class", "collapse");
+    vehicles.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Vehicles`
+    );
+    vehicleList.setAttribute("class", "list-group");
+    shipButton.setAttribute(
+      "class",
+      "btn btn-info col-sm-12 col-md-6"
+    );
+    shipButton.setAttribute("type", "button");
+    shipButton.setAttribute("data-bs-toggle", "collapse");
+    shipButton.setAttribute(
+      "data-bs-target",
+      `#${item.name.replace(/\s+/g, "")}Ships`
+    );
+    ships.setAttribute("class", "collapse");
+    ships.setAttribute(
+      "id",
+      `${item.name.replace(/\s+/g, "")}Ships`
+    );
+    shipList.setAttribute("class", "list-group");
 
-    cardGrid.append(title);
-    cardGrid.append(director);
-    cardGrid.append(producer);
-    cardGrid.append(release);
+    filmButton.addEventListener("click", async () => {
+      if (filmList.children.length > 0) return;
+
+      filmList.innerHTML = "";
+
+      if (!item.films.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No film appearances";
+        filmList.appendChild(li);
+        return;
+      }
+
+      const filmArray = await Promise.all(
+        item.films.map((filmUrl) =>
+          fetchSingleMovieData(filmUrl)
+        )
+      );
+
+      filmArray.forEach((film) => {
+        if (film) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = film.title;
+          filmList.appendChild(li);
+        }
+      });
+    });
+
+    vehicleButton.addEventListener("click", async () => {
+      if (vehicleList.children.length > 0) return;
+
+      vehicleList.innerHTML = "";
+
+      if (!item.vehicles.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No vehicles";
+        vehicleList.appendChild(li);
+        return;
+      }
+
+      const vehicleArray = await Promise.all(
+        item.vehicles.map((vehUrl) =>
+          fetchSingleVehicleData(vehUrl)
+        )
+      );
+
+      vehicleArray.forEach((vehicle) => {
+        if (vehicle) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = vehicle.name;
+          vehicleList.appendChild(li);
+        }
+      });
+    });
+
+    shipButton.addEventListener("click", async () => {
+      if (shipList.children.length > 0) return;
+
+      shipList.innerHTML = "";
+
+      if (!item.starships.length) {
+        const li = document.createElement("li");
+        li.setAttribute("class", "list-group-item");
+        li.textContent = "No starships";
+        shipList.appendChild(li);
+        return;
+      }
+
+      const shipArray = await Promise.all(
+        item.starships.map((shipUrl) =>
+          fetchSingleShipData(shipUrl)
+        )
+      );
+
+      shipArray.forEach((ship) => {
+        if (ship) {
+          const li = document.createElement("li");
+          li.setAttribute("class", "list-group-item");
+          li.textContent = ship.name;
+          shipList.appendChild(li);
+        }
+      });
+    });
+
+    name.textContent = `${item.name}`;
+    birthYear.textContent = `Birth Year: ${item.birth_year}`;
+    height.textContent = `Height: ${item.height}`;
+    mass.textContent = `Mass: ${item.mass}`;
+    let hairValue = item.hair_color;
+    if (hairValue.toLowerCase() != "n/a") {
+      hairValue =
+        hairValue.charAt(0).toUpperCase() +
+        hairValue.slice(1);
+    }
+    hairColor.textContent = `Hair Color: ${hairValue}`;
+    let skinValue = item.skin_color;
+    if (skinValue.toLowerCase() != "n/a") {
+      skinValue =
+        skinValue.charAt(0).toUpperCase() +
+        skinValue.slice(1);
+    }
+    skinColor.textContent = `Skin Color: ${skinValue}`;
+    let eyeValue = item.eye_color;
+    if (eyeValue.toLowerCase() != "n/1") {
+      eyeValue =
+        eyeValue.charAt(0).toUpperCase() +
+        eyeValue.slice(1);
+    }
+    eyeColor.textContent = `Eye Color: ${eyeValue}`;
+    let genderValue = item.gender;
+    if (genderValue.toLowerCase() != "n/a") {
+      genderValue =
+        genderValue.charAt(0).toUpperCase() +
+        genderValue.slice(1);
+    }
+    gender.textContent = `Gender: ${genderValue}`;
+    if (item.homeworld) {
+      const worldLink = await fetchSinglePlanetData(
+        item.homeworld
+      );
+      homeworld.textContent = `Homeworld: ${worldLink.name}`;
+    } else {
+      homeworld.textContent = `Homeworld: Unknown`;
+    }
+    if (item.species) {
+      const speciesLink = await fetchSingleSpeciesData(
+        item.species
+      );
+      species.textContent = `Species: ${speciesLink.name}`;
+    } else {
+      species.textContent = `Species: Unknown`;
+    }
+
+    filmButton.textContent = "Films";
+    shipButton.textContent = "Starships";
+    vehicleButton.textContent = "Vehicles";
+
+    cardGrid.append(name);
+    cardGrid.append(birthYear);
+    leftDiv.append(height);
+    leftDiv.append(mass);
+    leftDiv.append(gender);
+    cardGrid.append(leftDiv);
+    rightDiv.append(skinColor);
+    rightDiv.append(hairColor);
+    rightDiv.append(eyeColor);
+    cardGrid.append(rightDiv);
+
+    cardGrid.append(vehicleButton);
+    cardGrid.append(vehicles);
+    vehicles.append(vehicleList);
+    cardGrid.append(shipButton);
+    cardGrid.append(ships);
+    ships.append(shipList);
+    cardGrid.append(filmButton);
+    cardGrid.append(filmDiv);
+    filmDiv.append(filmList);
 
     newPeopleEntry.append(cardGrid);
     cardCol.append(newPeopleEntry);
