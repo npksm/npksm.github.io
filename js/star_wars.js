@@ -537,16 +537,54 @@
     let producer = document.createElement("p");
     let release = document.createElement("p");
 
+    let crawlButton = document.createElement("button");
+    let crawlDiv = document.createElement("div");
+    let crawlText = document.createElement("p");
+
     cardCol.setAttribute(
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-    newMovieEntry.setAttribute("class", "card m-2");
+    newMovieEntry.setAttribute("class", "card p-2");
     cardGrid.setAttribute("class", "row p-2");
     title.setAttribute("class", "h5 fw-bold col-6");
     director.setAttribute("class", "p col-6");
     producer.setAttribute("class", "p col-12 small");
     release.setAttribute("class", "p col-12 small");
+
+    crawlButton.setAttribute(
+      "class",
+      "btn btn-primary col-sm-12 col-md-6"
+    );
+    crawlButton.setAttribute("type", "button");
+    crawlButton.setAttribute("data-bs-toggle", "collapse");
+    crawlButton.setAttribute(
+      "data-bs-target",
+      `#${item.title.replace(/\s+/g, "")}Crawl`
+    );
+    crawlDiv.setAttribute("class", "collapse");
+    crawlDiv.setAttribute(
+      "id",
+      `${item.title.replace(/\s+/g, "")}Crawl`
+    );
+    crawlText.setAttribute("class", "p");
+
+    crawlButton.addEventListener("click", () => {
+      if (crawlDiv.children.length > 0) return;
+      crawlDiv.innerHTML = "";
+
+      if (!item.opening_crawl.length) {
+        const emptyDiv = document.createElement("div");
+        emptyDiv.setAttribute("class", "card");
+        emptyDiv.textContent = "No crawl!";
+        crawlDiv.append(emptyDiv);
+        console.error("!item.opening_crawl.length");
+        return;
+      }
+
+      crawlText.textContent = item.opening_crawl;
+      crawlDiv.append(crawlText);
+    });
 
     title.textContent = `Episode ${item.episode_id} : ${item.title}`;
     director.textContent = `directed by ${item.director}`;
@@ -560,10 +598,14 @@
     });
     release.textContent = `released on ${dateFormat}`;
 
+    crawlButton.textContent = "Opening Crawl";
+
     cardGrid.append(title);
     cardGrid.append(director);
     cardGrid.append(producer);
     cardGrid.append(release);
+    cardGrid.append(crawlButton);
+    cardGrid.append(crawlDiv);
 
     newMovieEntry.append(cardGrid);
     cardCol.append(newMovieEntry);

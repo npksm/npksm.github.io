@@ -43,3 +43,15 @@ body {
   background-color: var(--black);
   color: var(--yellow);
 }
+
+.search > label {
+  color: var(--yellow);
+}
+
+.bg-body-secondary a {
+  color: var(--blue);
+}
+
+.row > label {
+  color: var(--yellow);
+}
