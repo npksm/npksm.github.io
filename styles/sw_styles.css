@@ -1,0 +1,45 @@
+:root {
+  --white: #fcfcfc;
+  --black: #040404;
+  --yellow: #ffff00;
+  --blue: #0032b4;
+  --light-blue: #5c8aff;
+  --main: #7400b8;
+}
+
+body {
+  background-color: var(--black);
+}
+
+.h1 {
+  color: var(--yellow);
+}
+
+.navbar-brand {
+  color: var(--yellow);
+}
+
+.navbar-toggler-icon {
+  background-color: var(--yellow);
+}
+
+.btn-primary {
+  background-color: var(--blue);
+  color: var(--yellow);
+}
+
+.btn-secondary {
+  background-color: var(--light-blue);
+  color: var(--black);
+}
+
+.card {
+  background-color: var(--black);
+  border-color: var(--blue);
+  color: var(--yellow);
+}
+
+.collapse.show > .list-group > .list-group-item {
+  background-color: var(--black);
+  color: var(--yellow);
+}

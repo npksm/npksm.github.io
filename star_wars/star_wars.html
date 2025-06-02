@@ -18,13 +18,12 @@
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
+    <link href="../styles/sw_styles.css" rel="stylesheet" />
     <script defer src="../js/star_wars.js"></script>
   </head>
   <body>
-    <header class="pb-3 mb-4 border-bottom">
-      <nav
-        class="navbar navbar-expand-md bg-body-secondary"
-      >
+    <header class="pb-3 mb-4">
+      <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
           <a class="navbar-brand" href="../index.html"
             >NPKSM</a
@@ -38,7 +37,9 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span
+              class="navbar-toggler-icon rounded-3"
+            ></span>
           </button>
           <div
             class="collapse navbar-collapse"
@@ -70,21 +71,26 @@
       <h1 class="h1 text-center">Star Wars Data</h1>
       <section>
         <div
-          class="container py-5 bg-body-secondary rounded-3 p-5 mb-4 text-center"
+          class="container bg-body-secondary rounded-3 p-2 text-center"
         >
           <p>
-            Working with the Star Wars API from
-            https://swapi.py4e.com/
+            Using the Star Wars API from
+            <a
+              href="https://swapi.py4e.com/"
+              target="_blank"
+              >https://swapi.py4e.com</a
+            >
+            to demonstrate JavaScript.
           </p>
         </div>
       </section>
-      <section>
+      <section class="p-2">
         <div
           class="row justify-content-center d-md-none m-2"
         >
           <select
             id="optionSelect"
-            class="form-select m-2 col-10"
+            class="form-select p-2 col-10 w-75"
           >
             <option value="films">Films</option>
             <option value="planets">Planets</option>
@@ -137,10 +143,8 @@
         </div>
       </section>
       <section>
-        <div
-          class="container-fluid bg-body-secondary p-2 justify-content-center"
-        >
-          <div class="search">
+        <div class="container p-2">
+          <div class="search text-center">
             <input
               id="searchInput"
               type="text"
@@ -148,7 +152,7 @@
             />
             <button
               id="searchButton"
-              class="btn btn-secondary m-2"
+              class="btn btn-primary"
             >
               <span class="search-load">Search</span>
               <div class="loader d-none">
@@ -165,7 +169,7 @@
       <section>
         <div
           id="data-container"
-          class="container-fluid bg-body-tertiary p-2"
+          class="container-fluid p-2"
         ></div>
       </section>
     </main>

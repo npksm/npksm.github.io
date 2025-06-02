@@ -597,7 +597,7 @@
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-    newPlanetEntry.setAttribute("class", "card m-2");
+    newPlanetEntry.setAttribute("class", "card p-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     pop.setAttribute("class", "p col-6");
@@ -811,7 +811,7 @@
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-    newShipEntry.setAttribute("class", "card m-2");
+    newShipEntry.setAttribute("class", "card p-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     cost.setAttribute("class", "fw-bold col-6");
@@ -1016,7 +1016,7 @@
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-    newVehicleEntry.setAttribute("class", "card m-2");
+    newVehicleEntry.setAttribute("class", "card p-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     cost.setAttribute("class", "fw-bold col-6");
@@ -1215,7 +1215,7 @@
       "class",
       "col-sm-12 col-md-6 col-xl-4"
     );
-    newPeopleEntry.setAttribute("class", "card m-2");
+    newPeopleEntry.setAttribute("class", "card p-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     birthYear.setAttribute("class", "p col-6");
@@ -1476,7 +1476,7 @@
     );
     leftDiv.setAttribute("class", "col-6");
     rightDiv.setAttribute("class", "col-6");
-    newSpeciesEntry.setAttribute("class", "card m-2");
+    newSpeciesEntry.setAttribute("class", "card p-2");
     cardGrid.setAttribute("class", "row p-2");
     name.setAttribute("class", "h5 fw-bold col-6");
     classification.setAttribute("class", "p col-6");
@@ -1549,7 +1549,7 @@
     //loader.setAttribute("class", "d-block");
     dataRow.innerHTML = "";
 
-    const response = await fetchMovieData();
+    //const response = await fetchMovieData();
     //const callData = response.results;
 
     const query = searchInput.value.trim().toLowerCase();
@@ -1561,7 +1561,7 @@
     }
 
     if (!query) {
-      let warningDiv = document.createElement("div");
+      const warningDiv = document.createElement("div");
       warningDiv.setAttribute("class", "warning-div");
       warningDiv.textContent =
         "Please enter a search term.";
@@ -1574,6 +1574,161 @@
       return;
     }
 
+    showLoading("Searching...");
+
+    try {
+      const [
+        films,
+        planets,
+        starships,
+        vehicles,
+        people,
+        species,
+      ] = await Promise.all([
+        getOrFetch("filmsList", fetchMovieData),
+        getOrFetch("planetList", fetchPlanetData),
+        getOrFetch("shipList", fetchShipsData),
+        getOrFetch("vehicleList", fetchVehicleData),
+        getOrFetch("peopleList", fetchPeopleData),
+        getOrFetch("speciesList", fetchSpeciesData),
+      ]);
+
+      let found = false;
+
+      films.forEach((item) => {
+        const matches =
+          item.title.toLowerCase().includes(query) ||
+          String(item.episode_id).includes(query) ||
+          item.opening_crawl
+            .toLowerCase()
+            .includes(query) ||
+          item.director.toLowerCase().includes(query) ||
+          item.producer.toLowerCase().includes(query) ||
+          item.release_date.toLowerCase().includes(query);
+        if (matches) {
+          createMovieComponent(item);
+          found = true;
+        }
+      });
+
+      planets.forEach((item) => {
+        const matches =
+          item.name.toLowerCase().includes(query) ||
+          String(item.rotation_period).includes(query) ||
+          String(item.orbital_period).includes(query) ||
+          String(item.diameter).includes(query) ||
+          item.climate.toLowerCase().includes(query) ||
+          item.gravity.toLowerCase().includes(query) ||
+          item.terrain.toLowerCase().includes(query) ||
+          String(item.surface_water).includes(query) ||
+          String(item.population).includes(query);
+        if (matches) {
+          createPlanetComponent(item);
+          found = true;
+        }
+      });
+
+      starships.forEach((item) => {
+        const matches =
+          item.name.toLowerCase().includes(query) ||
+          item.model.toLowerCase().includes(query) ||
+          item.manufacturer.toLowerCase().includes(query) ||
+          String(item.cost_in_credits).includes(query) ||
+          String(item.length).includes(query) ||
+          String(item.max_atmosphering_speed).includes(
+            query
+          ) ||
+          item.crew.includes(query) ||
+          String(item.passengers).includes(query) ||
+          String(item.cargo_capacity).includes(query) ||
+          item.consumables.toLowerCase().includes(query) ||
+          String(item.hyperdrive_rating).includes(query) ||
+          String(item.MGLT).includes(query) ||
+          item.starship_class.toLowerCase().includes(query);
+        if (matches) {
+          createShipComponent(item);
+          found = true;
+        }
+      });
+
+      vehicles.forEach((item) => {
+        const matches =
+          item.name.toLowerCase().includes(query) ||
+          item.model.toLowerCase().includes(query) ||
+          item.manufacturer.toLowerCase().includes(query) ||
+          String(item.cost_in_credits).includes(query) ||
+          String(item.length).includes(query) ||
+          String(item.max_atmosphering_speed).includes(
+            query
+          ) ||
+          String(item.crew).includes(query) ||
+          String(item.passengers).includes(query) ||
+          String(item.cargo_capacity).includes(query) ||
+          item.consumables.toLowerCase().includes(query) ||
+          item.vehicle_class.toLowerCase().includes(query);
+        if (matches) {
+          createVehicleComponent(item);
+          found = true;
+        }
+      });
+
+      people.forEach((item) => {
+        const matches =
+          item.name.toLowerCase().includes(query) ||
+          String(item.height).includes(query) ||
+          String(item.mass).includes(query) ||
+          item.hair_color.toLowerCase().includes(query) ||
+          item.skin_color.toLowerCase().includes(query) ||
+          item.eye_color.toLowerCase().includes(query) ||
+          item.birth_year.toLowerCase().includes(query) ||
+          item.gender.toLowerCase().includes(query);
+        if (matches) {
+          createPeopleComponent(item);
+          found = true;
+        }
+      });
+
+      species.forEach((item) => {
+        const matches =
+          item.name.toLowerCase().includes(query) ||
+          item.classification
+            .toLowerCase()
+            .includes(query) ||
+          item.designation.toLowerCase().includes(query) ||
+          String(item.average_height).includes(query) ||
+          item.skin_colors.toLowerCase().includes(query) ||
+          item.hair_colors.toLowerCase().includes(query) ||
+          item.eye_colors.toLowerCase().includes(query) ||
+          String(item.average_lifespan).includes(query) ||
+          item.language.toLowerCase().includes(query);
+        if (matches) {
+          createSpeciesComponent(item);
+          found = true;
+        }
+      });
+
+      if (!found) {
+        const noMatch = document.createElement("div");
+        noMatch.textContent = `No results for "${query}".`;
+        dataRow.append(noMatch);
+      }
+
+      dataContainer.append(dataRow);
+    } catch (error) {
+      console.error("Search failed: ", error);
+      const warningDiv = document.createElement("div");
+      warningDiv.setAttribute("class", "warning-div");
+      warningDiv.textContent = "Sorry, there was an error.";
+      searchDiv.append(warningDiv);
+
+      setTimeout(() => {
+        warningDiv.remove();
+      }, 3000);
+    } finally {
+      hideLoading();
+    }
+
+    /*
     response.results.forEach((item) => {
       const matches =
         item.title.toLowerCase().includes(query) ||
@@ -1584,7 +1739,7 @@
         dataContainer.append(dataRow);
       }
     });
-
+  */
     /*const matches = callData.filter(
       (item) =>
         item.title.toLowerCase().includes(query) ||
@@ -1601,6 +1756,39 @@
     //console.log(matches);
   });
 
+  async function getOrFetch(key, fetchFunction) {
+    if (globalCache.key) {
+      return globalCache.key;
+    }
+
+    try {
+      const data = await fetchFunction();
+
+      const resultArray = Array.isArray(data)
+        ? data
+        : data.results;
+
+      if (!resultArray) {
+        throw new Error(`Invalid data from ${key}`);
+      }
+
+      globalCache[key] = resultArray;
+
+      resultArray.forEach((item) => {
+        if (item.url) {
+          globalCache[`${key}ByUrl`] =
+            globalCache[`${key}ByUrl`] || {};
+          globalCache[`${key}ByUrl`][item.url] = item;
+        }
+      });
+
+      return globalCache[key];
+    } catch (error) {
+      console.error(`Failed to fetch ${key}: `, error);
+      return [];
+    }
+  }
+
   function isNumeric(str) {
     if (typeof str != "string") return false;
     return !isNaN(str) && !isNaN(parseFloat(str));
@@ -1611,7 +1799,7 @@
     loading.setAttribute("id", "loading");
     loading.setAttribute(
       "class",
-      "spinner-border text-primary my-3"
+      "spinner-border text-center"
     );
     loading.setAttribute("role", "status");
 
