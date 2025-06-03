@@ -1,6 +1,7 @@
 :root {
   --white: #fcfcfc;
   --black: #040404;
+  --blue: #0032b4;
 
   --main: #7400b8;
 }
@@ -10,13 +11,65 @@
   font-size: 1.2em;
 }*/
 
-/* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {
-}
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   filter: drop-shadow(0 0 2px var(--black));
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
+}
+.h1 {
+  font-size: 5rem;
+}
+.headshot-image {
+  width: 350px;
+  height: 350px;
+  margin: 45px;
+  border-radius: 50%;
+  display: block;
+  align-self: start;
+  background-image: url("../images/nick.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.navbar-brand {
+  color: var(--main);
+}
+
+.nav-link {
+  color: var(--main);
+}
+
+.nav-link:visited {
+  color: var(--blue);
+}
+
+#welcome .container {
+  background-color: var(--main);
+  color: var(--white);
+}
+
+/*Small devices(max 767)*/
+@media (max-width: 767px) {
+  .h1 {
+    font-size: 4rem;
+  }
+  .headshot-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/*Small & medium devices( max 1023px)*/
+@media (max-width: 1023px) {
+  .h1 {
+    text-align: center;
+  }
+  .headshot-image {
+    margin: auto;
+  }
+}
+
+/* Medium devices & larger (tablets, 768px and up)*/
+@media (min-width: 768px) {
 }
