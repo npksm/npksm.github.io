@@ -19,6 +19,14 @@ body {
   color: var(--yellow);
 }
 
+.navbar-brand:hover {
+  color: var(--blue);
+}
+
+.navbar-brand:visited {
+  color: var(--yellow);
+}
+
 .navbar-toggler-icon {
   background-color: var(--yellow);
 }
