@@ -24,7 +24,10 @@
 //Jquery
 $(document).ready(function () {
   setupBeepoCarousel();
+
+  handleModalImageTrigger();
 });
+$(window).resize(handleModalImageTrigger);
 
 function setupBeepoCarousel() {
   const imageUrls = [
@@ -58,4 +61,21 @@ function setupBeepoCarousel() {
       $carouselInner.append(itemHtml);
     });
   });
+}
+
+function handleModalImageTrigger() {
+  const $img = $("#responsiveModalImage");
+  if ($(window).width() >= 768) {
+    $img
+      .removeAttr("data-bs-toggle data-bs-target role")
+      .css("cursor", "default");
+  } else {
+    $img
+      .attr({
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#beepoModal",
+        role: "button",
+      })
+      .css("cursor", "pointer");
+  }
 }

@@ -2,6 +2,7 @@
   --white: #fcfcfc;
   --black: #040404;
   --blue: #0032b4;
+  --yellow: #ffff00;
 
   --main: #7400b8;
 }
@@ -10,12 +11,21 @@
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.2em;
 }*/
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   filter: drop-shadow(0 0 2px var(--black));
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
+}
+.content-container {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--blue),
+    var(--main)
+  );
+}
+.content-container h2 {
+  color: var(--white);
 }
 .h1 {
   font-size: 5rem;
@@ -23,13 +33,38 @@
 .headshot-image {
   width: 350px;
   height: 350px;
-  margin: 45px;
+  margin: auto;
   border-radius: 50%;
   display: block;
   align-self: start;
   background-image: url("../images/nick.jpg");
   background-position: center;
   background-size: cover;
+}
+.image-content {
+  color: var(--white);
+}
+.image-content a {
+  color: var(--white);
+  text-decoration: none;
+}
+.image-content a:hover {
+  color: var(--yellow);
+}
+.image-content:hover .overlay {
+  opacity: 0.75;
+}
+.image-content.space-between-distributed-row-container {
+  align-self: center;
+}
+.image-content-text-margin-left {
+  margin-left: 30px;
+}
+.image-content-text-margin-right {
+  margin-right: 30px;
+}
+.image-content .btn {
+  align-self: flex-end;
 }
 
 .navbar-brand {
@@ -43,9 +78,30 @@
 .nav-link:visited {
   color: var(--blue);
 }
+.overlay {
+  transition: 0.5s ease;
+}
+.space-between-distributed-row-container {
+  display: flex;
+  justify-content: space-evenly;
+}
 
-#welcome .container {
-  background-color: var(--main);
+.tall-img {
+  width: auto;
+  max-height: 400px;
+}
+
+.wide-img {
+  height: auto;
+  max-width: 400px;
+}
+
+.welcome {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--main),
+    var(--blue)
+  );
   color: var(--white);
 }
 
@@ -58,15 +114,26 @@
     width: 250px;
     height: 250px;
   }
+  .image-content-text-margin-left {
+    display: none;
+  }
+  .image-content-text-margin-right {
+    display: none;
+  }
+  .space-between-distributed-row-container {
+    justify-content: center;
+  }
+  .tall-img {
+    max-height: 700px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 }
 
 /*Small & medium devices( max 1023px)*/
 @media (max-width: 1023px) {
   .h1 {
     text-align: center;
-  }
-  .headshot-image {
-    margin: auto;
   }
 }
 

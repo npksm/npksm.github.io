@@ -9,6 +9,11 @@
     <title>NPKSM</title>
     <!--<link rel="stylesheet" href="_styles/styles.css" />-->
     <link
+      rel="icon"
+      type="image/x-icon"
+      href="images/favicon.ico"
+    />
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
@@ -23,7 +28,7 @@
     <link href="styles/styles.css" rel="stylesheet" />
     <script defer src="js/mainpage.js"></script>
   </head>
-  <body>
+  <body class="bg-body-secondary">
     <header class="pb-3 mb-4">
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
@@ -74,26 +79,173 @@
     <main>
       <section id="welcome">
         <div
-          class="container py-5 rounded-3 p-5 mb-4 text-center"
+          class="container py-5 rounded-3 p-5 mb-4 text-center welcome"
         >
           <div class="headshot-image"></div>
           <h1 class="h1">Nick Moller</h1>
+          <p clas="lead">Welcome to my personal website!</p>
           <p>
-            Lorem ipsum dolor sit amet consectetur
-            adipiscing elit. Quisque faucibus ex sapien
-            vitae pellentesque sem placerat. In id cursus mi
-            pretium tellus duis convallis. Tempus leo eu
-            aenean sed diam urna tempor. Pulvinar vivamus
-            fringilla lacus nec metus bibendum egestas.
-            Iaculis massa nisl malesuada lacinia integer
-            nunc posuere.
+            I have a variety of interests and projects to
+            share, thanks for taking a look.
+          </p>
+        </div>
+      </section>
+      <section id="information">
+        <div class="container-fluid">
+          <p>
+            Nullam nulla dolor, gravida at nulla ut, lacinia
+            vehicula velit. Donec dictum tincidunt nisl, at
+            malesuada nunc dapibus sit amet. Donec convallis
+            imperdiet lorem, eget imperdiet risus facilisis
+            sit amet. Suspendisse finibus nisi purus.
+            Maecenas quis mi sed lectus scelerisque
+            tristique. Integer nulla nisl, lobortis
+            vulputate aliquet accumsan, ultricies non ipsum.
+            Quisque sodales aliquet leo id maximus. Donec
+            fringilla facilisis nunc, non vulputate tortor
+            vestibulum sit amet. Donec malesuada orci in
+            tellus tristique, ac efficitur ex sollicitudin.
+            Nulla imperdiet est quis augue venenatis, eget
+            scelerisque lorem vulputate. Ut auctor commodo
+            venenatis. Quisque a porta nibh, iaculis congue
+            enim. Aenean vitae lacinia felis, efficitur
+            auctor sem. Phasellus ut aliquam risus. Sed
+            consequat malesuada magna, eu finibus ex auctor
+            vitae. Duis pharetra blandit laoreet. Nunc at
+            felis ipsum. Proin vel lorem gravida libero
+            dictum commodo. Curabitur auctor vulputate
+            facilisis. Sed ut tortor quam. Sed suscipit ante
+            magna, sed blandit ipsum tincidunt eu. Duis
+            consequat iaculis felis sed sodales. Nulla vitae
+            turpis leo. Suspendisse potenti. Cras id nibh eu
+            erat aliquam malesuada aliquam id velit. Aliquam
+            ultrices pharetra commodo. Aliquam sit amet
+            libero non sem aliquam ultricies non in orci.
+            Quisque efficitur ex arcu, ut lacinia urna
+            fermentum viverra. Pellentesque luctus tellus at
+            elementum blandit. Nam in justo feugiat,
+            scelerisque sapien et, molestie lacus. Orci
+            varius natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus.
+            Praesent sed justo sit amet risus aliquet
+            ultricies vel at ex. Nulla iaculis enim diam, at
+            eleifend dui pulvinar vel. Sed a lectus eget mi
+            semper vulputate vitae non velit. Nunc pulvinar
+            velit eu egestas viverra. Pellentesque vel sem
+            ipsum.
           </p>
         </div>
       </section>
       <section id="images">
-        <div class="row p-2">
+        <div class="content-container p-2">
+          <h2 class="h2 text-center p-2">
+            A collection of image galleries
+          </h2>
+          <div
+            class="image-content space-between-distributed-row-container"
+          >
+            <a href="abroad/abroad.html" class="card-link">
+              <figure class="overlay">
+                <img
+                  class="card-img rounded-3 hover-overlay"
+                  src="https://lh3.googleusercontent.com/pw/AP1GczNA3Mfly70J0HC5B-ReLN4O-FVVlT1HVra3oAr2so2iaL2j4j_jg72fRfHp2SCtQvoqcCf-rWYPTdg-qRmZLAjM8kzS5dGaUuWFYcRVU25zxZyfTZ0NokDgV8n4_n9nOpKnmOhEOag5L7hqJkIffELJBQ=w1060-h596-s-no-gm?authuser=0"
+                  alt="A temple and the sky in Thailand"
+                />
+              </figure>
+            </a>
+            <div
+              class="image-content-text-margin-left p-2 align-items-center mt-5"
+            >
+              <h3>Life Abroad</h3>
+              <p>
+                A collection of images from my time living
+                in Asia. I lived in and traveled to South
+                Korea, India, Thailand, Japan, Taiwan, &
+                Vietnam
+              </p>
+            </div>
+          </div>
+          <div
+            class="image-content space-between-distributed-row-container"
+          >
+            <div
+              class="image-content-text-margin-right p-2 mt-5 text-center"
+            >
+              <h3>My Art</h3>
+              <p>
+                I have made art for all of my life in a
+                variety of mediums. These days I mostly
+                paint, due to materials and other equipment
+                necessary. But I have also enjoyed making
+                ceramics, printmaking, and a multitude of
+                other mediums.
+              </p>
+            </div>
+            <figure>
+              <img
+                class="card-img rounded-3 hover-overlay"
+                src="https://lh3.googleusercontent.com/pw/AP1GczMzJToaQYVSNJBtdpxU7rHJdvB8GAd9RabrKQ6z87NKcEw-DxItGMx2h0F2ffV21dWpU-tE2-ZDBKEswYb1Q6P2ZjwY_3PCkO8YFq700TqvkIgYH49GlXKgAM8sOjm1f1SsfM5F5BgtaHuIyrDgks1IAg=w1060-h795-s-no-gm?authuser=0"
+                alt="A watercolor painting of a succulent plant"
+              />
+            </figure>
+          </div>
+          <div
+            class="image-content space-between-distributed-row-container"
+          >
+            <figure>
+              <img
+                class="card-img rounded-3 hover-overlay"
+                src="https://lh3.googleusercontent.com/pw/AP1GczPdGb4lgybRDC0iLt5SEPSGda9TcaXfFD232b-HaQchzGwA5i6DYg_ZSUEVqj4avOpSBMWKRJFuffowbqK7NfDPrVm98p_bOcRIU69Cb4K6Cq3SpAo5SvNZPARKxrxJSsTBahj_ieeqpXeDDdg4kgk1Xg=w1060-h798-s-no-gm?authuser=0"
+                alt="Some Heretic Troopers from Trench Crusade"
+              />
+            </figure>
+            <div
+              class="image-content-text-margin-left p-2 align-items-center mt-5"
+            >
+              <h3>New Hobbies</h3>
+              <p>
+                I've enjoyed games all my life, but in
+                recent years I have been spending more time
+                with social gaming like roleplaying games.
+                One of my friends introduced me to miniature
+                games and I've taken up 3D printing and
+                painting miniatures.
+              </p>
+            </div>
+          </div>
+          <div
+            class="image-content space-between-distributed-row-container"
+          >
+            <div
+              class="image-content-text-margin-right p-2 mt-5 text-center"
+            >
+              <h3>My cat Crumb (aka Beepo)</h3>
+              <button
+                type="button"
+                class="btn btn-primary m-2"
+                data-bs-toggle="modal"
+                data-bs-target="#beepoModal"
+              >
+                See more
+              </button>
+            </div>
+            <figure>
+              <img
+                class="card-img rounded-3 tall-img"
+                src="https://lh3.googleusercontent.com/pw/AP1GczPlHuY5SY7gk5zq_RmSgrNifG4fJmdZClh-mDeclnfYW0JfsG2XJbv-pvxmlUECDEGT-AmPA8lMcchaTZvnyHe2z4D5bZQM7rkxZ-R1BGA1ZkeF4tkhDEV-qe2W1zANcA2-CDbiO0JkpHvzZ-nwEqxX=w575-h767-s-no-gm?authuser=0"
+                alt="Crumb the black cat on the carpet"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#beepoModal"
+                style="cursor: pointer"
+                class="card-img rounded-3 d-block d-md-none"
+              />
+            </figure>
+          </div>
+
+          <!--
           <section
-            class="card col-sm-12 col-md-12 col-lg-6 h-100"
+            class="card col-sm-12 col-md-6 col-lg-6 h-100 bg-body-secondary"
           >
             <img
               class="card-img p-2"
@@ -105,17 +257,15 @@
             </div>
           </section>
           <section
-            class="card col-sm-12 col-md-6 col-lg-6 col-xl-4 h-100"
+            class="card col-sm-12 col-md-6 col-lg-6 col-xl-4 h-100 bg-body-secondary"
           >
             <img
               class="card-img"
-              src="https://lh3.googleusercontent.com/pw/AP1GczPlHuY5SY7gk5zq_RmSgrNifG4fJmdZClh-mDeclnfYW0JfsG2XJbv-pvxmlUECDEGT-AmPA8lMcchaTZvnyHe2z4D5bZQM7rkxZ-R1BGA1ZkeF4tkhDEV-qe2W1zANcA2-CDbiO0JkpHvzZ-nwEqxX=w575-h767-s-no-gm?authuser=0"
-              alt="Crumb the black cat on the carpet"
+              src="https://lh3.googleusercontent.com/pw/AP1GczMzJToaQYVSNJBtdpxU7rHJdvB8GAd9RabrKQ6z87NKcEw-DxItGMx2h0F2ffV21dWpU-tE2-ZDBKEswYb1Q6P2ZjwY_3PCkO8YFq700TqvkIgYH49GlXKgAM8sOjm1f1SsfM5F5BgtaHuIyrDgks1IAg=w1060-h795-s-no-gm?authuser=0"
+              alt="A watercolor painting of a succulent plant"
             />
-            <div class="card-body">
-              <p class="card-text">
-                Here is some card text
-              </p>
+            <div class="card-body text-center">
+              <p class="card-text">My art</p>
             </div>
           </section>
           <section
@@ -130,7 +280,7 @@
             </figure>
           </section>
           <section
-            class="card col-sm-12 col-md-6 col-lg-6 col-xl-4"
+            class="card col-sm-12 col-md-6 col-lg-6 col-xl-4 p-2 bg-body-secondary"
           >
             <figure class="m-2">
               <img
@@ -139,6 +289,11 @@
                 alt="Crumb the black cat on the carpet"
               />
             </figure>
+            <div class="card-body text-center">
+              <p class="card-text">
+                My cat Crumb (aka Beepo)
+              </p>
+            </div>
             <button
               type="button"
               class="btn btn-primary"
@@ -148,7 +303,7 @@
               See more
             </button>
           </section>
-        </div>
+        --></div>
         <div
           class="modal fade"
           id="beepoModal"
@@ -222,52 +377,7 @@
           </div>
         </div>
       </section>
-      <section id="information" class="bg-body-secondary">
-        <div class="m-2 p-2 container-fluid">
-          <p>
-            Nullam nulla dolor, gravida at nulla ut, lacinia
-            vehicula velit. Donec dictum tincidunt nisl, at
-            malesuada nunc dapibus sit amet. Donec convallis
-            imperdiet lorem, eget imperdiet risus facilisis
-            sit amet. Suspendisse finibus nisi purus.
-            Maecenas quis mi sed lectus scelerisque
-            tristique. Integer nulla nisl, lobortis
-            vulputate aliquet accumsan, ultricies non ipsum.
-            Quisque sodales aliquet leo id maximus. Donec
-            fringilla facilisis nunc, non vulputate tortor
-            vestibulum sit amet. Donec malesuada orci in
-            tellus tristique, ac efficitur ex sollicitudin.
-            Nulla imperdiet est quis augue venenatis, eget
-            scelerisque lorem vulputate. Ut auctor commodo
-            venenatis. Quisque a porta nibh, iaculis congue
-            enim. Aenean vitae lacinia felis, efficitur
-            auctor sem. Phasellus ut aliquam risus. Sed
-            consequat malesuada magna, eu finibus ex auctor
-            vitae. Duis pharetra blandit laoreet. Nunc at
-            felis ipsum. Proin vel lorem gravida libero
-            dictum commodo. Curabitur auctor vulputate
-            facilisis. Sed ut tortor quam. Sed suscipit ante
-            magna, sed blandit ipsum tincidunt eu. Duis
-            consequat iaculis felis sed sodales. Nulla vitae
-            turpis leo. Suspendisse potenti. Cras id nibh eu
-            erat aliquam malesuada aliquam id velit. Aliquam
-            ultrices pharetra commodo. Aliquam sit amet
-            libero non sem aliquam ultricies non in orci.
-            Quisque efficitur ex arcu, ut lacinia urna
-            fermentum viverra. Pellentesque luctus tellus at
-            elementum blandit. Nam in justo feugiat,
-            scelerisque sapien et, molestie lacus. Orci
-            varius natoque penatibus et magnis dis
-            parturient montes, nascetur ridiculus mus.
-            Praesent sed justo sit amet risus aliquet
-            ultricies vel at ex. Nulla iaculis enim diam, at
-            eleifend dui pulvinar vel. Sed a lectus eget mi
-            semper vulputate vitae non velit. Nunc pulvinar
-            velit eu egestas viverra. Pellentesque vel sem
-            ipsum.
-          </p>
-        </div>
-      </section>
+
       <section id="contact">
         <div
           class="form container border bg-body-secondary p-2"
