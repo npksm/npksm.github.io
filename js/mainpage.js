@@ -26,6 +26,7 @@ $(document).ready(function () {
   setupBeepoCarousel();
 
   handleModalImageTrigger();
+  $("form").on("submit", handleFormSubmit);
 });
 $(window).resize(handleModalImageTrigger);
 
@@ -78,4 +79,21 @@ function handleModalImageTrigger() {
       })
       .css("cursor", "pointer");
   }
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const name = $("#inputName").val();
+  const email = $("#inputEmail").val();
+  const message = $("#messageText").val();
+
+  $("#modalName").text(name);
+  $("#modalEmail").text(email);
+  $("#modalMessage").text(message);
+
+  const modal = new bootstrap.Modal(
+    document.getElementById("formModal")
+  );
+  modal.show();
 }

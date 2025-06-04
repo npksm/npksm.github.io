@@ -27,6 +27,30 @@
 .content-container h2 {
   color: var(--white);
 }
+.footer {
+  background-image: linear-gradient(
+    to right,
+    var(--blue),
+    var(--main)
+  );
+  color: var(--white);
+}
+.footer .list-group-item {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 0;
+  border: none;
+}
+.form {
+  background-image: linear-gradient(
+    to right,
+    var(--main),
+    var(--blue)
+  );
+  color: var(--white);
+}
+.form-buttons {
+  text-align: center;
+}
 .h1 {
   font-size: 5rem;
 }
@@ -125,8 +149,6 @@
   }
   .tall-img {
     max-height: 700px;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
   }
 }
 
