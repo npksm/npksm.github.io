@@ -1769,33 +1769,6 @@
     } finally {
       hideLoading();
     }
-
-    /*
-    response.results.forEach((item) => {
-      const matches =
-        item.title.toLowerCase().includes(query) ||
-        item.director.toLowerCase().includes(query);
-
-      if (matches) {
-        createMovieComponent(item);
-        dataContainer.append(dataRow);
-      }
-    });
-  */
-    /*const matches = callData.filter(
-      (item) =>
-        item.title.toLowerCase().includes(query) ||
-        item.director.toLowerCase().includes(query) ||
-        item.producer.toLowerCase().includes(query)
-    );*/
-
-    /*let resultsDiv = document.createElement("div");
-    resultsDiv.innerHTML = matches
-      .map((item) => `<p>${item.title}</p>`)
-      .join("");
-    dataContainer.append(resultsDiv);*/
-
-    //console.log(matches);
   });
 
   async function getOrFetch(key, fetchFunction) {

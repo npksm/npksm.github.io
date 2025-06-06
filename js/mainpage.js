@@ -96,4 +96,15 @@ function handleFormSubmit(event) {
     document.getElementById("formModal")
   );
   modal.show();
+
+  const feedbackDiv =
+    document.getElementById("formFeedback");
+  const messageDiv = document.createElement("div");
+  messageDiv.setAttribute("class", "message");
+  messageDiv.textContent = "✅ Thank you for your message!";
+  feedbackDiv.append(messageDiv);
+
+  setTimeout(() => {
+    messageDiv.remove();
+  }, 8000);
 }
