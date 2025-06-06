@@ -136,12 +136,19 @@
 .navbar-brand {
   color: var(--main);
 }
-
+.navbar-brand:hover {
+  color: var(--blue);
+}
+.navbar .btn {
+  color: var(--main);
+}
+.navbar .btn:hover {
+  color: var(--blue);
+}
 .nav-link {
   color: var(--main);
 }
-
-.nav-link:visited {
+.nav-link:hover {
   color: var(--blue);
 }
 .space-between-distributed-row-container {

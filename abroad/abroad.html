@@ -63,12 +63,28 @@
                   >Information</a
                 >
               </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="../index.html#images"
-                  >Images</a
+              <li class="nav-item dropdown">
+                <button
+                  class="btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
                 >
+                  Interests
+                </button>
+                <ul class="dropdown-menu bg-body-secondary">
+                  <li>
+                    <a class="nav-link" href="#images"
+                      >Interests</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="nav-link"
+                      href="../abroad/abroad.html"
+                      >Image gallery example</a
+                    >
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a
@@ -187,7 +203,14 @@
             <div
               class="modal-content bg-transparent border-0"
             >
-              <div class="modal-body p-0">
+              <div class="modal-body p-0 position-relative">
+                <button
+                  class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-1"
+                  id="prevImage"
+                >
+                  &#10094;
+                </button>
+
                 <img
                   id="modalImage"
                   src=""
@@ -195,6 +218,12 @@
                   alt=""
                   data-bs-dismiss="modal"
                 />
+                <button
+                  class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-1"
+                  id="nextImage"
+                >
+                  &#10095;
+                </button>
               </div>
             </div>
           </div>

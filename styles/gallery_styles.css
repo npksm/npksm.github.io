@@ -5,6 +5,10 @@
     var(--blue)
   );
 }
+.modal-body .img-fluid {
+  max-height: 90vh;
+  object-fit: contain;
+}
 .gallery-img {
   border-radius: 3%;
 }

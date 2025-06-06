@@ -10,12 +10,17 @@
 body {
   background-color: var(--black);
 }
-
+.dropdown-menu {
+  background-color: var(--black);
+}
 .h1 {
   color: var(--yellow);
 }
 .nav-item a {
   color: var(--yellow);
+}
+.nav-item a:hover {
+  color: var(--blue);
 }
 .navbar-brand {
   color: var(--yellow);
@@ -23,11 +28,12 @@ body {
 .navbar-brand:hover {
   color: var(--blue);
 }
-
-.navbar-brand:visited {
+.navbar .btn {
   color: var(--yellow);
 }
-
+.navbar .btn:hover {
+  color: var(--blue);
+}
 .navbar-toggler-icon {
   background-color: var(--yellow);
 }
