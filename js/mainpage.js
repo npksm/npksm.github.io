@@ -41,6 +41,10 @@ function setupBeepoCarousel() {
       src: "https://lh3.googleusercontent.com/pw/AP1GczMxa1wBrZ7sJVw2lpX__a69EVjGN8u3s1J6A9dFnFc7qUWPX_QHxhagifO__sF0zXaRI-l_X5bzzviKkkxDT7z8vN1xgDLkS_c4ng0R45-eEUi6BMQPipopAeoIT8DFWyTk4Jl1wv5cxvzto3lMSJBfmQ=w1060-h795-s-no-gm?authuser=0",
       alt: "Beepo flops wearing a harness",
     },
+    {
+      src: "https://lh3.googleusercontent.com/pw/AP1GczPDGjDdR-UhYyJ06ZaHrpsPsWNyhfvOSp-jAiwWRuoO18jhSgbYipzokgCuw6SeQBiIR5ufeFblzFDSbqUa7isjgKuPfJnNZZXVDHIXX9HL56APVr6AP434uQiI37ETbjtELftzf7XdXsALChD4MAJQJw=w455-h606-s-no-gm?authuser=0",
+      alt: "Beepo the black cat with a crinkle toy under the bed",
+    },
   ];
 
   $("#beepoModal").on("show.bs.modal", function () {
