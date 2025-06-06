@@ -96,11 +96,11 @@
         >
           <h1>Gallery Example</h1>
           <p class="lead">
-            I am working on this on
+            I am working on this with
             <a href="https://cloud.google.com/?hl=en"
               >Google Cloud</a
             >
-            using a framework
+            using frameworks
           </p>
           <p>
             I was hoping to use the
@@ -109,9 +109,10 @@
               target="_blank"
               >Google Photos API</a
             >
-            to use images in my collection, instead of using
-            links. It is still a work in progress, so this
-            is a different approach for now.
+            to use images in my Google Photos collection by
+            making API calls, instead of using links. It is
+            still a work in progress, so this is a different
+            approach for now.
           </p>
           <button
             id="showWork"
@@ -120,7 +121,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#galleryWork"
           >
-            See more
+            Click for more information
           </button>
           <div id="galleryWork" class="collapse mt-3">
             <div class="container">
@@ -147,9 +148,9 @@
                   access to these photos from the API to
                   photos that the app itself has created. I
                   was able to properly post new albums,
-                  without any media. But was running into
-                  issues accessing albums, even though it
-                  was app created, and adding media.
+                  without any media. But I was running into
+                  issues accessing albums, even though they
+                  were app created, and adding media.
                 </p>
               </section>
               <p>
@@ -172,32 +173,33 @@
       <section>
         <div
           id="imageContainer"
-          class="image-container text-center"
+          class="image-container text-center pt-5 pb-5"
         ></div>
-      </section>
-      <div
-        class="modal fade"
-        id="imageModal"
-        tabindex="-1"
-        aria-hidden="true"
-      >
         <div
-          class="modal-dialog modal-dialog-centered modal-xl"
+          class="modal fade"
+          id="imageModal"
+          tabindex="-1"
+          aria-hidden="true"
         >
           <div
-            class="modal-content bg-transparent border-0"
+            class="modal-dialog modal-dialog-centered modal-xl"
           >
-            <div class="modal-body p-0">
-              <img
-                id="modalImage"
-                src=""
-                class="img-fluid w-100"
-                alt="Expanded image"
-              />
+            <div
+              class="modal-content bg-transparent border-0"
+            >
+              <div class="modal-body p-0">
+                <img
+                  id="modalImage"
+                  src=""
+                  class="img-fluid w-100"
+                  alt=""
+                  data-bs-dismiss="modal"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </main>
   </body>
 </html>

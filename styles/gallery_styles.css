@@ -1,0 +1,37 @@
+.image-container {
+  background-image: linear-gradient(
+    to bottom left,
+    var(--main),
+    var(--blue)
+  );
+}
+.gallery-img {
+  border-radius: 3%;
+}
+.gallery-img:hover {
+  opacity: 0.5;
+}
+.picker-image {
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  border-radius: 1%;
+  display: block;
+  align-self: start;
+  background-image: url("../images/api_images/picker.png");
+  background-position: center;
+  background-size: cover;
+}
+.welcome a {
+  color: var(--white);
+}
+.working-image {
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  border-radius: 1%;
+  display: block;
+  align-self: start;
+  background-image: url("../images/api_images/get-response.png");
+  background-size: cover;
+}

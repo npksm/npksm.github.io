@@ -1,34 +1,27 @@
-//Modal images
-/*{
-  function createImage() {
-    const information =
-      document.querySelector("#information");
-    let image1 = document.createElement("img");
-
-    image1.setAttribute("class", "img d-block w-100");
-    image1.setAttribute(
-      "src",
-      "https://lh3.googleusercontent.com/pw/AP1GczPbFk_lBGc63mViAOJBtECfjRN-g0U5OdwenxaJu7zX2k4ddANj6TQpV6QT8H9Y5BVg52TuoI6_EWsxg6UcGbtRwfny4H1McfseL8Vf27VuSrREtzZnwM33T00o7TRN8U9oLOQdeZ1tgPCRdoKD84p5=w1231-h923-s-no-gm?authuser=0"
-    );
-    image1.setAttribute(
-      "alt",
-      "Beepo the black kitten with a feather toy"
-    );
-
-    information.append(image1);
-  }
-
-  createImage();
-}*/
-
-//Jquery
 $(document).ready(function () {
+  setupLinkHandlers();
   setupBeepoCarousel();
-
   handleModalImageTrigger();
   $("form").on("submit", handleFormSubmit);
+
+  $(".cs-image").on("click", function () {
+    alert("I don't have any projects to show right now!");
+  });
 });
 $(window).resize(handleModalImageTrigger);
+
+function setupLinkHandlers() {
+  $(".delayed-anchor").on("click", delayedDirect);
+}
+
+function delayedDirect(event) {
+  event.preventDefault();
+  const targetUrl = $(this).attr("href");
+  alert(
+    "I have one gallery example set up for now. There is an explanation on the page!"
+  );
+  window.location.href = targetUrl;
+}
 
 function setupBeepoCarousel() {
   const imageUrls = [

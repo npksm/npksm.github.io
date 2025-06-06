@@ -1616,6 +1616,7 @@
       return;
     }
 
+    showButtonLoading();
     showLoading("Searching...");
 
     try {
@@ -1751,6 +1752,10 @@
 
       if (!found) {
         const noMatch = document.createElement("div");
+        noMatch.setAttribute(
+          "class",
+          "warning-div text-center"
+        );
         noMatch.textContent = `No results for "${query}".`;
         dataRow.append(noMatch);
       }
@@ -1759,7 +1764,10 @@
     } catch (error) {
       console.error("Search failed: ", error);
       const warningDiv = document.createElement("div");
-      warningDiv.setAttribute("class", "warning-div");
+      warningDiv.setAttribute(
+        "class",
+        "warning-div text-center"
+      );
       warningDiv.textContent = "Sorry, there was an error.";
       searchDiv.append(warningDiv);
 
@@ -1767,6 +1775,7 @@
         warningDiv.remove();
       }, 3000);
     } finally {
+      hideButtonLoading();
       hideLoading();
     }
   });
@@ -1814,7 +1823,7 @@
     loading.setAttribute("id", "loading");
     loading.setAttribute(
       "class",
-      "spinner-border text-center"
+      "spinner-border text-danger text-center justify-content-center"
     );
     loading.setAttribute("role", "status");
 
@@ -1832,5 +1841,23 @@
     if (loading) {
       loading.remove();
     }
+  }
+
+  function showButtonLoading() {
+    document
+      .querySelector("#searchButton .search-load")
+      .classList.add("d-none");
+    document
+      .querySelector("#searchButton .loader")
+      .classList.remove("d-none");
+  }
+
+  function hideButtonLoading() {
+    document
+      .querySelector("#searchButton .search-load")
+      .classList.remove("d-none");
+    document
+      .querySelector("#searchButton .loader")
+      .classList.add("d-none");
   }
 }

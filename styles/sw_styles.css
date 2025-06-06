@@ -14,11 +14,12 @@ body {
 .h1 {
   color: var(--yellow);
 }
-
+.nav-item a {
+  color: var(--yellow);
+}
 .navbar-brand {
   color: var(--yellow);
 }
-
 .navbar-brand:hover {
   color: var(--blue);
 }
@@ -61,5 +62,8 @@ body {
 }
 
 .row > label {
+  color: var(--yellow);
+}
+.warning-div {
   color: var(--yellow);
 }
