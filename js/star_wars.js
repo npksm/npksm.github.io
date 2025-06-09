@@ -1,5 +1,5 @@
-//Initial code - load films
 {
+  //Api Links
   const urlFilms = "https://swapi.py4e.com/api/films";
   const urlPlanets = "https://swapi.py4e.com/api/planets";
   const urlShips = "https://swapi.py4e.com/api/starships";
@@ -7,6 +7,7 @@
   const urlPeople = "https://swapi.py4e.com/api/people";
   const urlSpecies = "https://swapi.py4e.com/api/species";
 
+  //Select elements, create element to insert, and initialize global cache
   const dataContainer = document.querySelector(
     "#data-container"
   );
@@ -26,6 +27,7 @@
     speciesByUrl: {},
   };
 
+  //Add event listeners to select options
   const selectOption =
     document.querySelector("#optionSelect");
   selectOption.addEventListener("change", () => {
@@ -62,6 +64,7 @@
     "#buttonSpecies"
   );
 
+  //Add event listeners to buttons
   buttonFilms.addEventListener("click", showFilms);
   buttonPlanets.addEventListener("click", showPlanets);
   buttonShips.addEventListener("click", showShips);
@@ -71,8 +74,8 @@
 
   /**
    * Fetch Data
-   * @param {*} films
-   * @returns
+   * @param {URL} API url for category or individual item
+   * @returns data from api, or null + error
    */
 
   async function fetchMovieData(films) {
@@ -410,7 +413,7 @@
   }
 
   /**
-   * Call for data and insert
+   * Functions for buttons/select to show all entries from category
    */
 
   async function showFilms() {
@@ -527,6 +530,12 @@
       hideLoading();
     }
   }
+
+  /**
+   * Create elements to insert into the DOM
+   * @param {item} the element that is being created
+   * Appends the item in the format created to the DOM
+   */
 
   const createMovieComponent = (item) => {
     let cardCol = document.createElement("div");
@@ -1582,17 +1591,11 @@
     dataRow.append(cardCol);
   };
 
+  /*Event listener & search approach for search button
+  Uses a promise to search through all categories, using the cache if possible
+*/
   searchButton.addEventListener("click", async () => {
-    //const loader = document.querySelector(".loader");
-    //const searchLoad =
-    //document.querySelector(".search-load");
-
-    //searchLoad.setAttribute("class", "d-none");
-    //loader.setAttribute("class", "d-block");
     dataRow.innerHTML = "";
-
-    //const response = await fetchMovieData();
-    //const callData = response.results;
 
     const query = searchInput.value.trim().toLowerCase();
 
@@ -1780,6 +1783,7 @@
     }
   });
 
+  //Helper function to check for cache data or if a fetch is required
   async function getOrFetch(key, fetchFunction) {
     if (globalCache.key) {
       return globalCache.key;
@@ -1813,29 +1817,37 @@
     }
   }
 
+  //Helper function for parsing and displaying numbers
   function isNumeric(str) {
     if (typeof str != "string") return false;
     return !isNaN(str) && !isNaN(parseFloat(str));
   }
 
+  //Displays a loading message where the data will be inserted into the DOM
   function showLoading(message = "Loading...") {
     const loading = document.createElement("div");
     loading.setAttribute("id", "loading");
     loading.setAttribute(
       "class",
-      "spinner-border text-danger text-center justify-content-center"
+      "bg-body-secondary text-center"
     );
-    loading.setAttribute("role", "status");
+    const loadingIcon = document.createElement("div");
+    loadingIcon.setAttribute(
+      "class",
+      "spinner-border text-danger"
+    );
+    loadingIcon.setAttribute("role", "status");
 
     const span = document.createElement("span");
-    span.className = "visually-hidden";
     span.textContent = message;
 
+    loading.appendChild(loadingIcon);
     loading.appendChild(span);
 
-    dataRow.append(loading);
+    dataContainer.append(loading);
   }
 
+  //Removes the loading message from the DOM if it exists
   function hideLoading() {
     const loading = document.getElementById("loading");
     if (loading) {
@@ -1843,6 +1855,7 @@
     }
   }
 
+  //Shows a loading icon and message on the search button while loading
   function showButtonLoading() {
     document
       .querySelector("#searchButton .search-load")
@@ -1852,6 +1865,7 @@
       .classList.remove("d-none");
   }
 
+  //Hides the search loading from the button
   function hideButtonLoading() {
     document
       .querySelector("#searchButton .search-load")

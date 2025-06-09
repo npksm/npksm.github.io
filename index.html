@@ -50,8 +50,11 @@
           >
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#information"
-                  >Information</a
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact"
+                  >Contact</a
                 >
               </li>
               <li class="nav-item dropdown">
@@ -60,12 +63,12 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Interests
+                  Projects
                 </button>
                 <ul class="dropdown-menu bg-body-secondary">
                   <li>
                     <a class="nav-link" href="#images"
-                      >Interests</a
+                      >Projects</a
                     >
                   </li>
                   <li>
@@ -75,19 +78,14 @@
                       >Image gallery example</a
                     >
                   </li>
+                  <li>
+                    <a
+                      class="nav-link"
+                      href="star_wars/star_wars.html"
+                      >Star Wars</a
+                    >
+                  </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact"
-                  >Contact</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="star_wars/star_wars.html"
-                  >Star Wars</a
-                >
               </li>
             </ul>
           </div>
@@ -101,64 +99,313 @@
         >
           <div class="headshot-image"></div>
           <h1 class="h1">Nick Moller</h1>
-          <p clas="lead">Welcome to my personal website!</p>
           <p>
-            I have a variety of interests and projects to
-            share, thanks for taking a look.
+            <span class="lead"
+              >Welcome to my personal website!</span
+            >
+            I am sharing a variety of projects and my
+            interests here, thanks for taking a look.
           </p>
         </div>
       </section>
-      <section id="information">
-        <div class="container-fluid">
-          <p>
-            Nullam nulla dolor, gravida at nulla ut, lacinia
-            vehicula velit. Donec dictum tincidunt nisl, at
-            malesuada nunc dapibus sit amet. Donec convallis
-            imperdiet lorem, eget imperdiet risus facilisis
-            sit amet. Suspendisse finibus nisi purus.
-            Maecenas quis mi sed lectus scelerisque
-            tristique. Integer nulla nisl, lobortis
-            vulputate aliquet accumsan, ultricies non ipsum.
-            Quisque sodales aliquet leo id maximus. Donec
-            fringilla facilisis nunc, non vulputate tortor
-            vestibulum sit amet. Donec malesuada orci in
-            tellus tristique, ac efficitur ex sollicitudin.
-            Nulla imperdiet est quis augue venenatis, eget
-            scelerisque lorem vulputate. Ut auctor commodo
-            venenatis. Quisque a porta nibh, iaculis congue
-            enim. Aenean vitae lacinia felis, efficitur
-            auctor sem. Phasellus ut aliquam risus. Sed
-            consequat malesuada magna, eu finibus ex auctor
-            vitae. Duis pharetra blandit laoreet. Nunc at
-            felis ipsum. Proin vel lorem gravida libero
-            dictum commodo. Curabitur auctor vulputate
-            facilisis. Sed ut tortor quam. Sed suscipit ante
-            magna, sed blandit ipsum tincidunt eu. Duis
-            consequat iaculis felis sed sodales. Nulla vitae
-            turpis leo. Suspendisse potenti. Cras id nibh eu
-            erat aliquam malesuada aliquam id velit. Aliquam
-            ultrices pharetra commodo. Aliquam sit amet
-            libero non sem aliquam ultricies non in orci.
-            Quisque efficitur ex arcu, ut lacinia urna
-            fermentum viverra. Pellentesque luctus tellus at
-            elementum blandit. Nam in justo feugiat,
-            scelerisque sapien et, molestie lacus. Orci
-            varius natoque penatibus et magnis dis
-            parturient montes, nascetur ridiculus mus.
-            Praesent sed justo sit amet risus aliquet
-            ultricies vel at ex. Nulla iaculis enim diam, at
-            eleifend dui pulvinar vel. Sed a lectus eget mi
-            semper vulputate vitae non velit. Nunc pulvinar
-            velit eu egestas viverra. Pellentesque vel sem
-            ipsum.
-          </p>
+      <section id="about">
+        <div class="container-fluid mb-5 p-2">
+          <h2 class="h2 p-2 text-center">About me</h2>
+          <div class="row">
+            <div class="col about container py-2 mb-4">
+              <p class="text-center m-2 p-3">
+                <span class="lead">
+                  I grew up in the Portland, OR area </span
+                >before going abroad to teach English in
+                South Korea. I lived in Sacramento, CA for a
+                few years and then left agin for Bengaluru,
+                India. From India I moved to Bangkok,
+                Thailand before returning to Portland, OR in
+                2023. Over the last few years I've been
+                pursuing a lifelong interest in computer
+                science by taking courses at
+                <a
+                  href="https://www.pdx.edu"
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  >Portland State University</a
+                >.
+              </p>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col-sm-12 col-md-6 mt-2">
+              <button
+                type="button"
+                class="btn btn-main"
+                data-bs-toggle="collapse"
+                data-bs-target="#education"
+                aria-expanded="false"
+              >
+                <span><h3 class="h3">Education</h3></span>
+              </button>
+              <div id="education" class="collapse">
+                <ul class="list-group-flush mt-2">
+                  <li class="list-group-item mt-2">
+                    <span>
+                      <h4 class="fw-bold">
+                        Portland State University
+                      </h4>
+                      <p>
+                        <span
+                          ><a
+                            href="https://www.pdx.edu/computer-science/grad-prep"
+                            target="_blank"
+                            class="fw-bold"
+                            rel="me noopener noreferrer"
+                            >Graduate Preparation Track</a
+                          ></span
+                        >
+                        : Completed Spring 2025
+                      </p>
+                      <p>
+                        This program consisted of the core
+                        Computer Science courses necessary
+                        to be successful in the Master's
+                        program at Portland State
+                        University.
+                      </p>
+                    </span>
+                  </li>
+                  <li class="list-group-item mt-2">
+                    <span
+                      ><h4 class="fw-bold">
+                        Portland State University
+                      </h4>
+                      <p>
+                        <span class="fw-bold"
+                          >Bachelor of Arts: Art
+                          Practices</span
+                        >
+                        : August, 2014
+                      </p>
+                      <p>
+                        I completed my Art Practices degree
+                        with a focus on printmaking.
+                      </p>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 mt-2">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="collapse"
+                data-bs-target="#work"
+                aria-expanded="false"
+              >
+                <span
+                  ><h3 class="h3">Work Experience</h3></span
+                >
+              </button>
+              <div id="work" class="collapse">
+                <ul class="list-group-flush mt-3">
+                  <li class="list-group-item">
+                    <button
+                      type="button"
+                      class="btn btn-main"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#after"
+                      aria-expanded="false"
+                    >
+                      After living abroad
+                    </button>
+                    <div id="after" class="collapse">
+                      <p>
+                        <span class="lead"
+                          >I completed the graduate
+                          preparation track </span
+                        >in pursuit of a Master of Science
+                        in Computer Science degree at
+                        Portland State University.
+                      </p>
+                      <p>
+                        <span class="lead"
+                          >I worked in a sales role</span
+                        >
+                        utilizing
+                        <a
+                          href="https://www.netsuite.com/portal/home.shtml"
+                          target="_blank"
+                          rel="me noopener noreferrer"
+                        >
+                          Oracle Netsuite</a
+                        >
+                        and Google Workspace.
+                      </p>
+                      <p>
+                        In this position I worked closely
+                        with clients on the East Coast of
+                        the United States selling tile from
+                        distributors and manufacturers. I
+                        worked directly with these companies
+                        and manufacturers who were located
+                        around the world - Japan, China,
+                        Brazil, Italy, Spain, Portugal, and
+                        more. My primary responsibility was
+                        utilizing data and spreadsheets to
+                        create sales proposals,
+                        communicating with shipping
+                        companies to incorporate shipping
+                        prices and timelines into these
+                        proposals, and working with clients
+                        in the design phase to offer
+                        products that matched their needs
+                        and timelines.
+                      </p>
+
+                      <p>
+                        <span class="lead"
+                          >I worked concessions</span
+                        >
+                        at events for
+                        <a
+                          href="https://www.portland5.com"
+                          target="_blank"
+                          rel="me noopener noreferrer"
+                          >Portland'5 Center for the Arts</a
+                        >
+                        at the Arlene Schnitzer Concert Hall
+                        and the Keller Auditorium.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="list-group-item mt-2">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#abroad"
+                      aria-expanded="false"
+                    >
+                      Life abroad
+                    </button>
+                    <div id="abroad" class="collapse">
+                      <p>
+                        <span class="lead"
+                          >I taught English as a Second
+                          Language in Asia.</span
+                        >
+                      </p>
+                      <p>
+                        After getting my bachelor's degree I
+                        got a job teaching English in South
+                        Korea. I had a great experience
+                        living abroad and so I was
+                        motiviated to continue and work in
+                        other countries. After South Korea I
+                        lived in India and Thailand. There
+                        are some photos in my
+                        <a
+                          href="abroad/abroad.html"
+                          target="_blank"
+                          >gallery</a
+                        >
+                        of my time abroad.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="list-group-item mt-2">
+                    <button
+                      type="button"
+                      class="btn btn-main"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#before"
+                      aria-expanded="false"
+                    >
+                      Before living abroad
+                    </button>
+                    <div id="before" class="collapse">
+                      <p>
+                        <span class="lead"
+                          >I worked primarily in food
+                          service and retail
+                        </span>
+                        before I left the country to teach
+                        abroad. I have been:
+                      </p>
+                      <ul class="list-group-flush">
+                        <li class="list-group-item">
+                          A retail salesperson
+                        </li>
+                        <li class="list-group-item">
+                          A mailman
+                        </li>
+                        <li class="list-group-item">
+                          An art framer
+                        </li>
+                        <li class="list-group-item">
+                          A front desk attendant at a gym
+                        </li>
+                        <li class="list-group-item">
+                          A cook in a food cart
+                        </li>
+                        <li class="list-group-item">
+                          A line cook
+                        </li>
+                        <li class="list-group-item">
+                          A barista
+                        </li>
+                        <li class="list-group-item">
+                          A manager/baker at a bagel store
+                        </li>
+                        <li class="list-group-item">
+                          An ice cream scooper
+                        </li>
+                        <li class="list-group-item">
+                          A clerk at a grocery store
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="images">
         <div class="content-container p-2">
           <h2 class="h2 text-center p-2 mb-5">
-            A collection of image galleries
+            My projects
           </h2>
+          <div
+            class="image-content space-between-distributed-row-container mb-2"
+          >
+            <div
+              class="image-content-text-margin-right p-2 mt-5 text-center"
+            >
+              <h3>CS Projects</h3>
+              <p>
+                My expanded Star Wars JavaScript example
+                using
+                <a
+                  href="https://swapi.py4e.com/"
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  >https://swapi.py4e.com</a
+                >
+              </p>
+            </div>
+            <div class="overlay">
+              <a href="star_wars/star_wars.html">
+                <div class="hover-overlay cs-image"></div>
+                <span class="visually-hidden"
+                  >Link to Star Wars Page</span
+                ></a
+              >
+            </div>
+          </div>
+          <div class="small-caption">
+            <p><small>My CS projects</small></p>
+          </div>
           <div
             class="image-content space-between-distributed-row-container mb-2"
           >
@@ -178,11 +425,14 @@
               <h3>Life Abroad</h3>
               <p>
                 A collection of images from my time living
-                in Asia. I lived in or traveled to South
-                Korea, India, Thailand, Japan, Taiwan, &
-                Vietnam
+                in Asia.
               </p>
             </div>
+          </div>
+          <div class="small-caption">
+            <p>
+              <small>My gallery of life abroad</small>
+            </p>
           </div>
           <div
             class="image-content space-between-distributed-row-container mb-2"
@@ -211,6 +461,9 @@
                 >
               </a>
             </div>
+          </div>
+          <div class="small-caption">
+            <p><small>My art gallery</small></p>
           </div>
           <div
             class="image-content space-between-distributed-row-container mb-2"
@@ -242,32 +495,14 @@
               </p>
             </div>
           </div>
+          <div class="small-caption">
+            <p><small>My hobby gallery</small></p>
+          </div>
           <div
             class="image-content space-between-distributed-row-container mb-2"
           >
             <div
               class="image-content-text-margin-right p-2 mt-5 text-center"
-            >
-              <h3>CS Projects</h3>
-              <p>Here is where I'd put my CS projects</p>
-            </div>
-            <div class="overlay">
-              <div class="hover-overlay cs-image"></div>
-            </div>
-          </div>
-          <div
-            class="image-content space-between-distributed-row-container mb-2"
-          >
-            <div class="overlay">
-              <div
-                class="hover-overlay beepo-image"
-                role="button"
-                data-bs-toggle="modal"
-                data-bs-target="#beepoModal"
-              ></div>
-            </div>
-            <div
-              class="image-content-text-margin-left p-2 mt-5 text-center"
             >
               <h3>My cat Crumb (aka Beepo)</h3>
               <button
@@ -279,6 +514,17 @@
                 See more
               </button>
             </div>
+            <div class="overlay">
+              <div
+                class="hover-overlay beepo-image"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#beepoModal"
+              ></div>
+            </div>
+          </div>
+          <div class="small-caption">
+            <p><small>My cat Crumb</small></p>
           </div>
         </div>
         <div

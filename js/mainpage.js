@@ -3,10 +3,6 @@ $(document).ready(function () {
   setupBeepoCarousel();
   handleModalImageTrigger();
   $("form").on("submit", handleFormSubmit);
-
-  $(".cs-image").on("click", function () {
-    alert("I don't have any projects to show right now!");
-  });
 });
 $(window).resize(handleModalImageTrigger);
 
